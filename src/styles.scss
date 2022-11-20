@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&family=Readex+Pro:wght@200;400;700&display=swap');
+
+$nunitoFont: 'Nunito', sans-serif;
+$readexFont: 'Readex Pro', sans-serif;
+
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $nunitoFont;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo {
+  font-family: $readexFont;
+  font-weight: 700;
+  font-size: 20px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+   &:hover{
+    cursor: pointer;
+   }
+}

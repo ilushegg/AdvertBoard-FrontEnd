@@ -1,0 +1,23 @@
+<header class="header">
+  <div class="container">
+    <nav class="navbar">
+      <ul class="navbar_section">
+        <li class="navbar_item logo" routerLink="/">AdvBOARD</li>
+      </ul>
+      <ul class="navbar_section">
+        <div class="" *ngIf="(authService.user$ | async) as user; else notAuthed">
+        <li class="navbar_item">{{ user.name }}</li>
+        <button class="navbar_item" nz-button nzType="primary" (click)="authService.logout()">Выход</button>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<ng-template #notAuthed>
+  <button nz-button nzType="primary" routerLink="/auth">
+    Вход и регистрация
+  </button>
+</ng-template>
+
+
