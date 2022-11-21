@@ -26,8 +26,9 @@ export class AuthComponent implements OnInit {
   readonly registrationForm = this.formBuilder.group(
     {
       login: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.email]],
+      password: ['', [Validators.required]],
+      passwordCheck: ['', [Validators.required]]
     }
   );
 
@@ -43,7 +44,8 @@ export class AuthComponent implements OnInit {
       this.nzNotificationService.error('Ошибка', 'Форма заполнена неверно');
       Object.values(this.loginForm.controls).forEach(control => {
         if (control.invalid) {
-          control.markAsDirty();
+
+          control.markAsTouched();
           control.updateValueAndValidity({onlySelf: true});
         }
       })
@@ -64,10 +66,23 @@ export class AuthComponent implements OnInit {
       this.nzNotificationService.error('Ошибка', 'Форма заполнена неверно');
       Object.values(this.registrationForm.controls).forEach(control => {
         if (control.invalid) {
-          control.markAsDirty();
+          control.markAsTouched();
           control.updateValueAndValidity({onlySelf: true});
         }
       })
+      return;
+    }
+    if(this.registrationForm.controls.password != this.registrationForm.controls.passwordCheck) {
+      this.nzNotificationService.error('Ошибка', 'Пароли не совпадают');
+      this.registrationForm.controls.password.reset();
+      this.registrationForm.controls.password.markAsTouched();
+      this.registrationForm.controls.password.updateValueAndValidity({onlySelf: true});
+      this.registrationForm.controls.passwordCheck.reset();
+      this.registrationForm.controls.passwordCheck.markAsTouched();
+      this.registrationForm.controls.passwordCheck.updateValueAndValidity({onlySelf: true});
+          
+        
+      
       return;
     }
 

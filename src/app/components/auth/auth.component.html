@@ -18,13 +18,14 @@
       </nz-form-item >
     </div>
     
-    
-    <button nz-button nzType="primary" type="submit">Войти</button>
-    <a (click)="onChange()">Создать аккаунт</a>
+    <div class="auth-form__footer">
+      <button nz-button nzType="primary" type="submit">Войти</button>
+      <a (click)="onChange()">Создать аккаунт</a>
+    </div>
   </form>
   <form class="auth-form" nz-form *ngIf="!(isLogin | async)" [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
     <div class="auth-form__title">
-      <p>Вход</p>
+      <p>Регистрация</p>
     </div>
     <div class="auth-form__content">
       <nz-form-item>
@@ -38,21 +39,31 @@
         </nz-form-control>
       </nz-form-item >
       <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorPasswordTip">
           <input nz-input type="password" id="password" formControlName="password" placeholder="Пароль">
+        </nz-form-control>
+      </nz-form-item >
+      <nz-form-item>
+        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorPasswordTip">
+          <input nz-input type="password" id="passwordCheck" formControlName="passwordCheck" placeholder="Повторите пароль">
         </nz-form-control>
       </nz-form-item >
     </div>
     
-    
-    <button nz-button nzType="primary" type="submit">Создать аккаунт</button>
-    <a (click)="onChange()">Войти</a>
+    <div class="auth-form__footer">
+      <button nz-button nzType="primary" type="submit">Создать аккаунт</button>
+      <a (click)="onChange()">Войти</a>
+    </div>
+
   </form>
 </nz-card>
 </div>
 
 <ng-template #errorTip let-control>
   <div class="" style="color: red" *ngIf="control?.invalid && control?.touched">Поле заполнено неверно</div>
+</ng-template>
+<ng-template #errorPasswordTip let-control>
+  <div class="" style="color: red" *ngIf="control?.touched">Пароли не совпадают</div>
 </ng-template>
 <ng-template #loading>
   <div class="spinner">
