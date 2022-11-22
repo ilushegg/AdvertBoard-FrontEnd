@@ -1,13 +1,13 @@
 <header class="header">
   <div class="container">
     <nav class="navbar">
-      <ul class="navbar_section">
-        <li class="navbar_item logo" routerLink="/">AdvBOARD</li>
+      <ul class="navbar__section">
+        <li class="navbar__item logo" routerLink="/">AdvBOARD</li>
       </ul>
-      <ul class="navbar_section">
+      <ul class="navbar__section">
         <div class="" *ngIf="(authService.user$ | async) as user; else notAuthed">
-        <li class="navbar_item">{{ user.name }}</li>
-        <button class="navbar_item" nz-button nzType="primary" (click)="authService.logout()">Выход</button>
+        <li class="navbar__item">{{ user.name }}</li>
+        <button class="navbar__item" nz-button nzType="primary" (click)="authService.logout()">Выход</button>
         </div>
       </ul>
     </nav>

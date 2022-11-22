@@ -11,9 +11,17 @@
   height: 50px;
 }
 
-.navbar_section {
+.navbar__section {
+  div{
+    display: flex;
+    align-items: center;
+  }
   display: flex;
   align-items: center;
+}
+
+.navbar__item{
+  padding-right: 15px;
 }
 
 [nz-button] {

@@ -1,0 +1,24 @@
+<h1 nz-typography>Главная страница</h1>
+<div  *ngIf="!(loadingService.isLoading | async); else <loading>">
+
+  <div class="container" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div nz-col class="gutter-row" [nzSpan]="8"  *ngFor="let ad of ads.items">
+        <nz-card [nzBordered]="false" [nzTitle]="ad.name" [nzExtra]="extraTemplate">
+          <img
+            *ngIf="ad.photo"
+            src="data:image/jpeg;base64,{{ ad.photo }}"
+            alt="фото"
+            class="mb-4"
+          />
+          <p>{{ad.locationText}}</p>
+          <p>{{ad.price}}</p>
+        </nz-card>
+      </div>
+  </div>
+
+  <nz-pagination [nzPageIndex]="pageNumber" [nzTotal]="ads.total" [nzPageSize]="pageSize" (nzPageIndexChange)="onChange($event)"></nz-pagination>
+
+</div>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

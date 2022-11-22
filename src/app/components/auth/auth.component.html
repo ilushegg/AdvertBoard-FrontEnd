@@ -1,6 +1,6 @@
-<div class="auth">
-  <div  *ngIf="!(isLoading | async); else loading"></div>
+<div class="auth" >
 <nz-card class="auth-form__wrapper" [nzBordered]="false">
+  <div class=""*ngIf="!(loadingService.isLoading | async); else loading">
   <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="auth-form__title">
       <p>Вход</p>
@@ -8,7 +8,7 @@
     <div class="auth-form__content">
       <nz-form-item>
         <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="text" id="login" formControlName="login" placeholder="Имя пользователя">
+          <input nz-input type="text" id="email" formControlName="email" placeholder="Эл. адрес">
         </nz-form-control>
       </nz-form-item >
       <nz-form-item>
@@ -23,14 +23,16 @@
       <a (click)="onChange()">Создать аккаунт</a>
     </div>
   </form>
-  <form class="auth-form" nz-form *ngIf="!(isLogin | async)" [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
+</div>
+<div class="" *ngIf="!(loadingService.isLoading | async); else loading">
+  <form class="auth-form" nz-form *ngIf="!(isLogin | async)"  [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
     <div class="auth-form__title">
       <p>Регистрация</p>
     </div>
     <div class="auth-form__content">
       <nz-form-item>
         <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="text" id="login" formControlName="login" placeholder="Имя пользователя">
+          <input nz-input type="text" id="name" formControlName="name" placeholder="Имя пользователя">
         </nz-form-control>
       </nz-form-item >
       <nz-form-item>
@@ -56,6 +58,7 @@
     </div>
 
   </form>
+  </div>
 </nz-card>
 </div>
 
@@ -66,7 +69,5 @@
   <div class="" style="color: red" *ngIf="control?.touched">Пароли не совпадают</div>
 </ng-template>
 <ng-template #loading>
-  <div class="spinner">
-    <nz-spin></nz-spin>
-  </div>
+  <app-spinner></app-spinner>
 </ng-template>
