@@ -18,12 +18,22 @@
   }
   display: flex;
   align-items: center;
+  a {
+    padding-right: 15px;
+  }
 }
 
-.navbar__item{
-  padding-right: 15px;
-}
+
 
 [nz-button] {
   border-radius: 15px;
+}
+
+[nz-menu] {
+  width: 200px;
+  z-index: 1000;
+}
+
+[nz-dropdown-menu] {
+  border-radius: 25px;
 }

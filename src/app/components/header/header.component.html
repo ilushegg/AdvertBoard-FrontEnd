@@ -5,9 +5,25 @@
         <li class="navbar__item logo" routerLink="/">AdvBOARD</li>
       </ul>
       <ul class="navbar__section">
-        <div class="" *ngIf="(authService.user$ | async) as user; else notAuthed">
-        <li class="navbar__item">{{ user.name }}</li>
-        <button class="navbar__item" nz-button nzType="primary" (click)="authService.logout()">Выход</button>
+        <div class="" *ngIf="authService.user$ | async as user; else notAuthed">
+          <a nz-dropdown [nzDropdownMenu]="menu">
+            {{ user.name }}
+            <span nz-icon nzType="down"></span>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>Разместить объявление</li>
+              <li nz-menu-item>Профиль</li>
+            </ul>
+          </nz-dropdown-menu>
+          <button
+            class="navbar__item"
+            nz-button
+            nzType="primary"
+            (click)="authService.logout()"
+          >
+            Выход
+          </button>
         </div>
       </ul>
     </nav>
@@ -19,5 +35,3 @@
     Вход и регистрация
   </button>
 </ng-template>
-
-

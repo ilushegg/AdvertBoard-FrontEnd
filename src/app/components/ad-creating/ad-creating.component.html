@@ -1,0 +1,60 @@
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Название</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+      <input nz-input formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Категория</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+
+      <nz-tree-select
+        [nzNodes]="(categories$ | async) || []"
+        formControlName="categoryId"
+      ></nz-tree-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Текст</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+      <textarea nz-input [nzAutosize]="{ minRows: 2, maxRows: 6 }" formControlName="text" ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Цена</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+      <nz-input-number formControlName="price" ></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <!--   Использовать dadata, можно сохранять координаты, полный адрес и тд-->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Адрес</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+      <input nz-input formControlName="locationText" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Фотографии</nz-form-label>
+    <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+      <nz-upload
+        nzAction="http://localhost:5000/photos/create"
+        (nzChange)="handleChange($event)"
+      >
+        <button nz-button type="button">
+          <span nz-icon nzType="upload"></span>
+          Click to Upload
+        </button>
+      </nz-upload>
+    </nz-form-control>
+  </nz-form-item>
+    <button nz-button nzType="primary" type="submit">Создать</button>
+
+</form>
+
+<ng-template #errorTip let-control>
+  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+    Поле заполнено неверно
+  </div>
+</ng-template>
+

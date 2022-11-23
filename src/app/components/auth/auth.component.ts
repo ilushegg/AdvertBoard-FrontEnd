@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit {
   readonly registrationForm = this.formBuilder.group(
     {
       name: ['', [Validators.required]],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       passwordCheck: ['', [Validators.required]]
     }
