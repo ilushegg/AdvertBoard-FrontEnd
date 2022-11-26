@@ -20,8 +20,15 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ErrorInterceptor } from './services/error.interceptor';
-
-
+import { AdComponent } from './components/ad/ad.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { AdCreatingComponent } from './components/ad-creating/ad-creating.component';
+import {NzTreeSelectModule} from "ng-zorro-antd/tree-select";
+import {NzUploadModule} from "ng-zorro-antd/upload";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 registerLocaleData(ru);
 
 @NgModule({
@@ -29,7 +36,10 @@ registerLocaleData(ru);
     AppComponent,
     HeaderComponent,
     AuthComponent,
-    MainComponent
+    MainComponent,
+    AdComponent,
+    SpinnerComponent,
+    AdCreatingComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +53,13 @@ registerLocaleData(ru);
     NzFormModule,
     NzNotificationModule,
     NzCardModule,
-    NzSpinModule
+    NzSpinModule,
+    NzPaginationModule,
+    NzMenuModule,
+    NzDropDownModule,
+    NzTreeSelectModule,
+    NzUploadModule,
+    NzInputNumberModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

@@ -1,5 +1,5 @@
 export interface RegistrationUser {
-  login: string,
+  name: string,
   email: string,
   password: string
 }
