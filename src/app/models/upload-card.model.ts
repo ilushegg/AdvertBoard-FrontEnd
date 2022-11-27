@@ -3,5 +3,5 @@ export interface UploadCard {
   description: string | null,
   price: number | null,
   categoryId: string | null,
-  image: string | null
+  images: string[] | null
 }

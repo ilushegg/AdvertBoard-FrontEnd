@@ -17,6 +17,7 @@ import { MainComponent } from './components/main/main.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzMessageModule } from "ng-zorro-antd/message";
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ErrorInterceptor } from './services/error.interceptor';
@@ -29,6 +30,7 @@ import { AdCreatingComponent } from './components/ad-creating/ad-creating.compon
 import {NzTreeSelectModule} from "ng-zorro-antd/tree-select";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import { AuthInterceptor } from './services/auth.interceptor';
 registerLocaleData(ru);
 
 @NgModule({
@@ -59,11 +61,13 @@ registerLocaleData(ru);
     NzDropDownModule,
     NzTreeSelectModule,
     NzUploadModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzMessageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

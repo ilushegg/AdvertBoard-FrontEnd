@@ -37,15 +37,19 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="6" nzRequired>Фотографии</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-      <!-- <nz-upload
-        nzAction="http://localhost:5000/photos/create"
-        (nzChange)="handleChange($event)"
-      >
-        <button nz-button type="button">
-          <span nz-icon nzType="upload"></span>
-          Click to Upload
-        </button>
-      </nz-upload> -->
+      <div class="clearfix">
+        <nz-upload
+        nzAction="https://localhost:7057/v1/image/create"
+          nzListType="picture"
+          [nzMultiple]="true"
+          (nzChange)="handleChange($event)"
+        >
+          <button nz-button>
+            <span nz-icon nzType="upload"></span>
+            Загрузить изображения
+          </button>
+        </nz-upload>
+      </div>
     </nz-form-control>
   </nz-form-item>
     <button nz-button nzType="primary" type="submit">Создать</button>

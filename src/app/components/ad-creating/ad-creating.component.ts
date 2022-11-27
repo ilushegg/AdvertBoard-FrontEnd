@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UploadCard } from 'src/app/models/upload-card.model';
 import { AdService } from 'src/app/services/ad.service';
@@ -23,7 +24,7 @@ export class AdCreatingComponent implements OnInit {
     images: [[]]
   })
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService) { }
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService) { }
 
   ngOnInit(): void {
   }
@@ -43,13 +44,30 @@ export class AdCreatingComponent implements OnInit {
       description: this.form.controls.description.value,
       price: this.form.controls.price.value,
       categoryId: this.form.controls.categoryId.value,
-      image: this.form.controls.images.value
+      images: this.form.controls.images.value
     }  
+    console.log(ad);
     this.adService.createAd(ad).subscribe((res: string) => {
       this.nzNotificationService.success('Успешно!', 'Объявление создано!')
     });
 
     
+  }
+
+  handleChange(info: any) {
+    if(info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+
+    if(info.file.status === 'done') {
+      this.nzMessageService.success(`${info.file.name} file uploaded successfully`);
+      (this.form.get('photos') as any).patchValue([
+        ...this.form.get('photos')!.value as any,
+        info.file.response
+      ])
+    } else if (info.file.status === 'error') {
+      this.nzMessageService.error(`${info.file.name} file upload failed.`);
+    }
   }
 
 }
