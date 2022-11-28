@@ -5,6 +5,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UploadCard } from 'src/app/models/upload-card.model';
 import { AdService } from 'src/app/services/ad.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-ad-creating',
@@ -15,7 +16,6 @@ export class AdCreatingComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
 
-
   form = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
     description: ['', [Validators.required, Validators.maxLength(1000)]],
@@ -24,7 +24,7 @@ export class AdCreatingComponent implements OnInit {
     images: [[]]
   })
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService) { }
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
   }
@@ -58,11 +58,11 @@ export class AdCreatingComponent implements OnInit {
     if(info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
-
+    console.log(this.form)
     if(info.file.status === 'done') {
       this.nzMessageService.success(`${info.file.name} file uploaded successfully`);
-      (this.form.get('photos') as any).patchValue([
-        ...this.form.get('photos')!.value as any,
+      (this.form.get('images') as any).patchValue([
+        ...this.form.get('images')!.value as any,
         info.file.response
       ])
     } else if (info.file.status === 'error') {

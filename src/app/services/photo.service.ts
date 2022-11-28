@@ -16,6 +16,7 @@ export class PhotoService {
     const formData = new FormData();
     formData.append('file', file);
     return this.httpClient.post<string>(`${this.photoUrl}/create`, formData);
+
   }
   public deletePhoto(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${this.photoUrl}/delete?Id=${id}`);

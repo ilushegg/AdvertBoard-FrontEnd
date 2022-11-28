@@ -1,12 +1,12 @@
 <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Название</nz-form-label>
+    <nz-form-label [nzSpan]="6" >Название</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
       <input nz-input formControlName="name" />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Категория</nz-form-label>
+    <nz-form-label [nzSpan]="6" >Категория</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
 
       <nz-tree-select
@@ -16,13 +16,13 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Описание</nz-form-label>
+    <nz-form-label [nzSpan]="6">Описание</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
       <textarea nz-input [nzAutosize]="{ minRows: 2, maxRows: 6 }" formControlName="description" ></textarea>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Цена</nz-form-label>
+    <nz-form-label [nzSpan]="6">Цена</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
       <nz-input-number formControlName="price" ></nz-input-number>
     </nz-form-control>
@@ -35,19 +35,23 @@
     </nz-form-control>
   </nz-form-item> -->
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Фотографии</nz-form-label>
+    <nz-form-label [nzSpan]="6">Фотографии</nz-form-label>
     <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
       <div class="clearfix">
         <nz-upload
+        nzType="drag"
         nzAction="https://localhost:7057/v1/image/create"
           nzListType="picture"
           [nzMultiple]="true"
           (nzChange)="handleChange($event)"
         >
-          <button nz-button>
-            <span nz-icon nzType="upload"></span>
-            Загрузить изображения
-          </button>
+        <p class="ant-upload-drag-icon">
+          <span nz-icon nzType="inbox"></span>
+        </p>
+        <p class="ant-upload-text">Нажмите или перетащите файлы в эту область</p>
+        <p class="ant-upload-hint">
+          Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+        </p>
         </nz-upload>
       </div>
     </nz-form-control>
