@@ -1,15 +1,15 @@
 <h1 nz-typography>Главная страница</h1>
-<div *ngIf="!(loadingService.isLoading | async); else loading">
-  <div nz-col class="gutter-row" [nzSpan]="8" *ngFor="let card of cards">
-    <nz-card [nzBordered]="false" [nzTitle]="card.name">
+<div *ngIf="!(loadingService.isLoading$ | async); else loading">
+  <div nz-col class="gutter-row" [nzSpan]="8" *ngFor="let ad of ads">
+    <nz-card [nzBordered]="false" [nzTitle]="ad.name">
       <img
-        *ngIf="card.image"
-        src="data:image/jpeg;base64,{{ card.image }}"
+        *ngIf="ad.image"
+        src="data:image/jpeg;base64,{{ ad.image }}"
         alt="фото"
         class="mb-4"
       />
       <!-- <p>{{ad.locationText}}</p> -->
-      <p>{{ card.price }}</p>
+      <p>{{ ad.price }}</p>
     </nz-card>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AdComponent } from './components/ad/ad.component';
 import { MainComponent } from './components/main/main.component';
 import { AdCreatingComponent } from './components/ad-creating/ad-creating.component';
+import { AdFullComponent } from './components/ad-full/ad-full.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'add-new-ad',
     component: AdCreatingComponent
+  },
+  {
+    path: 'ad/:id',
+    component: AdFullComponent
   }
 
 ];

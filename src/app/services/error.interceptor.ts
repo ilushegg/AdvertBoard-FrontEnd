@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor{
           this.router.navigateByUrl('/auth');
         } else if (err.status === 400 || err.status === 500) {
           this.nzNotificationService.error('Ошибка', err.error.message);
-          this.loadingService.isLoading.next(false);
+          this.loadingService.isLoading$.next(false);
         }
         return throwError(err);
       })

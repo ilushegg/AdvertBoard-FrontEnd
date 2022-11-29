@@ -50,3 +50,13 @@ li {
   border-radius: 10px;
 }
 
+.loading {
+   display: flex;
+   height: 450px;
+  &__wrapper {
+    margin: auto;
+    justify-content: center;
+  }
+  
+}
+

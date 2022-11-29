@@ -7,7 +7,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class LoadingService {
 
-  public isLoading: BehaviorSubject<any> = new BehaviorSubject<any>(true);
+  public isLoading$: BehaviorSubject<any> = new BehaviorSubject<any>(true);
 
   constructor() {
 

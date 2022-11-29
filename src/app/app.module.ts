@@ -31,6 +31,8 @@ import {NzTreeSelectModule} from "ng-zorro-antd/tree-select";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import { AuthInterceptor } from './services/auth.interceptor';
+import { AdFullComponent } from './components/ad-full/ad-full.component';
+import {NzImageModule} from "ng-zorro-antd/image";
 registerLocaleData(ru);
 
 @NgModule({
@@ -41,7 +43,8 @@ registerLocaleData(ru);
     MainComponent,
     AdComponent,
     SpinnerComponent,
-    AdCreatingComponent
+    AdCreatingComponent,
+    AdFullComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ registerLocaleData(ru);
     NzTreeSelectModule,
     NzUploadModule,
     NzInputNumberModule,
-    NzMessageModule
+    NzMessageModule,
+    NzImageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

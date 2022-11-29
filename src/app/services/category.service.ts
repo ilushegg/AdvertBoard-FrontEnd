@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/category.model';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,13 @@ import { Category } from '../models/category.model';
 export class CategoryService {
   private adUrl = `${environment.apiUrl}/v1/category`;
   
-  constructor(private httpClient: HttpClient) { }
+  
+  constructor(private httpClient: HttpClient, private loadingService: LoadingService) { }
 
   public getAll(): Observable<any> {
+    this.loadingService.isLoading$.next(false);
     return this.httpClient.get<any>(`${this.adUrl}`);
+    
   }
 
   private arrayToNzCascade(array: Category[]) {

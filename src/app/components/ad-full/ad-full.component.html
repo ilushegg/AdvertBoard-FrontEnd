@@ -1,0 +1,19 @@
+<div class="advertisement">
+  <h2 class="advertisement__title">
+    {{ad?.name}}
+  </h2>
+  <div class="advertisement__content">
+    <div class="advertisement__content-image" *ngFor="let image of ad?.images; let i = index">
+      <nz-image-group *ngIf="i === 0">
+
+        <img nz-image width="600px" nzSrc="{{ image }}">
+      </nz-image-group>
+    </div>
+    <div class="advertisement__content-description">
+      
+    </div>
+    <div class="advertisement__content-communication">
+      <h1 class="author-name">{{ ad?.authorName }}</h1>
+    </div>
+  </div>
+</div>

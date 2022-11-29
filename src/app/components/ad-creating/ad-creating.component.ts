@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { BehaviorSubject } from 'rxjs';
 import { UploadCard } from 'src/app/models/upload-card.model';
 import { AdService } from 'src/app/services/ad.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
@@ -16,6 +19,7 @@ export class AdCreatingComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
 
+
   form = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
     description: ['', [Validators.required, Validators.maxLength(1000)]],
@@ -24,7 +28,7 @@ export class AdCreatingComponent implements OnInit {
     images: [[]]
   })
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService) { }
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService, public loadingService: LoadingService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -46,9 +50,10 @@ export class AdCreatingComponent implements OnInit {
       categoryId: this.form.controls.categoryId.value,
       images: this.form.controls.images.value
     }  
-    console.log(ad);
+
     this.adService.createAd(ad).subscribe((res: string) => {
-      this.nzNotificationService.success('Успешно!', 'Объявление создано!')
+      this.router.navigateByUrl('/ad/' + res);
+      this.nzNotificationService.success('Успешно!', 'Объявление создано!');
     });
 
     

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/models/card.model';
+import { Advertisement } from 'src/app/models/ad.model';
 import { AdService } from 'src/app/services/ad.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -10,7 +10,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class AdComponent implements OnInit {
 
-  public cards: Card[] = [];
+  public ads: Advertisement[] = [];
   
 
   public pageSize = 10;
@@ -21,9 +21,9 @@ export class AdComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardService.getPagedFiltered(0, this.pageSize).subscribe(res => {
-      this.cards = res;
-      console.log(this.cards);
-      this.loadingService.isLoading.next(false);
+      this.ads = res;
+      console.log(this.ads);
+      this.loadingService.isLoading$.next(false);
     })
   }
 

@@ -1,6 +1,6 @@
 <div class="auth" >
 <nz-card class="auth-form__wrapper" [nzBordered]="false">
-  <div class=""*ngIf="!(loadingService.isLoading | async); else loading">
+  <div class=""*ngIf="!(loadingService.isLoading$ | async); else loading">
   <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="auth-form__title">
       <p>Вход</p>
@@ -24,7 +24,7 @@
     </div>
   </form>
 </div>
-<div class="" *ngIf="!(loadingService.isLoading | async); else loading">
+<div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
   <form class="auth-form" nz-form *ngIf="!(isLogin | async)"  [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
     <div class="auth-form__title">
       <p>Регистрация</p>
@@ -68,6 +68,12 @@
 <ng-template #errorPasswordTip let-control>
   <div class="" style="color: red" *ngIf="control?.touched">Пароли не совпадают</div>
 </ng-template>
+
 <ng-template #loading>
-  <app-spinner></app-spinner>
+  <div class="loading">
+
+      <app-spinner class="loading__wrapper"></app-spinner>
+
+
+  </div>
 </ng-template>

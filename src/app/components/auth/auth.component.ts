@@ -16,7 +16,6 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class AuthComponent implements OnInit {
 
   public isLogin: BehaviorSubject<any> = new BehaviorSubject<any>(true);
-  public isLoading: BehaviorSubject<any> = new BehaviorSubject<any>(true);
 
   readonly loginForm = this.formBuilder.group(
     {
@@ -37,7 +36,7 @@ export class AuthComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private authService: AuthService, private router: Router, public loadingService: LoadingService ) { }
 
   ngOnInit(): void {
-    this.loadingService.isLoading.next(false);
+    this.loadingService.isLoading$.next(false);
   }
 
   onLoginSubmit() {
@@ -52,7 +51,7 @@ export class AuthComponent implements OnInit {
       })
       return;
     }
-    this.loadingService.isLoading.next(true);
+    this.loadingService.isLoading$.next(true);
 
     let user: LoginUser = {
       email: (document.getElementById('email') as HTMLInputElement).value,
@@ -60,7 +59,7 @@ export class AuthComponent implements OnInit {
     };
     this.authService.login(user).subscribe(res => {
       this.router.navigateByUrl('/')
-      this.loadingService.isLoading.next(false);
+      this.loadingService.isLoading$.next(false);
     });
   }
 
@@ -91,7 +90,7 @@ export class AuthComponent implements OnInit {
       })
       return;
     }
-    this.loadingService.isLoading.next(true);
+    this.loadingService.isLoading$.next(true);
 
     let user: RegistrationUser = {
       name: (document.getElementById('name') as HTMLInputElement).value,
@@ -101,7 +100,7 @@ export class AuthComponent implements OnInit {
     this.authService.register(user).subscribe(res => {
       this.nzNotificationService.success("Успешно", "Пользователь зарегистрирован");
       this.isLogin.next(true);
-      this.loadingService.isLoading.next(false);
+      this.loadingService.isLoading$.next(false);
     });
   }
 
