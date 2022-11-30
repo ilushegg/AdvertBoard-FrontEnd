@@ -1,8 +1,23 @@
 .advertisement {
-
-
+  
   &__content {
     display: flex;
     justify-content: space-between;
   }
+
+  &-image {
+    max-width: 600px;
+    height: 600px;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+nz-carousel {
+  max-width: 600px;
+  max-height: 600px;
+  border-radius: 25px;
+  background-color: #9692929c;
 }

@@ -32,7 +32,10 @@ import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AdFullComponent } from './components/ad-full/ad-full.component';
-import {NzImageModule} from "ng-zorro-antd/image";
+import { NzImageModule } from "ng-zorro-antd/image";
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NgImageSliderModule } from 'ng-image-slider'
+
 registerLocaleData(ru);
 
 @NgModule({
@@ -66,7 +69,9 @@ registerLocaleData(ru);
     NzUploadModule,
     NzInputNumberModule,
     NzMessageModule,
-    NzImageModule
+    NzImageModule,
+    NzCarouselModule,
+    NgImageSliderModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 
