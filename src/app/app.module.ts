@@ -34,7 +34,11 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { AdFullComponent } from './components/ad-full/ad-full.component';
 import { NzImageModule } from "ng-zorro-antd/image";
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-import { NgImageSliderModule } from 'ng-image-slider'
+import { NgImageSliderModule } from 'ng-image-slider';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 
 registerLocaleData(ru);
 
@@ -71,7 +75,11 @@ registerLocaleData(ru);
     NzMessageModule,
     NzImageModule,
     NzCarouselModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    NzAvatarModule,
+    NzIconModule,
+    NzSelectModule,
+    NzTreeViewModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

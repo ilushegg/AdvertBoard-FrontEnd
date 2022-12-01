@@ -12,7 +12,7 @@ import { UploadCard } from '../models/upload-card.model';
 })
 export class AdService {
 
-  private cardUrl = `${environment.apiUrl}/v1/product`;
+  private cardUrl = `${environment.apiUrl}/v1/advertisement`;
 
   constructor(private httpClient: HttpClient) { }
 

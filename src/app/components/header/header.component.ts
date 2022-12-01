@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -8,9 +10,9 @@ import {AuthService} from "../../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
+  public categories$ = this.categoryService.getAll();
 
-
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private categoryService: CategoryService) {
   }
   ngOnInit(): void {
   }

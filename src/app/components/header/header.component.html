@@ -27,6 +27,18 @@
         </div>
       </ul>
     </nav>
+
+    <div class="search">
+      <nz-tree-select  nzPlaceHolder="Категория" style="width: 250px; height: 40px; border-radius: 15px!important; "
+      [nzNodes]="(categories$| async) || []"
+      formControlName="categoryId"
+      [nzDropdownStyle]="FindButton"
+      [nzDropdownClassName]="'tree-select__dropdown'"
+      ></nz-tree-select>
+      <input class="search-input" style="border-radius: 20px;"  type="text" nz-input nz-Search placeholder="Поиск по объявлениям" />
+      <button style="height: 40px" nz-button nzType="primary"><span nz-icon nzType="search"></span> Найти</button>
+    </div>
+    
   </div>
 </header>
 
@@ -34,4 +46,12 @@
   <button nz-button nzType="primary" routerLink="/auth">
     Вход и регистрация
   </button>
+</ng-template>
+<ng-template #FindButton>
+  <style>
+  
+  </style>
+</ng-template>
+<ng-template #CategorySelect >
+  
 </ng-template>

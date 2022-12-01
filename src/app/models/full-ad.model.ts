@@ -9,5 +9,6 @@ export interface FullAdvertisement {
   dateTimeUpdated: string,
   authorId: string,
   authorName: string,
-  authorAvatar: string
+  authorAvatar: string,
+  authorNumber: string
 }

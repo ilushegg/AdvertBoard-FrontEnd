@@ -1,15 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&family=Readex+Pro:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&family=Readex+Pro:wght@200;400;700&display=swap');//Может быть неиспользуемый
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap');
 
 $nunitoFont: 'Nunito', sans-serif;
 $readexFont: 'Readex Pro', sans-serif;
+$montserratFont: 'Montserrat', sans-serif;
 
 
 body {
   padding: 0;
   margin: 0;
-  font-family: $nunitoFont;
+  font-family: $montserratFont;
 }
 
 ul,

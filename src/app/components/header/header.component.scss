@@ -37,3 +37,26 @@
 [nz-dropdown-menu] {
   border-radius: 25px;
 }
+
+.search {
+  margin-top: 40px;
+  margin-left: 10px;
+  
+  display: flex;
+  justify-content: space-between;
+
+  &-input {
+    border-radius: 0px;
+    height: 40px;
+  }
+}
+
+
+.ant-select-selector {
+
+  border-radius: 15px!important;
+}
+
+.ant-select-selector {
+
+}

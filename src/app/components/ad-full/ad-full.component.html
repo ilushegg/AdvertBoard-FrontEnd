@@ -1,25 +1,44 @@
 <div class="advertisement">
-  <h2 class="advertisement__title">
-    {{ad?.name}}
-  </h2>
+  <div class="advertisement__top">
+    <div class="advertisement__top-left">
+      <div class="advertisement__top-title">
+        {{ad?.name}}
+      </div>
+      <a href="#"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+    </div>
+    
+    
+    <div class="advertisement__top-price">
+      {{ ad?.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
+      
+    </div>
+
+
+  </div>
   <div class="advertisement__content">
     <div class="advertisement__content-image">
-      <nz-carousel  [nzEnableSwipe]="false"  >
+      <nz-carousel [nzEnableSwipe]="false"  >
         <div nz-carousel-content *ngFor="let image of ad?.images">
-          <!-- <img nz-image nzSrc="{{ image }}"> -->
+          <img class="advertisement-image-bg" src="{{image}}" >
           <img class="advertisement-image" src="{{image}}" >
         </div>
       </nz-carousel>
     </div>
-    <div class="advertisement__content-description">
-      <h3>{{ ad?.dateTimeCreated }}</h3>
-    </div>
     <div class="advertisement__content-communication">
+      <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorName }}"></nz-avatar>
       <h1 class="author-name">{{ ad?.authorName }}</h1>
+      <button class="author-number" nz-button nzType="default" type="button">{{ ad?.authorNumber }}</button>
+      <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
     </div>
-    <div class="advertisement__content-price">
-      <h1>{{ ad?.price }}</h1>
-      
+    
+  </div>
+  <div class="advertisement__footer">
+    <div class="advertisement__footer-description">
+      <h2 class="title" >Описание</h2>
+      <h3>{{ ad?.description }}</h3>
+      <h2 class="title" >Размещено</h2>
+      <h3>{{ ad?.dateTimeCreated }}</h3>
+
     </div>
   </div>
 </div>
