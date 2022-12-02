@@ -1,6 +1,6 @@
 <div class="auth" >
 <nz-card class="auth-form__wrapper" [nzBordered]="false">
-  <div class=""*ngIf="!(loadingService.isLoading$ | async); else loading">
+  <div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
   <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="auth-form__title">
       <p>Вход</p>
@@ -71,9 +71,6 @@
 
 <ng-template #loading>
   <div class="loading">
-
       <app-spinner class="loading__wrapper"></app-spinner>
-
-
   </div>
 </ng-template>

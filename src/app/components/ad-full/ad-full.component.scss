@@ -1,9 +1,10 @@
+@mixin shadow() {
+  -webkit-filter: drop-shadow( 0px 0px 2px #000000);
+  filter: drop-shadow( 0px 0px 2px #000000);
+}
+
 .advertisement {
   
-  margin-top: 100px;
-
-  
-
   &__top {
     display: flex;
     justify-content: space-between;
@@ -25,10 +26,45 @@
     display: flex;
     justify-content: space-between;
 
+    &-image {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      &__left {
+        color: #fff;
+        font-size: 20px;
+        z-index: 1000;
+        position: absolute;
+        padding: 315px 20px;
+        @include shadow();
+
+      }
+      &__right {
+        color: #fff;
+        text-shadow: 20px 20px 0 #000;
+        font-size: 20px;
+        z-index: 1000;
+        position: absolute;
+        right: 0;
+        padding: 315px 20px;
+        @include shadow();
+      }
+
+      &__left:hover, &__right:hover {
+        cursor: pointer;
+      }
+
+      &__left:active, &__right:active {
+        font-size: 17px;
+      }
+
+    }
+
     &-communication {
       border-radius: 20px;
       box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.1);
-      max-width: 350px;
+      max-width: 300px;
       width: 100%;
       padding: 25px;
       text-align: center;
@@ -41,18 +77,18 @@
   }
 
   &-image {
-    max-width: 800px;
-    height: 800px;
+    width: 650px;
+    height: 650px;
     object-fit: contain;
-    display: flex;
-    align-items: center;
+    display: block;
+    margin: auto;
     position: absolute;
     top: 0;
     left: 0;
     box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.2);
     &-bg {
-      max-width: 800px;
-      height: 800px;
+      max-width: 650px;
+      height: 650px;
       object-fit: cover;
       position: relative;
       top: 0;
@@ -63,7 +99,7 @@
 
   &__footer{
     margin-top: 50px;
-    max-width: 800px;
+    max-width: 650px;
     padding: 25px;
     &-description{
       .title {
@@ -104,9 +140,11 @@ nz-carousel {
   position: relative;
   top: 0;
   left: 0;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 650px;
+  max-height: 650px;
   border-radius: 25px;
   background-color: #9692929c;
   box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.1);
 }
+
+

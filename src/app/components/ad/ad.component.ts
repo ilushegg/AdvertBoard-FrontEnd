@@ -20,11 +20,16 @@ export class AdComponent implements OnInit {
   constructor(private cardService: AdService, public loadingService: LoadingService) { }
 
   ngOnInit(): void {
+    this.loadingService.isLoading$.next(true);
     this.cardService.getPagedFiltered(0, this.pageSize).subscribe(res => {
       this.ads = res;
       console.log(this.ads);
       this.loadingService.isLoading$.next(false);
     })
+  }
+
+  onMouseEnter() {
+    console.log("mouse enter");
   }
 
 }

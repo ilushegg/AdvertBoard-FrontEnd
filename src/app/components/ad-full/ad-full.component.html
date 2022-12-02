@@ -1,4 +1,5 @@
-<div class="advertisement">
+<div class="container">
+<div class="advertisement" *ngIf="!(loadingService.isLoading$ | async); else loading">
   <div class="advertisement__top">
     <div class="advertisement__top-left">
       <div class="advertisement__top-title">
@@ -17,18 +18,25 @@
   </div>
   <div class="advertisement__content">
     <div class="advertisement__content-image">
+      
+      <span (click)="pre()" class="advertisement__content-image__left" nz-icon nzType="left" nzTheme="outline"></span>
       <nz-carousel [nzEnableSwipe]="false"  >
         <div nz-carousel-content *ngFor="let image of ad?.images">
-          <img class="advertisement-image-bg" src="{{image}}" >
-          <img class="advertisement-image" src="{{image}}" >
+          <nz-image-group>
+            <img class="advertisement-image-bg" src="{{image}}" >
+          <img nz-image class="advertisement-image" nzSrc="{{image}}" >
+          </nz-image-group>
+          
         </div>
       </nz-carousel>
+      <span (click)="next()" class="advertisement__content-image__right" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
     <div class="advertisement__content-communication">
       <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorName }}"></nz-avatar>
       <h1 class="author-name">{{ ad?.authorName }}</h1>
       <button class="author-number" nz-button nzType="default" type="button">{{ ad?.authorNumber }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
+      <span>На площадке с {{ ad?.authorRegisterDate }}</span>
     </div>
     
   </div>
@@ -42,3 +50,10 @@
     </div>
   </div>
 </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+      <app-spinner class="loading__wrapper"></app-spinner>
+  </div>
+</ng-template>

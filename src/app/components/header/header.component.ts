@@ -12,9 +12,19 @@ export class HeaderComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
 
+  visible = false;
+
   constructor(public authService: AuthService, private categoryService: CategoryService) {
   }
   ngOnInit(): void {
+  }
+
+  open(): void {
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
   }
 
 }

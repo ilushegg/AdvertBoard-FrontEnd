@@ -39,6 +39,8 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
+import { NzTreeModule } from 'ng-zorro-antd/tree';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 registerLocaleData(ru);
 
@@ -79,7 +81,9 @@ registerLocaleData(ru);
     NzAvatarModule,
     NzIconModule,
     NzSelectModule,
-    NzTreeViewModule
+    NzTreeViewModule,
+    NzTreeModule,
+    NzDrawerModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

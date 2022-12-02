@@ -1,20 +1,34 @@
-<h1 nz-typography>Главная страница</h1>
+<div class="container">
+
 <div *ngIf="!(loadingService.isLoading$ | async); else loading">
-  <div nz-col class="gutter-row" [nzSpan]="8" *ngFor="let ad of ads">
-    <nz-card [nzBordered]="false" [nzTitle]="ad.name">
-      <img
-        *ngIf="ad.image"
-        src="data:image/jpeg;base64,{{ ad.image }}"
-        alt="фото"
-        class="mb-4"
-      />
-      <!-- <p>{{ad.locationText}}</p> -->
-      <p>{{ ad.price }}</p>
-    </nz-card>
+
+    <div class="cards" >
+      <div *ngFor="let ad of ads">
+        <div class="card">
+          <nz-carousel class="card__carousel" [nzEnableSwipe]="false">
+            <div nz-carousel-content *ngFor="let image of ad.images">
+              <img  class="advertisement-image" src="{{image}}" >
+            </div>
+          </nz-carousel>
+          <div class="card__description">
+            <p class="card__description-title">{{ ad.name }}</p>
+            <p class="card__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</p>
+  
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+
+
   </div>
+
 </div>
 
 
 <ng-template #loading>
   <app-spinner></app-spinner>
 </ng-template>
+
+

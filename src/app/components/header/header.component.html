@@ -1,5 +1,6 @@
 <header class="header">
-  <div class="container">
+  <div class="navbar__bg">
+    <div class="container">
     <nav class="navbar">
       <ul class="navbar__section">
         <li class="navbar__item logo" routerLink="/">AdvBOARD</li>
@@ -27,16 +28,25 @@
         </div>
       </ul>
     </nav>
-
+    </div>
+  </div>
+  <div class="container">
     <div class="search">
-      <nz-tree-select  nzPlaceHolder="Категория" style="width: 250px; height: 40px; border-radius: 15px!important; "
-      [nzNodes]="(categories$| async) || []"
-      formControlName="categoryId"
-      [nzDropdownStyle]="FindButton"
-      [nzDropdownClassName]="'tree-select__dropdown'"
-      ></nz-tree-select>
+        <button class="search-button" nz-button  nzType="primary" (click)="open()">Категория</button>
+    <nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="visible"
+      [nzPlacement]="'left'"
+      nzTitle="Категория"
+      (nzOnClose)="close()"
+    >
+      <ng-container *nzDrawerContent>
+        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async"></nz-tree>
+      </ng-container>
+    </nz-drawer>
+
       <input class="search-input" style="border-radius: 20px;"  type="text" nz-input nz-Search placeholder="Поиск по объявлениям" />
-      <button style="height: 40px" nz-button nzType="primary"><span nz-icon nzType="search"></span> Найти</button>
+      <button class="search-button" nz-button nzType="primary"><span nz-icon nzType="search"></span> Найти</button>
     </div>
     
   </div>

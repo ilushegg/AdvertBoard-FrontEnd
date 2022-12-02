@@ -1,7 +1,8 @@
+<div class="container">
 <div class="add">
   <div class="add__wrapper">
 
-    <form class="add__form" nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
+    <form class="add-form" nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
       <nz-form-item>
         <nz-form-label [nzSpan]="6" >Название</nz-form-label>
         <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
@@ -12,18 +13,20 @@
         <nz-form-label [nzSpan]="6" >Категория</nz-form-label>
         <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
           <div class=""*ngIf="!(loadingService.isLoading$ | async); else loading">
-    
-          <nz-tree-select
-            [nzNodes]="(categories$| async) || []"
-            formControlName="categoryId"
-          ></nz-tree-select>
+          <div class="add-form__tree">
+            <nz-tree-select 
+              [nzNodes]="(categories$| async) || []"
+              formControlName="categoryId"
+            ></nz-tree-select>
+
+          </div>  
         </div>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="6">Описание</nz-form-label>
         <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-          <textarea nz-input [nzAutosize]="{ minRows: 2, maxRows: 6 }" formControlName="description" ></textarea>
+          <textarea nz-input [nzAutosize]="{ minRows: 10, maxRows: 10 }" formControlName="description" style="resize: none;"></textarea>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -68,6 +71,7 @@
     
     </form>
   </div>
+</div>
 </div>
 
 <ng-template #errorTip let-control>

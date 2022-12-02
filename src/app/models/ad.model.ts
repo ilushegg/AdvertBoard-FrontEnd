@@ -3,6 +3,6 @@ export interface Advertisement {
   name: string,
   description: string,
   price: number,
-  categoryId: string
-  image: string
+  categoryId: string,
+  images: string[],
 }

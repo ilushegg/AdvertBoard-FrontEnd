@@ -7,10 +7,18 @@ nz-tree-select {
 }
 
 .add {
-  margin-top: 250px;
-}
+  &-form{
+    &__tree {
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
 
-.add-form__btn {
-  text-align: center;
-  margin-right: -50px;
+    }
+
+    &__btn {
+    text-align: center;
+    margin-right: -50px;
+    }
+  }
+
+
 }
