@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, switchMap, tap, windowTime } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginUser } from '../models/login-user.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,17 +51,13 @@ export class AuthService {
     }));
   }
 
-  getSelfById(id: string | null): Observable<any> {
+  getSelfById(id: string | null): Observable<User> {
     if (!id) {
       return EMPTY;
     }
-    return this.httpClient
-    .get(`${environment.apiUrl}/v1/user/get_by_id`, {
-      params: {
-        id
-      }
-    });
+    return this.httpClient.get<User>(`${environment.apiUrl}/v1/user/get_by_id?id=${id}`);
   }
+  
 
   logout(): void {
     this.token = null;

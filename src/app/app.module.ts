@@ -41,6 +41,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NgxDadataModule } from '@kolkov/ngx-dadata';
 
 registerLocaleData(ru);
 
@@ -83,7 +84,8 @@ registerLocaleData(ru);
     NzSelectModule,
     NzTreeViewModule,
     NzTreeModule,
-    NzDrawerModule
+    NzDrawerModule,
+    NgxDadataModule 
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

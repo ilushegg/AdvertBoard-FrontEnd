@@ -52,6 +52,20 @@ li {
   border-radius: 10px;
 }
 
+.search {
+  background-color: #fff!important;
+  border: 1px solid #d9d9d9!important;
+  border-radius: 10px!important;
+}
+
+.search:focus {
+  outline: none!important;
+}
+
+.ant-upload.ant-upload-drag {
+  border-radius: 15px!important;
+}
+
 .loading {
    display: flex;
    height: 450px;

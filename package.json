@@ -19,10 +19,12 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@ant-design/icons-angular": "^14.1.0",
+    "@kolkov/ngx-dadata": "^1.0.3",
     "ng-image-slider": "^6.1.0",
     "ng-zorro-antd": "^14.1.1",
     "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
+    "safevalues": "^0.1.8",
+    "tslib": "^2.4.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
