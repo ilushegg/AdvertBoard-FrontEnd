@@ -1,8 +1,8 @@
-import { HttpRequest } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DadataAddress, DadataConfig, DadataSuggestion, DadataType } from '@kolkov/ngx-dadata';
+import { DadataAddress, DadataConfig, DadataSuggestion, DadataType, NgxDadataService } from '@kolkov/ngx-dadata';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { BehaviorSubject } from 'rxjs';
@@ -21,7 +21,7 @@ import { PhotoService } from 'src/app/services/photo.service';
 export class AdCreatingComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
-
+  
 
   public ad: UploadCard = {
     name: null,
@@ -35,7 +35,8 @@ export class AdCreatingComponent implements OnInit {
     house: null,
     flat: null,
     lat: null,
-    lon: null
+    lon: null,
+    locationQueryString: null
   };
 
   form = this.formBuilder.group({
@@ -47,12 +48,13 @@ export class AdCreatingComponent implements OnInit {
     address: ['', Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService, public loadingService: LoadingService, private router: Router, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService, public loadingService: LoadingService, private router: Router, private authService: AuthService,private handler: HttpBackend) {
 
    }
 
   ngOnInit(): void {
-    console.log(this.config.apiKey);
+    localStorage.setItem("addressSelected", "true")
+    
   }
 
   onSubmit() {
@@ -106,6 +108,7 @@ export class AdCreatingComponent implements OnInit {
     const addressData = event.data as DadataAddress;
     console.log(addressData);
     console.log(this.ad);
+    localStorage.setItem("addressSelected", "true")
     this.ad.country = addressData.country;
     this.ad.city = addressData.city;
     this.ad.street = addressData.street;
@@ -113,7 +116,14 @@ export class AdCreatingComponent implements OnInit {
     this.ad.flat = addressData.flat;
     this.ad.lat = addressData.geo_lat;
     this.ad.lon = addressData.geo_lon;
+    this.ad.locationQueryString = event.value;
   }
+
+  onAddressChange(): void {
+    localStorage.setItem("addressSelected", "false");
+  }
+
+
 
   
 

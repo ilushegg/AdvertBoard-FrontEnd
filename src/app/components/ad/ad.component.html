@@ -4,7 +4,7 @@
 
     <div class="cards" >
       <div *ngFor="let ad of ads">
-        <div class="card">
+        <div class="card" routerLink="{{ad.id}}">
           <nz-carousel class="card__carousel" [nzEnableSwipe]="false">
             <div nz-carousel-content *ngFor="let image of ad.images">
               <img  class="advertisement-image" src="{{image}}" >

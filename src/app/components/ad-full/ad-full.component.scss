@@ -76,6 +76,14 @@
 
   }
 
+  &__footer{
+    &-map {
+      width: 600px;
+      height: 300px;
+
+    }
+  }
+
   &-image {
     width: 650px;
     height: 650px;
@@ -140,7 +148,7 @@ nz-carousel {
   position: relative;
   top: 0;
   left: 0;
-  max-width: 650px;
+  width: 650px;
   max-height: 650px;
   border-radius: 25px;
   background-color: #9692929c;

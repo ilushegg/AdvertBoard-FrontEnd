@@ -32,7 +32,7 @@
       <span (click)="next()" class="advertisement__content-image__right" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
     <div class="advertisement__content-communication">
-      <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorName }}"></nz-avatar>
+      <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorAvatar }}"></nz-avatar>
       <h1 class="author-name">{{ ad?.authorName }}</h1>
       <button class="author-number" nz-button nzType="default" type="button">{{ ad?.authorNumber }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
@@ -42,6 +42,13 @@
   </div>
   <div class="advertisement__footer">
     <div class="advertisement__footer-description">
+      <h2 class="title" >Адрес</h2>
+      <div class="advertisement__footer-map">
+        <ya-map [center]="[centerLat, centerLon]" [zoom]="12" (ready)="onReady($event)">
+          <ya-placemark [geometry]="[centerLat, centerLon]"></ya-placemark>
+        </ya-map>
+      </div>
+      <h3>{{ ad?.locationQueryString }}</h3>
       <h2 class="title" >Описание</h2>
       <h3>{{ ad?.description }}</h3>
       <h2 class="title" >Размещено</h2>

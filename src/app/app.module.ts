@@ -42,6 +42,9 @@ import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+
+
 
 registerLocaleData(ru);
 
@@ -85,7 +88,8 @@ registerLocaleData(ru);
     NzTreeViewModule,
     NzTreeModule,
     NzDrawerModule,
-    NgxDadataModule 
+    NgxDadataModule,
+    AngularYandexMapsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

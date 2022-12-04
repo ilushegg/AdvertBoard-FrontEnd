@@ -7,12 +7,14 @@
       </ul>
       <ul class="navbar__section">
         <div class="" *ngIf="authService.user$ | async as user; else notAuthed">
-          <a nz-dropdown [nzDropdownMenu]="menu">
-            {{ user.name }}
-            <span nz-icon nzType="down"></span>
+          
+          <a nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomCenter'">
+            <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}"></nz-avatar>
           </a>
-          <nz-dropdown-menu #menu="nzDropdownMenu">
+          <nz-dropdown-menu #menu="nzDropdownMenu" >
             <ul nz-menu nzSelectable>
+              <li nz-menu-item nzDisabled>{{ user.name }}</li>
+              <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
               <li nz-menu-item>Профиль</li>
             </ul>
@@ -30,6 +32,7 @@
     </nav>
     </div>
   </div>
+
   <div class="container">
     <div class="search__section">
         <button class="search__section-button" nz-button  nzType="primary" (click)="open()">Категория</button>

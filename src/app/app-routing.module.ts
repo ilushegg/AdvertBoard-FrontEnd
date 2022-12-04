@@ -25,7 +25,7 @@ const routes: Routes = [
     component: AdCreatingComponent
   },
   {
-    path: 'ad/:id',
+    path: 'advertisements/:id',
     component: AdFullComponent
   }
 

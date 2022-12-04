@@ -11,4 +11,5 @@ export interface UploadCard{
   flat: string | null,
   lat: string | null,
   lon: string | null,
+  locationQueryString: string | null
 }

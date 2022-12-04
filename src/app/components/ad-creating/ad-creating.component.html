@@ -50,16 +50,16 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Адрес</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <div >
+              <ngx-dadata class="add-form__address" 
+                formControlName="address"
+                [config]="config"
+                (selected)="onAddressSelected($event)
+                " (input)="onAddressChange()"
+              ></ngx-dadata>
             
-          <div >
-            <ngx-dadata [config]="config"></ngx-dadata>
-            <ngx-dadata class="add-form__address" 
-              formControlName="address"
-              [config]="config"
-              (selected)="onAddressSelected($event)"
-            ></ngx-dadata>
-
-          </div>
+            </div>
+          
         </nz-form-control>
         </nz-form-item>
         <!--   Использовать dadata, можно сохранять координаты, полный адрес и тд-->
@@ -97,6 +97,8 @@
     </div>
   </div>
 </div>
+
+
 
 <ng-template #errorTip let-control>
   <div style="color: red" *ngIf="control?.invalid && control?.dirty">

@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FullAdvertisement } from 'src/app/models/full-ad.model';
 import { AdService } from 'src/app/services/ad.service';
-import { NzCarouselComponent, NZ_CAROUSEL_CUSTOM_STRATEGIES
-} from 'ng-zorro-antd/carousel';
+import { NzCarouselComponent } from 'ng-zorro-antd/carousel';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularYandexMapsModule, YaConfig, YaReadyEvent } from 'angular8-yandex-maps';
 
 @Component({
   selector: 'app-ad-full',
@@ -16,6 +16,8 @@ export class AdFullComponent implements OnInit {
 
 
   public ad: FullAdvertisement | undefined;
+  public centerLat: number;
+  public centerLon: number;
 
   constructor(private adService: AdService, private route: ActivatedRoute, public loadingService: LoadingService) { }
 
@@ -25,6 +27,8 @@ export class AdFullComponent implements OnInit {
 
     this.adService.getById(id).subscribe(res => {
       this.ad = res;
+      this.centerLat = +res.locationLat;
+      this.centerLon = +res.locationLon;
       this.loadingService.isLoading$.next(false);
     })
   }
@@ -39,6 +43,15 @@ export class AdFullComponent implements OnInit {
 
   next() {
     this.myCarousel?.next();
+  }
+
+  mapConfig: YaConfig = {
+    apikey: '912b095c-f11f-4d78-a7ff-b525ee7ff42b',
+    lang: 'ru_RU',
+  };
+
+  public onReady(event: YaReadyEvent<ymaps.Map>) {
+    console.log(event);
   }
 
 }

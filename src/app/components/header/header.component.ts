@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DadataConfig, DadataType } from '@kolkov/ngx-dadata';
 import { BehaviorSubject } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
 import {AuthService} from "../../services/auth.service";
