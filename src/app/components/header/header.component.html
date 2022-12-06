@@ -1,12 +1,12 @@
-<header class="header">
+<header class="header" >
   <div class="navbar__bg">
     <div class="container">
-    <nav class="navbar">
+    <nav class="navbar" *ngIf="isHeaderNav()">
       <ul class="navbar__section">
         <li class="navbar__item logo" routerLink="/">AdvBOARD</li>
       </ul>
       <ul class="navbar__section">
-        <div class="" *ngIf="authService.user$ | async as user; else notAuthed">
+        <div class="" *ngIf="user$ as user; else notAuthed">
           
           <a nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomCenter'">
             <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}"></nz-avatar>
@@ -16,7 +16,8 @@
               <li nz-menu-item nzDisabled>{{ user.name }}</li>
               <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
-              <li nz-menu-item>Профиль</li>
+              <li nz-menu-item routerLink="profile/{{user.id}}">Профиль</li>
+              <li nz-menu-item routerLink="">Мои объявления</li>
             </ul>
           </nz-dropdown-menu>
           <button
@@ -34,7 +35,7 @@
   </div>
 
   <div class="container">
-    <div class="search__section">
+    <div class="search__section" *ngIf="isHeaderSearch()">
         <button class="search__section-button" nz-button  nzType="primary" (click)="open()">Категория</button>
     <nz-drawer
       [nzClosable]="false"

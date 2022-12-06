@@ -53,7 +53,6 @@ export class AdCreatingComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    localStorage.setItem("addressSelected", "true")
     
   }
 
@@ -76,7 +75,7 @@ export class AdCreatingComponent implements OnInit {
  
 
     this.adService.createAd(this.ad).subscribe((res: string) => {
-      this.router.navigateByUrl('/ad/' + res);
+      this.router.navigateByUrl('/advertisements/' + res);
       this.nzNotificationService.success('Успешно!', 'Объявление создано!');
     });
 
@@ -108,7 +107,6 @@ export class AdCreatingComponent implements OnInit {
     const addressData = event.data as DadataAddress;
     console.log(addressData);
     console.log(this.ad);
-    localStorage.setItem("addressSelected", "true")
     this.ad.country = addressData.country;
     this.ad.city = addressData.city;
     this.ad.street = addressData.street;
@@ -119,9 +117,7 @@ export class AdCreatingComponent implements OnInit {
     this.ad.locationQueryString = event.value;
   }
 
-  onAddressChange(): void {
-    localStorage.setItem("addressSelected", "false");
-  }
+
 
 
 

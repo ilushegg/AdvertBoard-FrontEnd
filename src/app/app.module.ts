@@ -43,6 +43,7 @@ import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -57,7 +58,8 @@ registerLocaleData(ru);
     AdComponent,
     SpinnerComponent,
     AdCreatingComponent,
-    AdFullComponent
+    AdFullComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

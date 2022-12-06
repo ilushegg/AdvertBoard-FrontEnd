@@ -5,6 +5,7 @@ import { AdComponent } from './components/ad/ad.component';
 import { MainComponent } from './components/main/main.component';
 import { AdCreatingComponent } from './components/ad-creating/ad-creating.component';
 import { AdFullComponent } from './components/ad-full/ad-full.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'advertisements/:id',
     component: AdFullComponent
+  },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent
   }
 
 ];
