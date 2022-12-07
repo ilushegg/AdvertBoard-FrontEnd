@@ -74,7 +74,7 @@
             <div class="clearfix">
               <nz-upload
                 nzType="drag"
-                nzAction="https://localhost:7057/v1/image/create"
+                nzAction="{{environmentUrl}}/v1/image/create"
                 nzListType="picture"
                 [nzMultiple]="true"
                 (nzChange)="handleChange($event)"

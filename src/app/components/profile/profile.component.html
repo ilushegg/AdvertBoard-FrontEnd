@@ -2,7 +2,14 @@
   <div class="profile">
     <div class="profile__avatar">
       <img class="profile__avatar-img" src="{{ user$.avatar }}" />
-      <button nz-button nzType="primary">Изменить фотографию</button>
+      <nz-upload
+        nzAction="{{environmentUrl}}/v1/image/create"
+        (nzChange)="handleChange($event)"
+        [nzShowUploadList]="false"
+      >
+        
+        <button nz-button><span nz-icon nzType="upload"></span>Изменить фотографию</button>
+      </nz-upload>
     </div>
     <div class="profile__form">
 

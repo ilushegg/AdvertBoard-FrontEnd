@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PhotoService } from 'src/app/services/photo.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ad-creating',
@@ -21,7 +22,7 @@ import { PhotoService } from 'src/app/services/photo.service';
 export class AdCreatingComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
-  
+  public environmentUrl = environment.apiUrl;
 
   public ad: UploadCard = {
     name: null,
