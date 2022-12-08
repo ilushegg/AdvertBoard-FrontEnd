@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
 
   readonly loginForm = this.formBuilder.group(
     {
-      email: ['', [Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     }
   );
@@ -95,7 +95,8 @@ export class AuthComponent implements OnInit {
     let user: RegistrationUser = {
       name: (document.getElementById('name') as HTMLInputElement).value,
       email: (document.getElementById('email') as HTMLInputElement).value,
-      password: (document.getElementById('password') as HTMLInputElement).value
+      password: (document.getElementById('password') as HTMLInputElement).value,
+      mobile: ""
     };
     this.authService.register(user).subscribe(res => {
       this.nzNotificationService.success("Успешно", "Пользователь зарегистрирован");

@@ -10,54 +10,18 @@
         
         <button nz-button><span nz-icon nzType="upload"></span>Изменить фотографию</button>
       </nz-upload>
-    </div>
-    <div class="profile__form">
-
-      <form
-        class="profile__form"
-        nz-form
-        [formGroup]="form"
-        (ngSubmit)="onEditSubmit()"
-      >
-      <div class="profile__form__title">
-        <p>Данные</p>
+      <div class="profile__nav">
+        <a class="profile__nav__element" (click)="component = 'data'" >Данные</a>
+        <a class="profile__nav__element" (click)="component = 'ads'" >Мои объявления</a>
+        <a class="profile__nav__element" href="">Избранное</a>
       </div>
-        <nz-form-item>
-          <div class="profile__form__label">
-            Имя
-          </div>
-          <nz-form-control>
-            <input
-              nz-input
-              type="text"
-              formControlName="name"
-            />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <div class="profile__form__label">
-            Номер телефона
-          </div>
-          <nz-form-control>
-            <input
-              nz-input
-              type="text"
-              formControlName="mobile"
-            />
-          </nz-form-control>
-        </nz-form-item>
-        
-        <nz-form-item>
-          <div class="profile__form__label">
-            Электронный адрес
-          </div>
-          <input readonly nz-input type="text" value="{{ user$.email }}" />
-        </nz-form-item>
-        <nz-form-item>
-          <button class="" nz-button nzType="primary" type="submit">Изменить данные</button>
 
-        </nz-form-item>
-      </form>
     </div>
+    <div class="profile__content" [ngSwitch]="component">
+      <div *ngSwitchCase="'data'"><app-profile-data [user]="user$"></app-profile-data></div>
+      <div *ngSwitchCase="'ads'"><app-profile-ads [user]="user$"></app-profile-ads></div>
+    
+    </div>
+    
   </div>
 </div>

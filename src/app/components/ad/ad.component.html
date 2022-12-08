@@ -1,34 +1,20 @@
-<div class="container">
-
-<div *ngIf="!(loadingService.isLoading$ | async); else loading">
-
-    <div class="cards" >
-      <div *ngFor="let ad of ads">
-        <div class="card" routerLink="{{ad.id}}">
-          <nz-carousel class="card__carousel" [nzEnableSwipe]="false">
-            <div nz-carousel-content *ngFor="let image of ad.images">
-              <img  class="advertisement-image" src="{{image}}" >
-            </div>
-          </nz-carousel>
-          <div class="card__description">
-            <p class="card__description-title">{{ ad.name }}</p>
-            <p class="card__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</p>
-  
-          </div>
-        </div>
-
-      </div>
-      
+<div class="card" routerLink="{{ad.id}}">
+  <nz-carousel class="card__carousel" [nzEnableSwipe]="false">
+    <div nz-carousel-content *ngFor="let image of ad.images">
+      <img  class="advertisement-image" src="{{image}}" >
     </div>
-
+  </nz-carousel>
+  <div class="card__description">
+    <p class="card__description-title">{{ ad.name }}</p>
+    <p class="card__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</p>
 
   </div>
-
 </div>
 
 
-<ng-template #loading>
-  <app-spinner></app-spinner>
-</ng-template>
+
+
+
+
 
 

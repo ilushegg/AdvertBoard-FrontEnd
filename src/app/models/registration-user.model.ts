@@ -1,5 +1,7 @@
 export interface RegistrationUser {
   name: string,
   email: string,
-  password: string
+
+  password: string,
+  mobile: string | null
 }

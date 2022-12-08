@@ -18,27 +18,24 @@
 
   }
 
-  &__form {
-    max-width: 600px;
+  &__nav {
+    margin-top: 25px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    text-align: center;
+    &__element {
+      display: block;
+      padding: 5px;
+    }
+
+  }
+
+  &__content {
+    max-width: 700px;
     width: 100%;
-
-    &__title {
-      font-size: 24px;
-      font-weight: 600;
-    }
-
-    &__label {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-
   }
 
 
-  nz-form-item {
-    display: block;
-  }
 }
 
 nz-upload {

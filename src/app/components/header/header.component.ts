@@ -38,15 +38,19 @@ export class HeaderComponent implements OnInit {
 
   isHeaderNav(): boolean {
     if ((this.router.url != '/auth')) {
+
               return true;
       }
+
     return false;
   }
 
   isHeaderSearch(): boolean {
-    if ((this.router.url != '/auth') && (this.router.url != `/profile/${this.user$.id}`) && (this.router.url != '/add-new-ad')) {
+    if ((this.router.url != '/auth') && (this.router.url.indexOf('/profile/') == -1) && (this.router.url != '/add-new-ad') && (this.router.url != '/my_advertisements')) {
+
               return true;
       }
+
     return false;
   }
 

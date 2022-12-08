@@ -17,7 +17,7 @@
               <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
               <li nz-menu-item routerLink="profile/{{user.id}}">Профиль</li>
-              <li nz-menu-item routerLink="">Мои объявления</li>
+              <li nz-menu-item routerLink="profile/advertisements">Мои объявления</li>
             </ul>
           </nz-dropdown-menu>
           <button
@@ -35,8 +35,8 @@
   </div>
 
   <div class="container">
-    <div class="search__section" *ngIf="isHeaderSearch()">
-        <button class="search__section-button" nz-button  nzType="primary" (click)="open()">Категория</button>
+    <div class="search__section"  *ngIf="isHeaderSearch()">
+        <button class="search__section-button" nz-button nzType="primary" (click)="open()">Категория</button>
     <nz-drawer
       [nzClosable]="false"
       [nzVisible]="visible"

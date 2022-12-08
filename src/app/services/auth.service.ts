@@ -25,7 +25,12 @@ export class AuthService {
   }
 
   get id(): string | null {
-    return localStorage.getItem('id');
+    try{
+      return localStorage.getItem('id');
+    }
+    catch(error){
+      return null;
+    }
   }
 
   set id(value:string | null) {

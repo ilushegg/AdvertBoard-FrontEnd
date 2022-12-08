@@ -44,6 +44,9 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileAdsComponent } from './components/profile-ads/profile-ads.component';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 
 
 
@@ -59,7 +62,9 @@ registerLocaleData(ru);
     SpinnerComponent,
     AdCreatingComponent,
     AdFullComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileAdsComponent,
+    ProfileDataComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,8 @@ registerLocaleData(ru);
     NzTreeModule,
     NzDrawerModule,
     NgxDadataModule,
-    AngularYandexMapsModule
+    AngularYandexMapsModule,
+    NzTabsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

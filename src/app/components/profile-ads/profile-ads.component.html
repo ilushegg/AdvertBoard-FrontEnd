@@ -1,0 +1,26 @@
+
+    <div class="ads">
+      <div *ngIf="!(loadingService.isLoading$ | async); else loading">
+      <div *ngFor="let ad of ads">
+        <div class="ad" routerLink="{{ad.id}}">
+          <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
+            <div nz-carousel-content *ngFor="let image of ad.images">
+              <img  class="advertisement-image" src="{{image}}" >
+            </div>
+          </nz-carousel>
+          <div class="ad__description">
+            <p class="ad__description-title">{{ ad.name }}</p>
+            <p class="ad__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</p>
+        
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

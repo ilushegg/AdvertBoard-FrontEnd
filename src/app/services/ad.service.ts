@@ -21,6 +21,11 @@ export class AdService {
     return this.httpClient.get<Advertisement[]>(url);
   }
 
+  getAuthorAdsPagedFiltered(offset: number, limit: number, userId: string): Observable<Advertisement[]> {
+    let url = `${this.cardUrl}/get_all_by_author?Offset=${offset}&Limit=${limit}&AuthorId=${userId}`;
+    return this.httpClient.get<Advertisement[]>(url);
+  }
+
   public getById(id: string): Observable<FullAdvertisement> {
     return this.httpClient.get<FullAdvertisement>(`${this.cardUrl}/get-by-id?Id=${id}`);
   }

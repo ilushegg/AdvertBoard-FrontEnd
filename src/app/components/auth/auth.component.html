@@ -1,4 +1,7 @@
 <div class="auth" >
+  <div class="auth__nav">
+    <a routerLink="/"><span nz-icon nzType="home" nzTheme="outline"></span> На главную</a>
+  </div>
 <nz-card class="auth-form__wrapper" [nzBordered]="false">
   <div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
   <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">

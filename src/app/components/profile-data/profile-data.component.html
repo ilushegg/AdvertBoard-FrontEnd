@@ -1,0 +1,47 @@
+
+  <form
+    class="profile__form"
+    nz-form
+    [formGroup]="form"
+    (ngSubmit)="onEditSubmit()"
+  >
+  <div class="profile__form__title">
+    <p>Данные</p>
+  </div>
+    <nz-form-item>
+      <div class="profile__form__label">
+        Имя
+    </div>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          formControlName="name"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <div class="profile__form__label">
+        Номер телефона
+      </div>
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          formControlName="mobile"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <div class="profile__form__label">
+        Электронный адрес
+      </div>
+      <input readonly nz-input type="text" value="{{ user.email }}" />
+    </nz-form-item>
+    <nz-form-item>
+      <button class="" nz-button nzType="primary" type="submit">Изменить данные</button>
+
+    </nz-form-item>
+  </form>
+
