@@ -47,6 +47,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileAdsComponent } from './components/profile-ads/profile-ads.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 
@@ -97,7 +99,9 @@ registerLocaleData(ru);
     NzDrawerModule,
     NgxDadataModule,
     AngularYandexMapsModule,
-    NzTabsModule
+    NzTabsModule,
+    NzPopoverModule,
+    NzModalModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

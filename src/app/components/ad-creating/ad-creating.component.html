@@ -1,6 +1,6 @@
 <div class="container">
   <div class="add">
-    <div class="add__wrapper">
+    <div class="add__wrapper" *ngIf="!(loadingService.isLoading$ | async); else loading">
       <form
         class="add-form"
         nz-form
@@ -97,6 +97,7 @@
     Поле заполнено неверно
   </div>
 </ng-template>
+
 <ng-template #loading>
-  <app-spinner></app-spinner>
+  <app-spinner class="spinner"></app-spinner>
 </ng-template>

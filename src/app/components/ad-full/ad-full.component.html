@@ -34,7 +34,7 @@
     <div class="advertisement__content-communication">
       <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorAvatar }}"></nz-avatar>
       <h1 class="author-name">{{ ad?.authorName }}</h1>
-      <button class="author-number" nz-button nzType="default" type="button">{{ ad?.authorNumber }}</button>
+      <button class="author-number" ngClass="" nz-button nzType="default" type="button">{{ ad?.authorNumber ? ad?.authorNumber : 'Пользователь не добавил номер' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
       <span>На площадке с {{ ad?.authorRegisterDate }}</span>
     </div>

@@ -1,7 +1,8 @@
 <div class="container">
   <div class="profile">
     <div class="profile__avatar">
-      <img class="profile__avatar-img" src="{{ user$.avatar }}" />
+      <!-- <img class="profile__avatar-img" src="{{ user$.avatar }}" /> -->
+      <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ user$.avatar }}" nzIcon="user"></nz-avatar>
       <nz-upload
         nzAction="{{environmentUrl}}/v1/image/create"
         (nzChange)="handleChange($event)"

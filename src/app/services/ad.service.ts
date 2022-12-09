@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Advertisement} from '../models/ad.model';
 import { FullAdvertisement } from '../models/full-ad.model';
 import { GetPagedResult } from '../models/get-paged-result.model';
-import { UploadCard } from '../models/upload-card.model';
+import { UploadAd } from '../models/upload-ad.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,12 @@ export class AdService {
     return this.httpClient.get<FullAdvertisement>(`${this.cardUrl}/get-by-id?Id=${id}`);
   }
 
-  public createAd(model: UploadCard): Observable<string> {
+  public createAd(model: UploadAd): Observable<string> {
     return this.httpClient.post<string>(`${this.cardUrl}/create`, model);
+  }
+
+  public deleteAd(adId: string): Observable<any> {
+    return this.httpClient.delete<any>(`${this.cardUrl}/delete?Id=${adId}`);
   }
 
 }

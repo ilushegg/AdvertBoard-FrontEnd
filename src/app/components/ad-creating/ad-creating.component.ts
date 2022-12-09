@@ -6,7 +6,7 @@ import { DadataAddress, DadataConfig, DadataSuggestion, DadataType, NgxDadataSer
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { BehaviorSubject } from 'rxjs';
-import { UploadCard } from 'src/app/models/upload-card.model';
+import { UploadAd } from 'src/app/models/upload-ad.model';
 import { AdService } from 'src/app/services/ad.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -24,7 +24,8 @@ export class AdCreatingComponent implements OnInit {
   public categories$ = this.categoryService.getAll();
   public environmentUrl = environment.apiUrl;
 
-  public ad: UploadCard = {
+  public ad: UploadAd = {
+    userId: this.authService.id,
     name: null,
     description: null,
     price: null,
@@ -58,6 +59,7 @@ export class AdCreatingComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loadingService.isLoading$.next(true);
     if (this.form.invalid) {
       this.nzNotificationService.error('Ошибка', 'Форма заполнена неверно');
       Object.values(this.form.controls).forEach((control) => {
@@ -78,6 +80,7 @@ export class AdCreatingComponent implements OnInit {
     this.adService.createAd(this.ad).subscribe((res: string) => {
       this.router.navigateByUrl('/advertisements/' + res);
       this.nzNotificationService.success('Успешно!', 'Объявление создано!');
+      this.loadingService.isLoading$.next(false);
     });
 
     

@@ -1,4 +1,5 @@
-export interface UploadCard{
+export interface UploadAd{
+  userId: string | null,
   name: string | null,
   description: string | null,
   price: number | null,
