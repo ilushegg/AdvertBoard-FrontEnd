@@ -21,7 +21,12 @@
             <div class="ad__nav">
               <button class="ad__nav__btn" nz-button nz-popover nzType="text" nzPopoverContent="Перейти к объявлению" routerLink="/advertisements/{{ ad.id }}"><span class="ad__nav__img" nz-icon nzType="info-circle" nzTheme="outline"></span></button>
               <button class="ad__nav__btn" nz-button nz-popover nzType="text" nzPopoverContent="Редактировать объявление" ><span class="ad__nav__img" nz-icon nzType="edit" nzTheme="outline"></span></button>
-              <button class="ad__nav__btn" nz-button nz-popover nzType="text" nzPopoverContent="Удалить объявление" (click)="showDeleteConfirm(ad.id)"><span class="ad__nav__img" nz-icon nzType="delete" nzTheme="outline"></span></button>
+              <button class="ad__nav__btn" nz-button nz-popover nzType="text" nzPopoverContent="Удалить объявление" (click)="showModal()"><span class="ad__nav__img" nz-icon nzType="delete" nzTheme="outline"></span></button>
+              <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Вы действительно хотите удалить объявление?" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk(ad.id)" nzOkText="Да" nzCancelText="Нет">
+                <ng-container *nzModalContent>
+                  <p>Данное действие нельзя будет отменить.</p>
+                </ng-container>
+              </nz-modal>
               
             </div>
 
@@ -33,7 +38,10 @@
 </div>
 
 <ng-template #loading>
-  <app-spinner class="spinner"></app-spinner>
+  <div style="margin-top: 200px;">
+    <app-spinner class="spinner"></app-spinner>
+
+  </div>
 </ng-template>
 
 <ng-template #noAds>

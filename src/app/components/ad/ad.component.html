@@ -1,17 +1,26 @@
-<div class="card" routerLink="{{ad.id}}">
-  <nz-carousel class="card__carousel" [nzEnableSwipe]="false">
+<div class="ad">
+  <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
     <div nz-carousel-content *ngFor="let image of ad.images">
-      <img  class="advertisement-image" src="{{image}}" >
+      <div *ngIf="ad.images.length>0; else noImage"> 
+        <img  class="advertisement-image" src="{{image}}" >
+      </div>
     </div>
   </nz-carousel>
-  <div class="card__description">
-    <p class="card__description-title">{{ ad.name }}</p>
-    <p class="card__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</p>
+  <div class="ad__description">
+    <div class="ad__description-header">
+      <a class="ad__description-title" routerLink="{{ad.id}}">{{ ad.name }}</a>
+      <a href="#"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+    </div>
+    <div class="ad__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</div>
+    <div class="ad__description-city">{{ ad.locationQuery }}</div>
+    <div class="ad__description-date">{{ ad.dateTimeCreated }}</div>
 
   </div>
 </div>
 
-
+<ng-template #noImage>
+  <span nz-icon nzType="camera" nzTheme="outline"></span>
+</ng-template>
 
 
 

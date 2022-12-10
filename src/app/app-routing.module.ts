@@ -8,6 +8,7 @@ import { AdFullComponent } from './components/ad-full/ad-full.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileAdsComponent } from './components/profile-ads/profile-ads.component';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
+import { AdsComponent } from './components/ads/ads.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'advertisements',
-    component: AdComponent
+    component: AdsComponent
   },
   {
     path: 'add-new-ad',
@@ -30,10 +31,6 @@ const routes: Routes = [
   {
     path: 'advertisements/:id',
     component: AdFullComponent
-  },
-  {
-    path: 'my_advertisements',
-    component: ProfileAdsComponent
   },
   {
     path: 'profile/:id',

@@ -49,6 +49,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { AdsComponent } from './components/ads/ads.component';
 
 
 
@@ -66,7 +67,8 @@ registerLocaleData(ru);
     AdFullComponent,
     ProfileComponent,
     ProfileAdsComponent,
-    ProfileDataComponent
+    ProfileDataComponent,
+    AdsComponent
   ],
   imports: [
     BrowserModule,

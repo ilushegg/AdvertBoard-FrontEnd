@@ -17,6 +17,7 @@ export class ProfileAdsComponent implements OnInit {
   public ads: Advertisement[] = [];
   private pageSize = 10;
   private pageNumber = 1;
+  isVisible = false;
 
   constructor(private adService: AdService, public loadingService: LoadingService, private nzNotificationService: NzNotificationService, private nzModal: NzModalService) { }
 
@@ -38,20 +39,17 @@ export class ProfileAdsComponent implements OnInit {
     
   }
 
-  showDeleteConfirm(id: string): void {
-    this.nzModal.confirm({
-      nzTitle: 'Вы уверены, что хотите удалить объявление?',
-      nzContent: '<b style="color: red;">Это действие нельзя будет отменить</b>',
-      nzOkText: 'Да',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => this.delete(id),
-      nzCancelText: 'Нет',
-      nzOnCancel: () => console.log('Cancel'),
-      nzStyle: { borderRadius: '20px' },
-      nzCentered: true,
-      nzClosable: false
-    });
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(id: string): void {
+    this.delete(id);
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
 }

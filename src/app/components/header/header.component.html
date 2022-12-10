@@ -3,7 +3,7 @@
     <div class="container">
     <nav class="navbar" *ngIf="isHeaderNav()">
       <ul class="navbar__section">
-        <li class="navbar__item logo" routerLink="/">AdvBOARD</li>
+        <li class="navbar__item logo" routerLink="/advertisements">AdvBOARD</li>
       </ul>
       <ul class="navbar__section">
         <div class="" *ngIf="user$ as user; else notAuthed">
@@ -16,8 +16,8 @@
               <li nz-menu-item nzDisabled>{{ user.name }}</li>
               <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
-              <li nz-menu-item routerLink="profile/{{user.id}}">Профиль</li>
-              <li nz-menu-item routerLink="profile/advertisements">Мои объявления</li>
+              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'data'}">Профиль</li>
+              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'advertisements'}">Мои объявления</li>
             </ul>
           </nz-dropdown-menu>
           <button

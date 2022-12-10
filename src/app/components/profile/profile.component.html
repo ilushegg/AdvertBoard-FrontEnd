@@ -13,14 +13,14 @@
       </nz-upload>
       <div class="profile__nav">
         <a class="profile__nav__element" (click)="component = 'data'" >Данные</a>
-        <a class="profile__nav__element" (click)="component = 'ads'" >Мои объявления</a>
+        <a class="profile__nav__element" (click)="component = 'advertisements'" >Мои объявления</a>
         <a class="profile__nav__element" href="">Избранное</a>
       </div>
 
     </div>
     <div class="profile__content" [ngSwitch]="component">
       <div *ngSwitchCase="'data'"><app-profile-data [user]="user$"></app-profile-data></div>
-      <div *ngSwitchCase="'ads'"><app-profile-ads [user]="user$"></app-profile-ads></div>
+      <div *ngSwitchCase="'advertisements'"><app-profile-ads [user]="user$"></app-profile-ads></div>
     
     </div>
     

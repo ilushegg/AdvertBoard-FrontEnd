@@ -5,4 +5,6 @@ export interface Advertisement {
   price: number,
   categoryId: string,
   images: string[],
+  locationQuery: string,
+  dateTimeCreated: string
 }

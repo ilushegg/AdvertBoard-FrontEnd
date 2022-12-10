@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NzMessageComponent, NzMessageService } from 'ng-zorro-antd/message';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { UserAvatar } from 'src/app/models/user-avatar.model';
 import { UserEdit } from 'src/app/models/user-edit.model';
 import { User } from 'src/app/models/user.model';
@@ -18,11 +19,15 @@ export class ProfileComponent implements OnInit {
 
   public user$: User;
   public environmentUrl = environment.apiUrl;
-  public component = 'data';
+  public component: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.component = params['component'];
+    });
+    console.log(this.component);
     this.authService.user$.subscribe(res => {
       this.user$ = res;
       
