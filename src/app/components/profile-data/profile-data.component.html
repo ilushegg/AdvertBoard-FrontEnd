@@ -5,6 +5,7 @@
     [formGroup]="form"
     (ngSubmit)="onEditSubmit()"
   >
+  <div *ngIf="!(loadingService.isLoading$ | async); else loading">
   <div class="profile__form__title">
     <p>Данные</p>
   </div>
@@ -43,5 +44,12 @@
       <button class="" nz-button nzType="primary" type="submit">Изменить данные</button>
 
     </nz-form-item>
+  </div>
   </form>
 
+  <ng-template #loading>
+    <div style="margin-top: 200px;">
+      <app-spinner class="spinner"></app-spinner>
+  
+    </div>
+  </ng-template>

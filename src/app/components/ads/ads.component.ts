@@ -18,9 +18,10 @@ export class AdsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadingService.isLoading$.next(true);
     this.adService.getPagedFiltered(0, this.pageSize).subscribe(res => {
       this.ads = res;
-      console.log(this.ads);
+      this.loadingService.isLoading$.next(false);
     })
   }
 

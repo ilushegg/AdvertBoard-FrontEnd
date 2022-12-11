@@ -23,8 +23,8 @@
       <nz-carousel [nzEnableSwipe]="false"  >
         <div nz-carousel-content *ngFor="let image of ad?.images">
           <nz-image-group>
-            <img class="advertisement-image-bg" src="{{image}}" >
-          <img nz-image class="advertisement-image" nzSrc="{{image}}" >
+            <img class="advertisement-image-bg" src="{{image.item2}}" >
+          <img nz-image class="advertisement-image" nzSrc="{{image.item2}}" >
           </nz-image-group>
           
         </div>

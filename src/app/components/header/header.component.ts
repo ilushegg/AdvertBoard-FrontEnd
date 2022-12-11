@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isHeaderSearch(): boolean {
-    if ((this.router.url != '/auth') && (this.router.url.indexOf('/profile/') == -1) && (this.router.url != '/add-new-ad') && (this.router.url != '/my_advertisements')) {
+    if ((this.router.url != '/auth') && (this.router.url.indexOf('/profile/') == -1) && (this.router.url != '/add-new-ad') && (this.router.url != '/advertisements/editing/')) {
 
               return true;
       }

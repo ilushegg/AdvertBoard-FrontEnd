@@ -9,7 +9,7 @@
         <div class="" *ngIf="user$ as user; else notAuthed">
           
           <a nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomCenter'">
-            <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}"></nz-avatar>
+            <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}" nzFallback=""></nz-avatar>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu" >
             <ul nz-menu nzSelectable>

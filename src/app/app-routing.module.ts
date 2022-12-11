@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileAdsComponent } from './components/profile-ads/profile-ads.component';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 import { AdsComponent } from './components/ads/ads.component';
+import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,11 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent
-  }
+  },
+  {
+    path: 'advertisements/editing/:id',
+    component: AdEditingComponent
+  },
 
 ];
 

@@ -47,9 +47,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileAdsComponent } from './components/profile-ads/profile-ads.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AdsComponent } from './components/ads/ads.component';
+import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
 
 
 
@@ -68,7 +69,8 @@ registerLocaleData(ru);
     ProfileComponent,
     ProfileAdsComponent,
     ProfileDataComponent,
-    AdsComponent
+    AdsComponent,
+    AdEditingComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +104,7 @@ registerLocaleData(ru);
     NgxDadataModule,
     AngularYandexMapsModule,
     NzTabsModule,
-    NzPopoverModule,
+    NzToolTipModule,
     NzModalModule
   ],
   providers: [

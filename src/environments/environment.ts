@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7057'
+  apiUrl: 'https://localhost:7057',
+  daDataApiKey: '90b23b34110082cdd7fc96afdfccb260ada95ce3'
 };
 
 /*

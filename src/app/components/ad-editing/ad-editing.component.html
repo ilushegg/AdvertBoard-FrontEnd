@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="add">
+    <div class="add__wrapper" *ngIf="!(loadingService.isLoading$ | async); else loading">
+      <form
+        class="add-form"
+        nz-form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="max-w-[500px]"
+      >
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Название</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <input nz-input formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Категория</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <div
+              class=""
+              *ngIf="!(loadingService.isLoading$ | async); else loading"
+            >
+              <div class="add-form__tree">
+                <nz-tree-select
+                  [nzNodes]="(categories$ | async) || []"
+                  formControlName="categoryId"
+                ></nz-tree-select>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Описание</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <textarea
+              nz-input
+              [nzAutosize]="{ minRows: 10, maxRows: 10 }"
+              formControlName="description"
+              style="resize: none"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Цена</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <nz-input-number formControlName="price"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Адрес</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <div >
+              <ngx-dadata class="add-form__address" 
+                formControlName="address"
+                [config]="config"
+                (selected)="onAddressSelected($event)"
+              ></ngx-dadata>
+            
+            </div>
+          
+        </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6">Фотографии</nz-form-label>
+          <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+            <div class="clearfix">
+              <nz-upload
+              [nzFileList]="images"
+                nzType="drag"
+                nzAction="{{environmentUrl}}/v1/image/create"
+                nzListType="picture"
+                [nzMultiple]="true"
+                (nzChange)="handleChange($event)"
+              >
+                <p class="ant-upload-drag-icon">
+                  <span nz-icon nzType="inbox"></span>
+                </p>
+                <p class="ant-upload-hint">
+                  Нажмите или перетащите файлы в эту область
+                </p>
+              </nz-upload>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="add-form__btn">
+          <button nz-button nzType="primary" type="submit">Создать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #errorTip let-control>
+  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+    Поле заполнено неверно
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-spinner class="spinner"></app-spinner>
+</ng-template>
+

@@ -83,3 +83,17 @@ li {
   border-radius: 15px!important;
 }
 
+
+.ant-upload-list-picture,
+.ant-upload-list-item,
+ .ant-upload-list-picture-card,
+  .ant-upload-list-item {
+    border-radius: 15px!important;
+}
+
+.ant-upload-list-picture,
+.ant-upload-list-item-thumbnail img,
+.ant-upload-list-picture-card,
+.ant-upload-list-item-thumbnail img {
+  border-radius: 10px!important;
+}

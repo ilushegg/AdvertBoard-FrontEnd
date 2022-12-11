@@ -5,6 +5,7 @@ import { UserAvatar } from 'src/app/models/user-avatar.model';
 import { UserEdit } from 'src/app/models/user-edit.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +24,7 @@ export class ProfileDataComponent implements OnInit {
     mobile: ['', [Validators.required]]
   })
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, public loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.form.patchValue({
@@ -34,13 +35,17 @@ export class ProfileDataComponent implements OnInit {
   }
 
   onEditSubmit() {
+    this.loadingService.isLoading$.next(true);
     var user: UserEdit = {
       id: this.user.id,
       name: this.form.controls.name.value,
       mobile: this.form.controls.mobile.value,
     };
     user.id = this.user.id;
-    this.userService.edit(user).subscribe();
+    this.userService.edit(user).subscribe(res => {
+      this.loadingService.isLoading$.next(false);
+
+    });
   }
 
   handleChange(info: any) {

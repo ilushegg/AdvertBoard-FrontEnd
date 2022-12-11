@@ -1,0 +1,34 @@
+nz-tree-select {
+  border-radius: 8px;
+}
+
+.ng-tns-c134-2{
+  border-radius: 8px;
+}
+
+.add {
+  &-form{
+    &__tree {
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+
+    }
+
+    &__address {
+      border-radius: 10px;
+    }
+
+    &__btn {
+    text-align: center;
+    margin-right: -50px;
+    }
+  }
+
+
+}
+
+
+
+input[type=text][_ngcontent-nlp-c113]{
+  background-color: #fff!important;
+}

@@ -7,7 +7,7 @@ export interface FullAdvertisement {
   locationLon: string,
   price: number,
   categoryId: string,
-  images: string[],
+  images: {item1: string, item2: string}[],
   dateTimeCreated: string,
   dateTimeUpdated: string,
   authorId: string,
