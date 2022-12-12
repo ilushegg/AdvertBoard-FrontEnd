@@ -61,7 +61,7 @@ export class AdEditingComponent implements OnInit {
    ngOnInit(): void {
     this.loadingService.isLoading$.next(true);
     
-    this.adService.getById(this.id).subscribe(res => {
+    this.adService.getById(this.id, this.authService.id!).subscribe(res => {
       for(let i = 0; i<Object.keys(res.images).length; i++){
         this.images.push({
           uid: res.images[i].item1,

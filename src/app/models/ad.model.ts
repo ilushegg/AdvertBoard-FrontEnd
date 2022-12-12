@@ -6,5 +6,6 @@ export interface Advertisement {
   categoryId: string,
   images: string[],
   locationQuery: string,
-  dateTimeCreated: string
+  dateTimeCreated: string,
+  isFavorite: boolean
 }

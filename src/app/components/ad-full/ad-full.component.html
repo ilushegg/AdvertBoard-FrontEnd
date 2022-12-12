@@ -3,14 +3,17 @@
   <div class="advertisement__top">
     <div class="advertisement__top-left">
       <div class="advertisement__top-title">
-        {{ad?.name}}
+        {{ad.name}}
       </div>
-      <a href="#"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+      <div *ngIf="!ad.isFavorite; else favorite ">
+        <a (click)="addToFavorite(ad.id)"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+      </div>
+
     </div>
     
     
     <div class="advertisement__top-price">
-      {{ ad?.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
+      {{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
       
     </div>
 
@@ -32,11 +35,11 @@
       <span (click)="next()" class="advertisement__content-image__right" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
     <div class="advertisement__content-communication">
-      <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad?.authorAvatar }}"></nz-avatar>
-      <h1 class="author-name">{{ ad?.authorName }}</h1>
-      <button class="author-number" ngClass="" nz-button nzType="default" type="button">{{ ad?.authorNumber ? ad?.authorNumber : 'Пользователь не добавил номер' }}</button>
+      <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad.authorAvatar }}"></nz-avatar>
+      <h1 class="author-name">{{ ad.authorName }}</h1>
+      <button class="author-number" ngClass="" nz-button nzType="default" type="button">{{ ad.authorNumber ? ad.authorNumber : 'Пользователь не добавил номер' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
-      <span>На площадке с {{ ad?.authorRegisterDate }}</span>
+      <span>На площадке с {{ ad.authorRegisterDate }}</span>
     </div>
     
   </div>
@@ -48,11 +51,11 @@
           <ya-placemark [geometry]="[centerLat, centerLon]"></ya-placemark>
         </ya-map>
       </div>
-      <h3>{{ ad?.locationQueryString }}</h3>
+      <h3>{{ ad.locationQueryString }}</h3>
       <h2 class="title" >Описание</h2>
-      <h3>{{ ad?.description }}</h3>
+      <h3>{{ ad.description }}</h3>
       <h2 class="title" >Размещено</h2>
-      <h3>{{ ad?.dateTimeCreated }}</h3>
+      <h3>{{ ad.dateTimeCreated }}</h3>
 
     </div>
   </div>
@@ -63,4 +66,8 @@
   <div class="loading">
       <app-spinner class="loading__wrapper"></app-spinner>
   </div>
+</ng-template>
+
+<ng-template #favorite>
+  <a (click)="deleteFromFavorite(ad.id)"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="fill"></span></a>
 </ng-template>

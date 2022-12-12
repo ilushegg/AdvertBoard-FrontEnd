@@ -16,8 +16,8 @@ export class AdService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPagedFiltered(offset: number, limit: number): Observable<Advertisement[]> {
-    let url = `${this.cardUrl}?Offset=${offset}&Limit=${limit}`;
+  getPagedFiltered(offset: number, limit: number, userId: string): Observable<Advertisement[]> {
+    let url = userId ? `${this.cardUrl}?Offset=${offset}&Limit=${limit}&UserId=${userId}` : `${this.cardUrl}?Offset=${offset}&Limit=${limit}`;
     return this.httpClient.get<Advertisement[]>(url);
   }
 
@@ -26,8 +26,9 @@ export class AdService {
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
-  public getById(id: string): Observable<FullAdvertisement> {
-    return this.httpClient.get<FullAdvertisement>(`${this.cardUrl}/get-by-id?Id=${id}`);
+  public getById(advertisementId: string, userId: string): Observable<FullAdvertisement> {
+    let url = userId ? `${this.cardUrl}/get-by-id?advertisementId=${advertisementId}&userId=${userId}` : `${this.cardUrl}/get-by-id?advertisementId=${advertisementId}`;
+    return this.httpClient.get<FullAdvertisement>(url);
   }
 
   public createAd(model: UploadAd): Observable<string> {

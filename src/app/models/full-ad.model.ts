@@ -15,4 +15,5 @@ export interface FullAdvertisement {
   authorAvatar: string,
   authorNumber: string,
   authorRegisterDate: string,
+  isFavorite: boolean
 }

@@ -9,7 +9,9 @@
   <div class="ad__description">
     <div class="ad__description-header">
       <a class="ad__description-title" routerLink="{{ad.id}}">{{ ad.name }}</a>
-      <a href="#"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+      <div *ngIf="!ad.isFavorite; else favorite ">
+        <a (click)="addToFavorite(ad.id)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+      </div>
     </div>
     <div class="ad__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</div>
     <div class="ad__description-city">{{ ad.locationQuery }}</div>
@@ -20,6 +22,10 @@
 
 <ng-template #noImage>
   <span nz-icon nzType="camera" nzTheme="outline"></span>
+</ng-template>
+
+<ng-template #favorite>
+  <a (click)="deleteFromFavorite(ad.id)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="fill"></span></a>
 </ng-template>
 
 
