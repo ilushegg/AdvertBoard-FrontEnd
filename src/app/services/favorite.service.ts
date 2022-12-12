@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Advertisement} from '../models/ad.model';
+import { FavoriteAdvertisement } from '../models/favorite-ad.model';
 import { FullAdvertisement } from '../models/full-ad.model';
 import { GetPagedResult } from '../models/get-paged-result.model';
 import { UploadAd } from '../models/upload-ad.model';
@@ -36,6 +37,11 @@ export class FavoriteService {
 
   public deleteFromFavorite(advertisementId: string, userId: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.favoriteUrl}/delete?advertisementId=${advertisementId}&userId=${userId}`);
+  }
+
+  getFavoriteAdsPagedFiltered(offset: number, limit: number, userId: string): Observable<GetPagedResult<FavoriteAdvertisement>> {
+    let url = `${this.favoriteUrl}/get_all_favorites?Offset=${offset}&Limit=${limit}&UserId=${userId}`;
+    return this.httpClient.get<GetPagedResult<FavoriteAdvertisement>>(url);
   }
 
 

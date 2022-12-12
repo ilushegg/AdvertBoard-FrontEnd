@@ -26,6 +26,8 @@ export class AdService {
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
+  
+
   public getById(advertisementId: string, userId: string): Observable<FullAdvertisement> {
     let url = userId ? `${this.cardUrl}/get-by-id?advertisementId=${advertisementId}&userId=${userId}` : `${this.cardUrl}/get-by-id?advertisementId=${advertisementId}`;
     return this.httpClient.get<FullAdvertisement>(url);

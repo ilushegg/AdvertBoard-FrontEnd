@@ -39,10 +39,20 @@ export class ProfileAdsComponent implements OnInit {
       this.nzNotificationService.success("Ок", "Объявление успешно удалено");
     }
     );
-
+    
     
   }
+  onChangePagination(index: number) {
+    this.pageNumber = index;
 
+    this.loadingService.isLoading$.next(true);
+    this.adService.getAuthorAdsPagedFiltered((index-1)*this.pageSize, this.pageSize, this.user.id).subscribe(res => {
+      this.ads = res;
+      console.log(res);
+      this.loadingService.isLoading$.next(false);
+    })
+  }
+  
   showModal(): void {
     this.isVisible = true;
   }
@@ -56,16 +66,6 @@ export class ProfileAdsComponent implements OnInit {
     this.isVisible = false;
   }
 
-  onChange(index: number) {
-    this.pageNumber = index;
-
-    this.loadingService.isLoading$.next(true);
-    this.adService.getAuthorAdsPagedFiltered((index-1)*this.pageSize, this.pageSize, this.user.id).subscribe(res => {
-      this.ads = res;
-      console.log(res);
-      this.loadingService.isLoading$.next(false);
-    })
-  }
 
 
   fallback =
