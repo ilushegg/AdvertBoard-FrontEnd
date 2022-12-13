@@ -52,6 +52,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AdsComponent } from './components/ads/ads.component';
 import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
 import { ProfileFavoritesComponent } from './components/profile-favorites/profile-favorites.component';
+import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 
 
 
@@ -72,7 +73,8 @@ registerLocaleData(ru);
     ProfileDataComponent,
     AdsComponent,
     AdEditingComponent,
-    ProfileFavoritesComponent
+    ProfileFavoritesComponent,
+    AuthorProfileComponent
   ],
   imports: [
     BrowserModule,

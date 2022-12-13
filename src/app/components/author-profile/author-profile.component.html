@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="profile">
+    <div class="profile__avatar">
+      
+      <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ user$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
+      <div class="author-name" >{{ user$.name }}</div>
+      <button class="author-number"  nz-button nzType="default" type="button">{{ user$.mobile ? user$.mobile : 'Пользователь не добавил номер' }}</button>
+      <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
+      <span>На площадке с {{ user$.createDate }}</span>
+
+
+    </div>
+    <div class="profile__content">
+      <div class="title">Объявления продавца</div>
+      <app-profile-ads [user]="user$"></app-profile-ads>
+    
+    </div>
+    
+  </div>
+</div>
+

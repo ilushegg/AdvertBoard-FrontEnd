@@ -16,8 +16,8 @@
               <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'data'}">{{ user.name }}</li>
               <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
-              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'favorites'}">Избранное</li>
               <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'advertisements'}">Мои объявления</li>
+              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'favorites'}">Избранное</li>
             </ul>
           </nz-dropdown-menu>
           <button

@@ -10,6 +10,7 @@ import { ProfileAdsComponent } from './components/profile-ads/profile-ads.compon
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 import { AdsComponent } from './components/ads/ads.component';
 import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
+import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
     path: 'advertisements/editing/:id',
     component: AdEditingComponent
   },
+  {
+    path: 'author/:id',
+    component: AuthorProfileComponent
+  }
 
 ];
 
