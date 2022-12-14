@@ -1,9 +1,13 @@
+import { BoundElementProperty } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DadataConfig, DadataType } from '@kolkov/ngx-dadata';
+import { DadataConfig, DadataType, Bounds, Bound, DadataSuggestion, DadataAddress } from '@kolkov/ngx-dadata';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { AdService } from 'src/app/services/ad.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { environment } from 'src/environments/environment';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -15,10 +19,20 @@ export class HeaderComponent implements OnInit {
 
   public user$: User;
   public categories$ = this.categoryService.getAll();
+  public searchForm = this.formBuilder.group(
+    {
+      query: ['', [Validators.required]],
+    }
+  );
 
+  public pageSize = 10;
+  public pageNumber = 1;
+  public adsTotal = this.pageSize;
+  public url = environment.apiUrl;
   visible = false;
+  city: string | null = '';
 
-  constructor(public authService: AuthService, private categoryService: CategoryService, public router: Router) {
+  constructor(public authService: AuthService, private categoryService: CategoryService, public router: Router, public formBuilder: FormBuilder, private adService: AdService) {
   }
   ngOnInit(): void {
     this.authService.user$.subscribe(res => {
@@ -26,6 +40,13 @@ export class HeaderComponent implements OnInit {
     
     }
     )
+  }
+
+
+  Search(){
+    console.log('click');
+    let query = this.searchForm.controls.query.value;
+    this.router.navigateByUrl(`search?city=${this.city}&query=${query}`);
   }
 
   open(): void {
@@ -53,5 +74,25 @@ export class HeaderComponent implements OnInit {
 
     return false;
   }
+
+  b1: Bound = {value: "city"}
+
+  b: Bounds = {fromBound: this.b1, toBound: this.b1};
+
+  public config: DadataConfig = {
+    apiKey: environment.daDataApiKey  ,
+    type: DadataType.address,
+    bounds: this.b
+          
+  
+  };
+
+
+  onAddressSelected(event: DadataSuggestion) {
+    const addressData = event.data as DadataAddress;
+    this.city = addressData.city;
+  }
+
+
 
 }

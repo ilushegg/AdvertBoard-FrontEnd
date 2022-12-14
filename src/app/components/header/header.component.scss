@@ -45,8 +45,11 @@ nz-dropdown-menu {
   border-radius: 25px;
 }
 
+
+
 .search__section{
   max-width: 1000px;
+  width: 100%;
   margin:0 auto;
   margin-bottom: 70px;
   
@@ -57,10 +60,25 @@ nz-dropdown-menu {
     border-radius: 0px;
     height: 40px;
     margin: 0px 20px;
+    max-width: 500px;
   }
 
   &-button {
     height: 40px;
   }
+
+  &-form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__address{
+    max-width: 200px!important;
+    width: 100%;
+    border-radius: 15px !important;
+    height: 40px;
+  }
 }
+
+
 

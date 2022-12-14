@@ -35,8 +35,8 @@
   </div>
 
   <div class="container">
-    <div class="search__section"  *ngIf="isHeaderSearch()">
-        <button class="search__section-button" nz-button nzType="primary" (click)="open()">Категория</button>
+    <form class="search__section" [formGroup]="searchForm" (ngSubmit)="Search()" *ngIf="isHeaderSearch()">
+        <button class="search__section-button" nz-button nzType="primary" (click)="open()" type="button">Категория</button>
     <nz-drawer
       [nzClosable]="false"
       [nzVisible]="visible"
@@ -45,13 +45,23 @@
       (nzOnClose)="close()"
     >
       <ng-container *nzDrawerContent>
-        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async"></nz-tree>
+        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async" ></nz-tree>
       </ng-container>
     </nz-drawer>
-
-      <input class="search__section-input" style="border-radius: 20px;"  type="text" nz-input nz-Search placeholder="Поиск по объявлениям" />
-      <button class="search__section-button" nz-button nzType="primary"><span nz-icon nzType="search"></span> Найти</button>
-    </div>
+  
+      <input class="search__section-input" formControlName="query" style="border-radius: 20px;"  type="text" nz-input nz-Search   placeholder="Поиск по объявлениям"  />
+      <div >
+        <ngx-dadata class="search__section__address" 
+          formControlName="address"
+          [config]="config"
+          placeholder="Город"
+          (selected)="onAddressSelected($event)"
+        ></ngx-dadata>
+      
+      </div>
+      <button class="search__section-button" nz-button nzType="primary"  type="submit"><span nz-icon nzType="search"></span> Найти</button>
+    
+  </form>
     
   </div>
 </header>

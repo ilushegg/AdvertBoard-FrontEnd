@@ -53,6 +53,8 @@ import { AdsComponent } from './components/ads/ads.component';
 import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
 import { ProfileFavoritesComponent } from './components/profile-favorites/profile-favorites.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
+import { SearchAdsComponent } from './components/search-ads/search-ads.component';
+
 
 
 
@@ -74,7 +76,8 @@ registerLocaleData(ru);
     AdsComponent,
     AdEditingComponent,
     ProfileFavoritesComponent,
-    AuthorProfileComponent
+    AuthorProfileComponent,
+    SearchAdsComponent,
   ],
   imports: [
     BrowserModule,

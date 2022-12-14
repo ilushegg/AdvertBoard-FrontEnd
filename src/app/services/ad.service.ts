@@ -26,6 +26,12 @@ export class AdService {
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
+  getPagedBySearch(offset: number, limit: number, city: string, categoryId: string, query: string): Observable<GetPagedResult<Advertisement>> {
+    let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${city ? "&City=" + city : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}`;
+    console.log(url)
+    return this.httpClient.get<GetPagedResult<Advertisement>>(url);
+  }
+
   
 
   public getById(advertisementId: string, userId: string): Observable<FullAdvertisement> {

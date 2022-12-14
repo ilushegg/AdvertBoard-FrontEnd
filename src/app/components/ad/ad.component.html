@@ -8,7 +8,7 @@
   </nz-carousel>
   <div class="ad__description">
     <div class="ad__description-header">
-      <a class="ad__description-title" routerLink="{{ad.id}}">{{ ad.name }}</a>
+      <a class="ad__description-title" routerLink="../advertisements/{{ad.id}}">{{ ad.name }}</a>
       <div *ngIf="!ad.isFavorite; else favorite ">
         <a (click)="addToFavorite(ad.id)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
       </div>

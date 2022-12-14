@@ -19,8 +19,8 @@ export class ProfileAdsComponent implements OnInit {
   public ads: GetPagedResult<Advertisement>;
   public pageSize = 5;
   public pageNumber = 1;
-  isVisible = false;
   public adsTotal = this.pageSize;
+  isVisible = false;
 
   constructor(private adService: AdService, public loadingService: LoadingService, private nzNotificationService: NzNotificationService, private nzModal: NzModalService) { }
 

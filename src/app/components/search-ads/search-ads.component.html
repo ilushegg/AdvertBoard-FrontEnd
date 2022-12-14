@@ -1,0 +1,17 @@
+<div class="container">
+  <div *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <div class="ads">
+        <div class="" *ngFor="let ad of ads.items">
+          <app-ad class="ad" [ad]=ad></app-ad>
+        </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div style="margin-top: 200px">
+    <app-spinner class="spinner"></app-spinner>
+  </div>
+</ng-template>
+
+
