@@ -26,8 +26,8 @@ export class AdService {
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
-  getPagedBySearch(offset: number, limit: number, city: string, categoryId: string, query: string): Observable<GetPagedResult<Advertisement>> {
-    let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${city ? "&City=" + city : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}`;
+  getPagedBySearch(offset: number, limit: number, city: string, categoryId: string, query: string, fromPrice: string, toPrice: string): Observable<GetPagedResult<Advertisement>> {
+    let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${city ? "&City=" + city : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}${fromPrice ? "&FromPrice=" + fromPrice : ""}${toPrice ? "&ToPrice=" + toPrice : ""}`;
     console.log(url)
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
@@ -51,6 +51,10 @@ export class AdService {
 
   public deleteAd(adId: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.cardUrl}/delete?Id=${adId}`);
+  }
+
+  public deleteAds(userId: string): Observable<any> {
+    return this.httpClient.delete<any>(`${this.cardUrl}/admin_delete_ads?UserId=${userId}`);
   }
 
 }

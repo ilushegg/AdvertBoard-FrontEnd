@@ -55,12 +55,11 @@
 }
 
 .advertisement-image {
-
   width: 200px;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   object-position: center;
-
+  border-radius: 15px;
   display: block;
   margin: auto;
 }

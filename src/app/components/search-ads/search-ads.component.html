@@ -1,9 +1,29 @@
 <div class="container">
   <div *ngIf="!(loadingService.isLoading$ | async); else loading">
-    <div class="ads">
-        <div class="" *ngFor="let ad of ads.items">
-          <app-ad class="ad" [ad]=ad></app-ad>
+    <div class="title"> По вашему запросу найдено объявлений: {{ads.total}} </div>
+  <div class="search-ads">
+    <div class="search-ads__filters">
+      <form [formGroup]="filtersForm" class="search-ads__filters__form" (ngSubmit)="onPriceSubmit()">
+        <div>
+          <label class="search-ads__filters__form__title">Цена от</label>
+          <input nz-input formControlName="fromPrice" type="text" >
+          
         </div>
+        <div>
+          <label class="search-ads__filters__form__title">Цена до</label>
+          <input nz-input formControlName="toPrice" type="text" >
+
+        </div>
+
+        <button nz-button nzType="primary" type="submit">Применить</button>
+      </form>
+    </div>
+    
+      <div class="ads">
+          <div class="" *ngFor="let ad of ads.items">
+            <app-ad class="ad" [ad]=ad></app-ad>
+          </div>
+      </div>
     </div>
   </div>
 </div>

@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   public searchForm = this.formBuilder.group(
     {
       query: ['', [Validators.required]],
+      categoryId: [''],
+      address: ['']
     }
   );
 
@@ -37,16 +39,19 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user$.subscribe(res => {
       this.user$ = res;
-    
+      
     }
     )
+    this.city = "";
   }
 
 
   Search(){
     console.log('click');
     let query = this.searchForm.controls.query.value;
-    this.router.navigateByUrl(`search?city=${this.city}&query=${query}`);
+    let categoryId = this.searchForm.controls.categoryId.value ? this.searchForm.controls.categoryId.value : "";
+    // let city = this.searchForm.controls.address.value ? this.searchForm.controls.address.value : "";
+    this.router.navigateByUrl(`search?city=${this.city}&categoryId=${categoryId}&query=${query}`);
   }
 
   open(): void {
@@ -91,6 +96,14 @@ export class HeaderComponent implements OnInit {
   onAddressSelected(event: DadataSuggestion) {
     const addressData = event.data as DadataAddress;
     this.city = addressData.city;
+  }
+
+  onCategorySelected($event: string) {
+    console.log($event);
+  }
+
+  onChangeAddress() {
+    this.city = '';
   }
 
 

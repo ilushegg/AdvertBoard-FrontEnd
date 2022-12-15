@@ -36,8 +36,8 @@
 
   <div class="container">
     <form class="search__section" [formGroup]="searchForm" (ngSubmit)="Search()" *ngIf="isHeaderSearch()">
-        <button class="search__section-button" nz-button nzType="primary" (click)="open()" type="button">Категория</button>
-    <nz-drawer
+        <!-- <button class="search__section-button" nz-button nzType="primary" (click)="open()" type="button">Категория</button> -->
+    <!-- <nz-drawer
       [nzClosable]="false"
       [nzVisible]="visible"
       [nzPlacement]="'left'"
@@ -45,13 +45,20 @@
       (nzOnClose)="close()"
     >
       <ng-container *nzDrawerContent>
-        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async" ></nz-tree>
+        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async" (ngModelChange)="onCategorySelected($event)"></nz-tree>
       </ng-container>
-    </nz-drawer>
+    </nz-drawer> -->
+    <div class="search__section__tree">
+      <nz-tree-select
+        [nzNodes]="(categories$ | async) || []"
+        nzPlaceHolder="Категория"
+        formControlName="categoryId"
+      ></nz-tree-select>
+    </div>
   
       <input class="search__section-input" formControlName="query" style="border-radius: 20px;"  type="text" nz-input nz-Search   placeholder="Поиск по объявлениям"  />
       <div >
-        <ngx-dadata class="search__section__address" 
+        <ngx-dadata nz-input class="search__section__address" 
           formControlName="address"
           [config]="config"
           placeholder="Город"

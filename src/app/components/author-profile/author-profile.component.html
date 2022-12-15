@@ -2,17 +2,28 @@
   <div class="profile">
     <div class="profile__avatar">
       
-      <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ user$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
-      <div class="author-name" >{{ user$.name }}</div>
-      <button class="author-number"  nz-button nzType="default" type="button">{{ user$.mobile ? user$.mobile : 'Пользователь не добавил номер' }}</button>
+      <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ author$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
+      <div class="author-name" >{{ author$.name }}</div>
+      <button class="author-number"  nz-button nzType="default" type="button">{{ author$.mobile ? author$.mobile : 'Пользователь не добавил номер' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
-      <span>На площадке с {{ user$.createDate }}</span>
+      <span>На площадке с {{ author$.createDate }}</span>
 
 
     </div>
     <div class="profile__content">
-      <div class="title">Объявления продавца</div>
-      <app-profile-ads [user]="user$"></app-profile-ads>
+      <div class="profile__content__header">
+        <div class="title">Объявления продавца</div>
+        <div *ngIf="user$.userRole=='Admin'">
+          <button nz-button nzType="primary" nzDanger (click)="showModal()">Удалить все объявления</button>
+              <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Вы действительно хотите удалить все объявления пользователя :( ?" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Да" nzCancelText="Нет">
+                <ng-container *nzModalContent>
+                  <p>Данное действие нельзя будет отменить.</p>
+                </ng-container>
+              </nz-modal>
+        </div>
+
+      </div>
+      <app-profile-ads [user]="author$"></app-profile-ads>
     
     </div>
     

@@ -1,11 +1,11 @@
 <div class="ad">
+  <div *ngIf="ad.images.length > 0; else noImages">
   <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
     <div nz-carousel-content *ngFor="let image of ad.images">
-      <div *ngIf="ad.images.length>0; else noImage"> 
         <img  class="advertisement-image" src="{{image}}" >
-      </div>
     </div>
   </nz-carousel>
+</div>
   <div class="ad__description">
     <div class="ad__description-header">
       <a class="ad__description-title" routerLink="../advertisements/{{ad.id}}">{{ ad.name }}</a>
@@ -20,8 +20,10 @@
   </div>
 </div>
 
-<ng-template #noImage>
-  <span nz-icon nzType="camera" nzTheme="outline"></span>
+<ng-template #noImages>
+  <div class="ad__carousel">
+    <img  class="advertisement-image" src="{{ fallback }}" />
+  </div>
 </ng-template>
 
 <ng-template #favorite>

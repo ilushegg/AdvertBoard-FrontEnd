@@ -10,7 +10,7 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   public id$ = new BehaviorSubject<string | null>(this.id);
-  public user$ = this.id$.pipe(switchMap(id => this.getSelfById(id)));
+  public user$= this.id$.pipe(switchMap(id => this.getSelfById(id)));
 
   get token(): string | null {
     return localStorage.getItem('token');

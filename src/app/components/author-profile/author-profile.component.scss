@@ -34,6 +34,11 @@
     max-width: 700px;
     width: 100%;
     min-height: 450px;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
 
@@ -68,4 +73,10 @@ nz-upload {
     align-items: center;
     margin-bottom: 20px;
   }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }

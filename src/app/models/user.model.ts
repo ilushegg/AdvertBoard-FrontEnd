@@ -4,5 +4,6 @@ export interface User {
   email: string,
   mobile: string,
   avatar: string,
-  createDate: string
+  createDate: string,
+  userRole: string
 }

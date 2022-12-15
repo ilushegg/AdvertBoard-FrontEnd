@@ -45,13 +45,15 @@ nz-dropdown-menu {
   border-radius: 25px;
 }
 
-
+.search {
+  height: 40px !important;
+}
 
 .search__section{
   max-width: 1000px;
   width: 100%;
   margin:0 auto;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   
   display: flex;
   justify-content: space-between;
@@ -60,11 +62,12 @@ nz-dropdown-menu {
     border-radius: 0px;
     height: 40px;
     margin: 0px 20px;
-    max-width: 500px;
+    max-width: 400px;
   }
 
   &-button {
     height: 40px;
+    margin-left: 15px;
   }
 
   &-form {
@@ -75,10 +78,27 @@ nz-dropdown-menu {
   &__address{
     max-width: 200px!important;
     width: 100%;
-    border-radius: 15px !important;
-    height: 40px;
+    margin-right: 15px;
+  }
+
+  &__tree {
+    border: 1px solid #d9d9d9;
+      border-radius: 20px;
+      min-width: 200px;
+      height: 40px;
   }
 }
 
 
+nz-tree-select {
+  min-width: 200px;
+  height: 40px;
+}
+
+.ant-select {
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  border: none !important;
+}
 

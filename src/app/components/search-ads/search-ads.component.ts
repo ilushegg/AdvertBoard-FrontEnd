@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Advertisement } from 'src/app/models/ad.model';
 import { GetPagedResult } from 'src/app/models/get-paged-result.model';
@@ -13,50 +14,56 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class SearchAdsComponent implements OnInit {
 
+
+
   public ads: GetPagedResult<Advertisement>;
-  constructor(private adService: AdService, public loadingService: LoadingService, public authService: AuthService, private route: ActivatedRoute, private router: Router) {
-   
-    // router.events.subscribe( val => {
-    //   this.loadingService.isLoading$.next(true);
-    //   let query = '';
-    //   this.route.queryParams.subscribe(params => {
-    //     console.log(params)
-    //     query = params['query'];
-    //   });
-      
-    //   this.adService.getPagedBySearch(0, this.pageSize, query).subscribe(res => {
-    //     this.ads = res,
-    //     console.log(res);
-    //     this.loadingService.isLoading$.next(false);
-    //   });
-    // });
-            
+  public filtersForm = this.formBuilder.group({
+    fromPrice: [''],
+    toPrice: [''],
+  })
+
+  constructor(private adService: AdService, public loadingService: LoadingService, public authService: AuthService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+               
 
   }
 
   pageSize = 10;
   pageNumber = 1;
-
+  query = '';
+  city = '';
+  categoryId = '';
+  fromPrice = '';
+  toPrice = '';
 
   ngOnInit(): void {
     
-    let query = '';
-    let city = '';
-    let categoryId = '';
+    
     this.route.queryParams.subscribe(params => {
       console.log(params)
-      query = params['query'];
-      city = params['city'];
-      categoryId = params['categoryId'];
+      this.query = params['query'];
+      this.city = params['city'];
+      this.categoryId = params['categoryId'];
       this.loadingService.isLoading$.next(true);
-      this.adService.getPagedBySearch(0, this.pageSize, city, categoryId, query).subscribe(res => {
+      this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice).subscribe(res => {
         this.ads = res,
         console.log(res);
         this.loadingService.isLoading$.next(false);
       });
     });
 
-   
+    
+  }
+  
+  onPriceSubmit() {
+    this.loadingService.isLoading$.next(true);
+    this.fromPrice = this.filtersForm.controls.fromPrice.value!;
+    this.toPrice = this.filtersForm.controls.toPrice.value!;
+
+    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice).subscribe(res => {
+      this.ads = res,
+      console.log(res);
+      this.loadingService.isLoading$.next(false);
+    });
   }
 
 }

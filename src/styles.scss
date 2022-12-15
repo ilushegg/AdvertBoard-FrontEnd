@@ -57,8 +57,15 @@ li {
 .search {
   background-color: #fff!important;
   border: 1px solid #d9d9d9!important;
-  border-radius: 15px!important;
+  border-radius: 20px!important;
+  height: 40px;
+  padding-left: 10px !important;
+
+  &::placeholder {
+    color: #c2c2c2 !important;
+  }
 }
+
 
 .search:focus {
   outline: none!important;
@@ -104,6 +111,12 @@ li {
 .ant-dropdown-menu-vertical {
   border-radius: 15px!important;
 }
+
+.ant-select-dropdown,
+.ant-select-tree-dropdown {
+  border-radius: 15px !important;
+}
+
 
 ngx-dadata{
   width: 150px !important;
