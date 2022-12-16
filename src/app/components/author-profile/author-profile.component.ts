@@ -19,7 +19,15 @@ import { environment } from 'src/environments/environment';
 export class AuthorProfileComponent implements OnInit {
 
   public author$: User;
-  public user$: User;
+  public user$: User = {
+    userRole: '',
+    id: '',
+    name: '',
+    email: '',
+    mobile: '',
+    avatar: '',
+    createDate: ''
+  };
   public environmentUrl = environment.apiUrl;
   public component: string;
   isVisible = false;
@@ -27,13 +35,13 @@ export class AuthorProfileComponent implements OnInit {
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute, private adService: AdService) { }
 
   ngOnInit(): void {
-    this.authService.user$.subscribe(res => {
-      this.user$ = res;
-    });
     this.route.queryParams.subscribe(params => {
       const id = this.route.snapshot.params['id'];
       this.authService.getSelfById(id).subscribe(res => {
         this.author$ = res;
+        this.authService.user$.subscribe(res => {
+          this.user$ = res;
+        });
       })
     });
       

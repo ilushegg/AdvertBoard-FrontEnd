@@ -54,7 +54,7 @@ export class ProfileFavoritesComponent implements OnInit {
     this.favoriteService.deleteFromFavorite(adId, this.authService.id!).subscribe(res => {
       this.nzMessageService.success("Объявление удалено из избранного.");
       this.ads.items[index].deleted = true;
-      this.ads.total--;
+      this.adsTotal--;
     });
   }
 

@@ -1,0 +1,66 @@
+@import '/src/styles.scss';
+
+
+// .comments {
+//   border-radius: 15px;
+//   box-shadow: $box-shadow;
+//   min-height: 450px;
+
+// }
+
+.comments{
+  display: block;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  padding: 30px;
+  min-height: 450px;
+  text-align: center;
+  position: relative;
+  &__pagination {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    &__pre {
+      height: 25px;
+    }
+  }
+}
+
+
+.comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  &__avatar {
+    margin-right: 15px;
+  }
+
+  &__title {
+    display: flex;
+    text-align: left;
+    &__text {
+      color: #616161;
+      margin-right: 20px;
+      text-align: left;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
+
+
+
+.spinner {
+  margin-top: 200px;
+}

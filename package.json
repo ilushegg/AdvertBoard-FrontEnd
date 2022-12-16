@@ -21,6 +21,7 @@
     "@ant-design/icons-angular": "^14.1.0",
     "@kolkov/ngx-dadata": "^1.0.3",
     "angular8-yandex-maps": "^14.0.4",
+    "http-server": "^14.1.1",
     "ng-image-slider": "^6.1.0",
     "ng-zorro-antd": "^14.1.1",
     "rxjs": "~7.5.0",

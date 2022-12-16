@@ -54,6 +54,9 @@ import { AdEditingComponent } from './components/ad-editing/ad-editing.component
 import { ProfileFavoritesComponent } from './components/profile-favorites/profile-favorites.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { SearchAdsComponent } from './components/search-ads/search-ads.component';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { ProfileCommentsComponent } from './components/profile-comments/profile-comments.component';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 
 
@@ -78,6 +81,7 @@ registerLocaleData(ru);
     ProfileFavoritesComponent,
     AuthorProfileComponent,
     SearchAdsComponent,
+    ProfileCommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +116,9 @@ registerLocaleData(ru);
     AngularYandexMapsModule,
     NzTabsModule,
     NzToolTipModule,
-    NzModalModule
+    NzModalModule,
+    NzCommentModule,
+    NzRadioModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

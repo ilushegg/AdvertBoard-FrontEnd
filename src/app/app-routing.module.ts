@@ -12,6 +12,7 @@ import { AdsComponent } from './components/ads/ads.component';
 import { AdEditingComponent } from './components/ad-editing/ad-editing.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { SearchAdsComponent } from './components/search-ads/search-ads.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -29,11 +30,21 @@ const routes: Routes = [
   },
   {
     path: 'add-new-ad',
+    component: AdCreatingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'add-new-ad',
     component: AdCreatingComponent
   },
   {
     path: 'advertisements/:id',
     component: AdFullComponent
+  },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile/:id',

@@ -20,6 +20,7 @@ export class SearchAdsComponent implements OnInit {
   public filtersForm = this.formBuilder.group({
     fromPrice: [''],
     toPrice: [''],
+    ordering: ['']
   })
 
   constructor(private adService: AdService, public loadingService: LoadingService, public authService: AuthService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
@@ -34,6 +35,8 @@ export class SearchAdsComponent implements OnInit {
   categoryId = '';
   fromPrice = '';
   toPrice = '';
+  ordering = '';
+  radioValue = 'def'
 
   ngOnInit(): void {
     
@@ -44,12 +47,14 @@ export class SearchAdsComponent implements OnInit {
       this.city = params['city'];
       this.categoryId = params['categoryId'];
       this.loadingService.isLoading$.next(true);
-      this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice).subscribe(res => {
+      this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
         this.ads = res,
         console.log(res);
         this.loadingService.isLoading$.next(false);
       });
     });
+
+    
 
     
   }
@@ -58,8 +63,8 @@ export class SearchAdsComponent implements OnInit {
     this.loadingService.isLoading$.next(true);
     this.fromPrice = this.filtersForm.controls.fromPrice.value!;
     this.toPrice = this.filtersForm.controls.toPrice.value!;
-
-    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice).subscribe(res => {
+    this.ordering = this.filtersForm.controls.ordering.value!
+    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
       this.ads = res,
       console.log(res);
       this.loadingService.isLoading$.next(false);

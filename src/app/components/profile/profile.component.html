@@ -7,6 +7,7 @@
         nzAction="{{environmentUrl}}/v1/image/create"
         (nzChange)="handleChange($event)"
         [nzShowUploadList]="false"
+        [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
       >
         
         <button nz-button><span nz-icon nzType="upload"></span>Изменить фотографию</button>
@@ -15,13 +16,15 @@
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'data'}" >Данные</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'advertisements'}" >Мои объявления</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'favorites'}">Избранное</a>
+        <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'comments'}">Мои комментарии</a>
       </div>
 
     </div>
     <div class="profile__content" [ngSwitch]="component">
       <div *ngSwitchCase="'data'"><app-profile-data [user]="user$"></app-profile-data></div>
-      <div *ngSwitchCase="'advertisements'"><app-profile-ads [user]="user$"></app-profile-ads></div>
+      <div *ngSwitchCase="'advertisements'"><app-profile-ads [author]="user$"></app-profile-ads></div>
       <div *ngSwitchCase="'favorites'"><app-profile-favorites [user]="user$"></app-profile-favorites></div>
+      <div *ngSwitchCase="'comments'"><app-profile-comments [user]="user$"></app-profile-comments></div>
     
     </div>
     

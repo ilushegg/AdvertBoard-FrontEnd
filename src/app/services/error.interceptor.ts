@@ -18,7 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor{
           this.nzNotificationService.error('Ошибка', 'Вы не авторизованы');
           this.router.navigateByUrl('/auth');
         } else if (err.status === 400 || err.status === 500) {
-          this.nzNotificationService.error('Ошибка', err.error.message);
+          console.log(err);
+          this.nzNotificationService.error('Ошибка', err.error);
           this.loadingService.isLoading$.next(false);
         }
         return throwError(err);

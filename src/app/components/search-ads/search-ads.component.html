@@ -14,6 +14,14 @@
           <input nz-input formControlName="toPrice" type="text" >
 
         </div>
+        <div class="search-ads__filter__form__ordering">
+          <nz-radio-group  [(ngModel)]="radioValue" nzName="ordering" formControlName="ordering">
+            <label nz-radio nzValue="def">По умолчанию</label>
+            <label nz-radio nzValue="asc">По возрастанию цены</label>
+            <label nz-radio nzValue="desc">По убыванию цены</label>
+          </nz-radio-group>
+
+        </div>
 
         <button nz-button nzType="primary" type="submit">Применить</button>
       </form>

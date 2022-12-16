@@ -7,17 +7,21 @@
       </ul>
       <ul class="navbar__section">
         <div class="" *ngIf="user$ as user; else notAuthed">
-          
+          <div *ngIf="user.userRole == 'Admin'">
+            <div class="admin">Администратор</div>
+          </div>
           <a nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomCenter'">
             <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}" nzFallback=""></nz-avatar>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu" >
             <ul nz-menu nzSelectable>
               <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'data'}">{{ user.name }}</li>
+              <li *ngIf="user.userRole == 'Admin'" nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'admin'}">Панель администратора</li>
               <li nz-menu-divider></li>
               <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
               <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'advertisements'}">Мои объявления</li>
               <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'favorites'}">Избранное</li>
+              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'comments'}">Мои комментарии</li>
             </ul>
           </nz-dropdown-menu>
           <button
@@ -36,18 +40,6 @@
 
   <div class="container">
     <form class="search__section" [formGroup]="searchForm" (ngSubmit)="Search()" *ngIf="isHeaderSearch()">
-        <!-- <button class="search__section-button" nz-button nzType="primary" (click)="open()" type="button">Категория</button> -->
-    <!-- <nz-drawer
-      [nzClosable]="false"
-      [nzVisible]="visible"
-      [nzPlacement]="'left'"
-      nzTitle="Категория"
-      (nzOnClose)="close()"
-    >
-      <ng-container *nzDrawerContent>
-        <nz-tree style="font-size: 16px;" [nzData]="categories$ | async" (ngModelChange)="onCategorySelected($event)"></nz-tree>
-      </ng-container>
-    </nz-drawer> -->
     <div class="search__section__tree">
       <nz-tree-select
         [nzNodes]="(categories$ | async) || []"

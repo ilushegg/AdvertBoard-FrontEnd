@@ -44,7 +44,7 @@ export class ProfileDataComponent implements OnInit {
     user.id = this.user.id;
     this.userService.edit(user).subscribe(res => {
       this.loadingService.isLoading$.next(false);
-
+      this.nzMessageService.success("Успешно! Данные обновлены")
     });
   }
 

@@ -22,11 +22,14 @@
       padding: 15px;
       border-radius: 15px;
       box-shadow: $box-shadow;
-      height: 200px;
+      height: 350px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       
+      &__ordering {
+        
+      }
     }
   }
 }

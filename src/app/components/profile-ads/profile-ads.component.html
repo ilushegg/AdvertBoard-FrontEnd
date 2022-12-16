@@ -1,20 +1,23 @@
 <div class="ads">
   <div *ngIf="!(loadingService.isLoading$ | async); else loading">
     <div *ngIf="ads.total > 0; else noAds">
-      <div *ngFor="let ad of ads.items">
-        <div class="ad" >
+      <div *ngFor="let ad of ads.items; let i = index">
+        <div *ngIf="!ad.deleted">
+        <div class="ad">
           <div *ngIf="ad.images.length > 0; else noImages">
-          <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
-            <div nz-carousel-content *ngFor="let image of ad.images">
-              
+            <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
+              <div nz-carousel-content *ngFor="let image of ad.images">
                 <img class="advertisement-image" src="{{ image }}" />
-
               </div>
             </nz-carousel>
           </div>
           <div class="ad__secWrapper">
             <div class="ad__description">
-              <a class="ad__description-title" routerLink="/advertisements/{{ ad.id }}">{{ ad.name }}</a>
+              <a
+                class="ad__description-title"
+                routerLink="/advertisements/{{ ad.id }}"
+                >{{ ad.name }}</a
+              >
               <p class="ad__description-price">
                 {{
                   ad.price
@@ -24,32 +27,86 @@
               <p class="ad__description-city">{{ ad.locationQuery }}</p>
               <p class="ad__description-date">{{ ad.dateTimeCreated }}</p>
             </div>
-            <div class="ad__nav">
-              <button class="ad__nav__btn" nz-button nzType="text" nz-tooltip nzTooltipTitle="Перейти к объявлению" routerLink="/advertisements/{{ ad.id }}"><span class="ad__nav__img" nz-icon nzType="info-circle" nzTheme="outline"></span></button>
-              <button class="ad__nav__btn" nz-button nzType="text" nz-tooltip nzTooltipTitle="Редактировать объявление" routerLink="/advertisements/editing/{{ ad.id }}" ><span class="ad__nav__img" nz-icon nzType="edit" nzTheme="outline"></span></button>
-              <button class="ad__nav__btn" nz-button nzType="text" nz-tooltip nzTooltipTitle="Удалить объявление" (click)="showModal()"><span class="ad__nav__img" nz-icon nzType="delete" nzTheme="outline"></span></button>
-              <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Вы действительно хотите удалить объявление?" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk(ad.id)" nzOkText="Да" nzCancelText="Нет">
+            <div *ngIf="user.id == author.id" class="ad__nav">
+              <button
+                class="ad__nav__btn"
+                nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Перейти к объявлению"
+                routerLink="/advertisements/{{ ad.id }}"
+              >
+                <span
+                  class="ad__nav__img"
+                  nz-icon
+                  nzType="info-circle"
+                  nzTheme="outline"
+                ></span>
+              </button>
+              <button
+                class="ad__nav__btn"
+                nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Редактировать объявление"
+                routerLink="/advertisements/editing/{{ ad.id }}"
+              >
+                <span
+                  class="ad__nav__img"
+                  nz-icon
+                  nzType="edit"
+                  nzTheme="outline"
+                ></span>
+              </button>
+              <button
+                class="ad__nav__btn"
+                nz-button
+                nzType="text"
+                nz-tooltip
+                nzTooltipTitle="Удалить объявление"
+                (click)="showModal(ad.id, i)"
+              >
+                <span
+                  class="ad__nav__img"
+                  nz-icon
+                  nzType="delete"
+                  nzTheme="outline"
+                ></span>
+              </button>
+              <nz-modal
+                nzCentered
+                [(nzVisible)]="isVisible"
+                nzTitle="Вы действительно хотите удалить объявление?"
+                (nzOnCancel)="handleCancel()"
+                (nzOnOk)="handleOk()"
+                nzOkText="Да"
+                nzCancelText="Нет"
+              >
                 <ng-container *nzModalContent>
                   <p>Данное действие нельзя будет отменить.</p>
                 </ng-container>
               </nz-modal>
-              
             </div>
-
           </div>
         </div>
         <div class="divider"></div>
       </div>
+      </div>
+      <div class="ads__pagination__pre"></div>
+      <nz-pagination
+        class="ads__pagination"
+        [nzPageIndex]="pageNumber"
+        [nzPageSize]="pageSize"
+        [nzTotal]="adsTotal"
+        (nzPageIndexChange)="onChangePagination($event)"
+      ></nz-pagination>
     </div>
-    <div class="ads__pagination__pre"></div>
-    <nz-pagination class="ads__pagination" [nzPageIndex]="pageNumber" [nzPageSize]="pageSize" [nzTotal]="adsTotal" (nzPageIndexChange)="onChangePagination($event)"></nz-pagination>
   </div>
 </div>
 
 <ng-template #loading>
-  <div style="margin-top: 200px;">
+  <div style="margin-top: 200px">
     <app-spinner class="spinner"></app-spinner>
-
   </div>
 </ng-template>
 
@@ -57,14 +114,14 @@
   <div class="empty__wrapper">
     <span class="empty__img" nz-icon nzType="meh" nzTheme="outline"></span>
     <div class="empty__text">Здесь пока пусто</div>
-    <a nz-button nzType="primary" routerLink="../../add-new-ad">Разместить объявление </a>
+    <a nz-button nzType="primary" routerLink="../../add-new-ad"
+      >Разместить объявление
+    </a>
   </div>
 </ng-template>
 
-
 <ng-template #noImages>
   <div class="ad__carousel">
-    <img  class="advertisement-image" src="{{ fallback }}" />
-
+    <img class="advertisement-image" src="{{ fallback }}" />
   </div>
 </ng-template>

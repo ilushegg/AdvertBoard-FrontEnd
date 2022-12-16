@@ -1,0 +1,154 @@
+<div class="comments">
+  <div *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <div *ngIf="comments.total > 0; else noComments">
+      <div *ngFor="let comment of comments.items; let i = index">
+        <div *ngIf="!comment.deleted">
+        <div class="comment">
+          <div class="comment__avatar">
+            <nz-avatar
+              nzIcon="user"
+              [nzSize]="64"
+              [nzSrc]="comment.userAvatar"
+            ></nz-avatar>
+          </div>
+          <div class="comment__content">
+            <div class="comment__title">
+              <div class="comment__title__text">
+                {{ comment.userName }}
+              </div>
+              <div class="comment__title__text">
+                {{ comment.dateTimeCreated }}
+              </div>
+            </div>
+            <div class="comment__text">
+              {{ comment.text }}
+            </div>
+          </div>
+          <div class="comment__nav">
+            <button
+              class="ad__nav__btn"
+              nz-button
+              nzType="text"
+              nz-tooltip
+              nzTooltipTitle="Перейти к объявлению"
+              routerLink="/advertisements/{{ comment.advertisementId }}"
+            >
+              <span
+                class="ad__nav__img"
+                nz-icon
+                nzType="info-circle"
+                nzTheme="outline"
+              ></span>
+            </button>
+            <button
+              class="ad__nav__btn"
+              nz-button
+              nzType="text"
+              nz-tooltip
+              nzTooltipTitle="Редактировать комментарий"
+              (click)="showModalEdit(comment)"
+            >
+              <span
+                class="ad__nav__img"
+                nz-icon
+                nzType="edit"
+                nzTheme="outline"
+              ></span>
+            </button>
+            <button
+              class="ad__nav__btn"
+              nz-button
+              nzType="text"
+              nz-tooltip
+              nzTooltipTitle="Удалить комментарий"
+              (click)="showModalDelete(comment.id, i)"
+            >
+              <span
+                class="ad__nav__img"
+                nz-icon
+                nzType="delete"
+                nzTheme="outline"
+              ></span>
+            </button>
+            <nz-modal
+              nzCentered
+              [(nzVisible)]="isVisibleDelete"
+              nzTitle="Вы действительно хотите удалить комментарий?"
+              (nzOnCancel)="handleCancelDelete()"
+              (nzOnOk)="handleOkDelete()"
+              nzOkText="Да"
+              nzCancelText="Нет"
+            >
+              <ng-container *nzModalContent>
+                <p>Данное действие нельзя будет отменить.</p>
+              </ng-container>
+            </nz-modal>
+            <nz-modal
+              nzCentered
+              [(nzVisible)]="isVisibleEdit"
+              nzTitle="Редактирование"
+              (nzOnCancel)="handleCancelEdit()"
+              (nzOnOk)="handleOkEdit(comment.id)"
+              nzOkText="Да"
+              nzCancelText="Нет"
+            >
+              <ng-container *nzModalContent>
+                <form nz-form [formGroup]="commentForm">
+                  <nz-form-item>
+                    <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                      <textarea
+                        nz-input
+                        [nzAutosize]="{ minRows: 10, maxRows: 10 }"
+                        formControlName="text"
+                        style="resize: none"
+                      ></textarea>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <p class="author-comment-p">
+                      Ваш комментарий будет опубликован после прохождения
+                      модерации.
+                    </p>
+                  </nz-form-item>
+                </form>
+              </ng-container>
+            </nz-modal>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+      </div>
+    </div>
+    <div class="comments__pagination__pre"></div>
+    <nz-pagination
+      class="comments__pagination"
+      [nzPageIndex]="pageNumber"
+      [nzPageSize]="pageSize"
+      [nzTotal]="commentsTotal"
+      (nzPageIndexChange)="onChangePagination($event)"
+    ></nz-pagination>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="spinner">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noComments>
+  <div class="empty__wrapper">
+    <span class="empty__img" nz-icon nzType="meh" nzTheme="outline"></span>
+    <div class="empty__text">Здесь пока пусто</div>
+    <div class="empty__text">Вы можете добавлять комментарии на объявления</div>
+    <a nz-button nzType="primary" routerLink="../../advertisements"
+      >Искать объявления</a
+    >
+  </div>
+</ng-template>
+
+<ng-template #errorTip let-control>
+  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+    Поле заполнено неверно
+  </div>
+</ng-template>

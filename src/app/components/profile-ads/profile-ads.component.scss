@@ -97,30 +97,8 @@
   border-radius: 15px;
 }
 
-.empty{
-  &__wrapper {
-    display: flex;
-    height: 400px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 
-  &__img {
-    font-size: 24px;
-    margin: 10px;
-  }
 
-  &__text {
-    margin: 10px;
-  }
-}
-
-.divider {
-  border-top: 1px solid #d4d4d4;
-  margin-top: -15px;
-  margin-bottom: 15px;
-}
 
 .spinner {
   margin-top: 250px;

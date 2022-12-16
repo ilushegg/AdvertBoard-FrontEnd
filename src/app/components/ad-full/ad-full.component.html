@@ -39,6 +39,27 @@
       <a class="author-name" routerLink="../../author/{{ ad.authorId }}">{{ ad.authorName }}</a>
       <button class="author-number"  nz-button nzType="default" type="button">{{ ad.authorNumber ? ad.authorNumber : 'Пользователь не добавил номер' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
+      <button *ngIf="user && user.id != ad.authorId" class="author-comment" nz-button nzType="primary" type="button" (click)="showModal()">Оставить комментарий</button>
+      <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Комментарий" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk(ad.id)" nzOkText="Оставить" nzCancelText="Отмена">
+        <ng-container *nzModalContent>
+          <form nz-form [formGroup]="commentForm" >
+            <nz-form-item>
+              <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                <textarea
+                nz-input
+                [nzAutosize]="{ minRows: 10, maxRows: 10 }"
+                formControlName="text"
+                style="resize: none"
+              ></textarea>
+              </nz-form-control>
+            </nz-form-item >
+            <nz-form-item>
+              <p class="author-comment-p">Ваш комментарий будет опубликован после прохождения модерации.</p>
+            </nz-form-item>
+          </form>
+          
+        </ng-container>
+      </nz-modal>
       <span>На площадке с {{ ad.authorRegisterDate }}</span>
     </div>
     
@@ -59,6 +80,43 @@
 
     </div>
   </div>
+
+  <div class="advertisement__comment">
+    <div class="advertisement__comment-description">
+      <h2 class="title" >Комментарии</h2>
+      <div *ngIf="comments.items.length > 0; else noComments">
+        <div *ngFor="let comment of comments.items">
+          <div class="comment">
+            <div class="comment__avatar">
+              <nz-avatar nzIcon="user" [nzSize]="64" [nzSrc]="comment.userAvatar"></nz-avatar>
+            </div>
+            <div class="comment__content">
+              <div class="comment__title">
+                <div class="comment__title__text">
+                  {{ comment.userName }}
+                </div>
+                <div class="comment__title__text">
+                  {{ comment.dateTimeCreated }}
+                </div>
+              </div>
+              <div class="comment__text">
+                {{ comment.text }}
+              </div>
+            </div>
+          </div>
+          <div class="divider"></div>
+        </div>
+      </div>
+      <div class="comments__pagination__pre"></div>
+    <nz-pagination
+      class="comments__pagination"
+      [nzPageIndex]="pageNumber"
+      [nzPageSize]="pageSize"
+      [nzTotal]="commentsTotal"
+      (nzPageIndexChange)="onChangePagination($event)"
+    ></nz-pagination>
+      </div>
+  </div>
 </div>
 </div>
 
@@ -70,4 +128,18 @@
 
 <ng-template #favorite>
   <a (click)="deleteFromFavorite(ad.id)"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="fill"></span></a>
+</ng-template>
+
+<ng-template #errorTip let-control>
+  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+    Поле заполнено неверно
+  </div>
+</ng-template>
+
+<ng-template #noComments>
+  <div class="empty__wrapper">
+    <span class="empty__img" nz-icon nzType="meh" nzTheme="outline"></span>
+    <div class="empty__text">Здесь пока пусто</div>
+    <a *ngIf="user.id != ad.authorId" nz-button nzType="primary" (click)="showModal()">Оставить комментарий</a>
+  </div>
 </ng-template>

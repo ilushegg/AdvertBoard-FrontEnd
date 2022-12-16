@@ -6,6 +6,7 @@ import { Advertisement } from 'src/app/models/ad.model';
 import { GetPagedResult } from 'src/app/models/get-paged-result.model';
 import { User } from 'src/app/models/user.model';
 import { AdService } from 'src/app/services/ad.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -15,50 +16,68 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ProfileAdsComponent implements OnInit {
 
-  @Input()public user: User;
+  @Input()public author: User;
+  public user: User = {
+    id: '',
+    name: '',
+    email: '',
+    mobile: '',
+    avatar: '',
+    createDate: '',
+    userRole: ''
+  };
   public ads: GetPagedResult<Advertisement>;
   public pageSize = 5;
   public pageNumber = 1;
   public adsTotal = this.pageSize;
+
+  deleteIndex = 0;
+  deleteId = '';
+
   isVisible = false;
 
-  constructor(private adService: AdService, public loadingService: LoadingService, private nzNotificationService: NzNotificationService, private nzModal: NzModalService) { }
+  constructor(private adService: AdService, public loadingService: LoadingService, private nzNotificationService: NzNotificationService, private nzModal: NzModalService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadingService.isLoading$.next(true);
-    this.adService.getAuthorAdsPagedFiltered(0, this.pageSize, this.user.id).subscribe(res => {
+    this.adService.getAuthorAdsPagedFiltered(0, this.pageSize, this.author.id).subscribe(res => {
       this.ads = res;
       this.loadingService.isLoading$.next(false);
       this.adsTotal = this.ads.total;
 
     })
+    this.authService.user$.subscribe(res => {
+      this.user = res;
+    })
   }
 
-  delete(id: string) {
+  delete(id: string, index: number) {
     this.adService.deleteAd(id).subscribe( res => {
-      this.nzNotificationService.success("Ок", "Объявление успешно удалено");
+      this.nzNotificationService.success("Успешно", "Объявление удалено");
     }
     );
-    
+    this.ads.items[index].deleted = true;
+    this.ads.total--;
     
   }
   onChangePagination(index: number) {
     this.pageNumber = index;
 
     this.loadingService.isLoading$.next(true);
-    this.adService.getAuthorAdsPagedFiltered((index-1)*this.pageSize, this.pageSize, this.user.id).subscribe(res => {
+    this.adService.getAuthorAdsPagedFiltered((index-1)*this.pageSize, this.pageSize, this.author.id).subscribe(res => {
       this.ads = res;
-      console.log(res);
       this.loadingService.isLoading$.next(false);
     })
   }
   
-  showModal(): void {
+  showModal(id: string, index: number): void {
+    this.deleteId = id,
+    this.deleteIndex = index;
     this.isVisible = true;
   }
 
-  handleOk(id: string): void {
-    this.delete(id);
+  handleOk(): void {
+    this.delete(this.deleteId, this.deleteIndex);
     this.isVisible = false;
   }
 
