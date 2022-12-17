@@ -66,7 +66,19 @@ export class SearchAdsComponent implements OnInit {
     this.ordering = this.filtersForm.controls.ordering.value!
     this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
       this.ads = res,
-      console.log(res);
+      this.loadingService.isLoading$.next(false);
+    });
+  }
+
+  cleanFilters() {
+    this.loadingService.isLoading$.next(true);
+    this.filtersForm.patchValue({
+      fromPrice: '',
+      toPrice: '',
+      ordering: 'def'
+    })
+    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, '', '', this.authService.id!, '').subscribe(res => {
+      this.ads = res,
       this.loadingService.isLoading$.next(false);
     });
   }

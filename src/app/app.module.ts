@@ -57,6 +57,7 @@ import { SearchAdsComponent } from './components/search-ads/search-ads.component
 import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { ProfileCommentsComponent } from './components/profile-comments/profile-comments.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { UserActivateComponent } from './components/user-activate/user-activate.component';
 
 
 
@@ -82,6 +83,7 @@ registerLocaleData(ru);
     AuthorProfileComponent,
     SearchAdsComponent,
     ProfileCommentsComponent,
+    UserActivateComponent,
   ],
   imports: [
     BrowserModule,

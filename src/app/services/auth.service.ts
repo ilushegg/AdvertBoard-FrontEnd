@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, switchMap, tap, windowTime } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginUser } from '../models/login-user.model';
+import { RegistrationUser } from '../models/registration-user.model';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -45,8 +46,17 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  register(model: LoginUser): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/v1/user/register`, model)
+  register(model: RegistrationUser): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}/v1/user/register`, model)
+  }
+
+  sendActivationCode(userId: string): Observable<any> {
+    console.log(userId);
+    return this.httpClient.post(`${environment.apiUrl}/v1/user/send_activation_code?userId=${userId}`, userId);
+  }
+
+  activate(userId: string, activationCode: string): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/v1/user/activate`, {userId, activationCode})
   }
 
   login(model: LoginUser): Observable<any> {
@@ -55,6 +65,8 @@ export class AuthService {
       this.id = res.id
     }));
   }
+
+
 
   getSelfById(id: string | null): Observable<User> {
     if (!id) {

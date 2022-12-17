@@ -13,6 +13,7 @@ import { AdEditingComponent } from './components/ad-editing/ad-editing.component
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { SearchAdsComponent } from './components/search-ads/search-ads.component';
 import { AuthGuard } from './auth.guard';
+import { UserActivateComponent } from './components/user-activate/user-activate.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent
+  },
+  {
+    path: 'auth/activate/:id/:activationCode',
+    component: UserActivateComponent
   },
   {
     path: 'advertisements',

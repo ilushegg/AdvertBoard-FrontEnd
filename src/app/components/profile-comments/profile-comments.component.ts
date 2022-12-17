@@ -7,6 +7,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Comment } from 'src/app/models/comment.model';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-profile-comments',
@@ -33,7 +34,7 @@ export class ProfileCommentsComponent implements OnInit {
     }
   )
 
-  constructor(private commentService: CommentService, public loadingService: LoadingService, private nzNotificationService: NzNotificationService, private nzModal: NzModalService, private formBuilder: FormBuilder) { }
+  constructor(private commentService: CommentService, public loadingService: LoadingService, private nzMessageService: NzMessageService, private nzModal: NzModalService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.loadingService.isLoading$.next(true);
@@ -69,7 +70,7 @@ export class ProfileCommentsComponent implements OnInit {
     this.commentService.deleteComment(this.deleteId).subscribe();
     this.isVisibleDelete = false;
     this.comments.items[this.deleteIndex].deleted = true;
-    this.commentsTotal--;
+    this.comments.total--;
   }
 
   handleCancelDelete(): void {
@@ -84,7 +85,10 @@ export class ProfileCommentsComponent implements OnInit {
   }
 
   handleOkEdit(id: string): void {
-    this.commentService.editComment(id, this.commentForm.controls.text.value!).subscribe();
+    this.commentService.editComment(id, this.commentForm.controls.text.value!).subscribe(res => {
+      this.nzMessageService.success("Ваш комментарий успешно обновлен!")
+      
+    });
     this.isVisibleEdit = false;
   }
 

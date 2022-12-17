@@ -99,6 +99,8 @@ export class AuthComponent implements OnInit {
       mobile: ""
     };
     this.authService.register(user).subscribe(res => {
+      console.log(res);
+      this.authService.sendActivationCode(res).subscribe();
       this.nzNotificationService.success("Успешно", "Пользователь зарегистрирован");
       this.isLogin.next(true);
       this.loadingService.isLoading$.next(false);
