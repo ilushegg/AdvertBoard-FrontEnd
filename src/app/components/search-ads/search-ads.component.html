@@ -1,37 +1,60 @@
 <div class="container">
   <div *ngIf="!(loadingService.isLoading$ | async); else loading">
-    <div class="title"> По вашему запросу найдено объявлений: {{ads.total}} </div>
-  <div class="search-ads">
-    <div class="search-ads__filters">
-      <form [formGroup]="filtersForm" class="search-ads__filters__form" (ngSubmit)="onPriceSubmit()">
-        <div>
-          <label class="search-ads__filters__form__title">Цена от</label>
-          <input nz-input formControlName="fromPrice" type="text" >
-          
-        </div>
-        <div>
-          <label class="search-ads__filters__form__title">Цена до</label>
-          <input nz-input formControlName="toPrice" type="text" >
-
-        </div>
-        <div class="search-ads__filter__form__ordering">
-          <nz-radio-group  [(ngModel)]="radioValue" nzName="ordering" formControlName="ordering">
-            <label nz-radio nzValue="def">По умолчанию</label>
-            <label nz-radio nzValue="asc">По возрастанию цены</label>
-            <label nz-radio nzValue="desc">По убыванию цены</label>
-          </nz-radio-group>
-
-        </div>
-
-        <button nz-button nzType="primary" type="submit">Применить</button>
-        <button nz-button nzType="default" type="button" (click)="cleanFilters()">Очистить фильтры</button>
-      </form>
+    <div class="title">
+      По вашему запросу найдено объявлений: {{ ads.total }}
     </div>
-    
-      <div class="ads">
-          <div class="" *ngFor="let ad of ads.items">
-            <app-ad class="ad" [ad]=ad></app-ad>
+    <div class="search-ads">
+      <div class="search-ads__filters">
+        <form
+          [formGroup]="filtersForm"
+          class="search-ads__filters__form"
+          (ngSubmit)="onPriceSubmit()"
+        >
+          <div>
+            <label class="search-ads__filters__form__title">Цена от</label>
+            <input nz-input formControlName="fromPrice" type="text" />
           </div>
+          <div>
+            <label class="search-ads__filters__form__title">Цена до</label>
+            <input nz-input formControlName="toPrice" type="text" />
+          </div>
+          <div class="search-ads__filter__form__ordering">
+            <nz-radio-group
+              [(ngModel)]="radioValue"
+              nzName="ordering"
+              formControlName="ordering"
+            >
+              <label nz-radio nzValue="def">По умолчанию</label>
+              <label nz-radio nzValue="asc">По возрастанию цены</label>
+              <label nz-radio nzValue="desc">По убыванию цены</label>
+            </nz-radio-group>
+          </div>
+
+          <button nz-button nzType="primary" type="submit">Применить</button>
+          <button
+            nz-button
+            nzType="default"
+            type="button"
+            (click)="cleanFilters()"
+          >
+            Очистить фильтры
+          </button>
+        </form>
+      </div>
+      <div class="ads__content">
+        <div class="ads">
+          <div class="" *ngFor="let ad of ads.items">
+            <app-ad class="ad" [ad]="ad"></app-ad>
+          </div>
+        </div>
+        
+        <nz-pagination
+          class="ads__pagination"
+          [nzPageIndex]="pageNumber"
+          [nzPageSize]="pageSize"
+          [nzTotal]="adsTotal"
+          (nzPageIndexChange)="onChangePagination($event)"
+        ></nz-pagination>
       </div>
     </div>
   </div>
@@ -42,5 +65,3 @@
     <app-spinner class="spinner"></app-spinner>
   </div>
 </ng-template>
-
-

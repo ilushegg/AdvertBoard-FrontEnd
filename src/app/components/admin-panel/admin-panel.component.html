@@ -1,0 +1,100 @@
+<div class="admin">
+  <div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <div class="admin__title">Добавить категорию</div>
+    <form
+    class="admin__form"
+      nz-form
+      [formGroup]="addCategoryForm"
+      (ngSubmit)="addCategorySubmit()"
+    >
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <div class="admin__form__tree">
+            <nz-tree-select
+              [nzNodes]="(categories$ | async) || []"
+              formControlName="parentCategory"
+              nzPlaceHolder="Выберите родителя будущей категории"
+              style="text-align: left"
+            ></nz-tree-select>
+          </div>
+          <span style="color: #919191; font-size: 13px"
+            >Оставьте поле пустым, если хотите добавить категорию без
+            родителя.</span
+          >
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <input
+            nz-input
+            formControlName="childCategory"
+            placeholder="Впишите название новой категории"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <button class="admin__form__btn" nz-button nzType="primary" type="submit">Добавить</button>
+    </form>
+    <div class="admin__title">Редактировать категорию</div>
+    <form
+      nz-form
+      [formGroup]="editCategoryForm"
+      (ngSubmit)="editCategorySubmit()"
+    >
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <div class="admin__form__tree">
+            <nz-tree-select
+              [nzNodes]="(categories$ | async) || []"
+              formControlName="category"
+              nzPlaceHolder="Выберите категорию"
+              style="text-align: left"
+            ></nz-tree-select>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <input
+            nz-input
+            formControlName="name"
+            placeholder="Впишите новое название категории"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <button class="admin__form__btn"  nz-button nzType="primary" type="submit">Сохранить</button>
+    </form>
+
+    <div class="admin__title">Удалить категорию</div>
+    <form
+      nz-form
+      [formGroup]="deleteCategoryForm"
+      (ngSubmit)="deleteCategorySubmit()"
+    >
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <div class="admin__form__tree">
+            <nz-tree-select
+              [nzNodes]="(categories$ | async) || []"
+              formControlName="category"
+              nzPlaceHolder="Выберите категорию"
+              style="text-align: left"
+            ></nz-tree-select>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+      <button class="admin__form__btn"  nz-button nzType="primary" type="submit">Удалить</button>
+    </form>
+  </div>
+</div>
+
+<ng-template #errorTip let-control>
+  <div style="color: red" *ngIf="control?.invalid || control?.dirty">
+    Поле заполнено неверно
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="spinner">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>

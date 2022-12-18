@@ -13,7 +13,10 @@
     
     
     <div class="advertisement__top-price">
-      {{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
+      <div *ngIf="ad.price == 0 else price">Бесплатно</div>
+      <ng-template #price>
+        {{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
+      </ng-template>
       
     </div>
 

@@ -24,7 +24,8 @@ export class ProfileAdsComponent implements OnInit {
     mobile: '',
     avatar: '',
     createDate: '',
-    userRole: ''
+    userRole: '',
+    activationCode: ''
   };
   public ads: GetPagedResult<Advertisement>;
   public pageSize = 5;

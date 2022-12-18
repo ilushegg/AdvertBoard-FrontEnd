@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   public adsTotal = this.pageSize;
   public url = environment.apiUrl;
   visible = false;
+  selected = false;
   city: string | null = '';
 
   constructor(public authService: AuthService, private categoryService: CategoryService, public router: Router, public formBuilder: FormBuilder, private adService: AdService) {
@@ -50,8 +51,8 @@ export class HeaderComponent implements OnInit {
     console.log('click');
     let query = this.searchForm.controls.query.value;
     let categoryId = this.searchForm.controls.categoryId.value ? this.searchForm.controls.categoryId.value : "";
-    // let city = this.searchForm.controls.address.value ? this.searchForm.controls.address.value : "";
-    this.router.navigateByUrl(`search?city=${this.city}&categoryId=${categoryId}&query=${query}`);
+    let location = this.selected ? this.city : this.searchForm.controls.address.value;
+    this.router.navigateByUrl(`search?location=${location}&categoryId=${categoryId}&query=${query}`);
   }
 
   open(): void {
@@ -63,7 +64,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isHeaderNav(): boolean {
-    if ((this.router.url != '/auth')) {
+    if ((this.router.url != '/auth') && (this.router.url.indexOf('/auth/recovering/') == -1) && (this.router.url.indexOf('/auth/activate/') == -1)) {
 
               return true;
       }
@@ -72,7 +73,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isHeaderSearch(): boolean {
-    if ((this.router.url != '/auth') && (this.router.url.indexOf('/profile/') == -1) && (this.router.url != '/add-new-ad') && (this.router.url != '/advertisements/editing/')) {
+    if ((this.router.url != '/auth') && (this.router.url.indexOf('/profile/') == -1) && (this.router.url != '/add-new-ad') && (this.router.url != '/advertisements/editing/') && (this.router.url != '/auth/') && (this.router.url.indexOf('/auth/recovering/') == -1) && (this.router.url.indexOf('/auth/activate/') == -1)) {
 
               return true;
       }
@@ -80,9 +81,10 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
-  b1: Bound = {value: "city"}
+  b1: Bound = {value: "region"}
+  b2: Bound = {value: "city"}
 
-  b: Bounds = {fromBound: this.b1, toBound: this.b1};
+  b: Bounds = {fromBound: this.b1, toBound: this.b2};
 
   public config: DadataConfig = {
     apiKey: environment.daDataApiKey  ,
@@ -95,6 +97,7 @@ export class HeaderComponent implements OnInit {
 
   onAddressSelected(event: DadataSuggestion) {
     const addressData = event.data as DadataAddress;
+    this.selected = true;
     this.city = addressData.city;
   }
 

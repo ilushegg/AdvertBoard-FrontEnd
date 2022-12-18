@@ -26,8 +26,8 @@ export class AdService {
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
-  getPagedBySearch(offset: number, limit: number, city: string, categoryId: string, query: string, fromPrice: string, toPrice: string, userId: string, ordering: string): Observable<GetPagedResult<Advertisement>> {
-    let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${city ? "&City=" + city : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}${fromPrice ? "&FromPrice=" + fromPrice : ""}${toPrice ? "&ToPrice=" + toPrice : ""}${userId ? "&UserId=" + userId : ""}${ordering ? "&Sort=" + ordering : ""}`;
+  getPagedBySearch(offset: number, limit: number, location: string, categoryId: string, query: string, fromPrice: string, toPrice: string, userId: string, ordering: string): Observable<GetPagedResult<Advertisement>> {
+    let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${location ? "&Location=" + location : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}${fromPrice ? "&FromPrice=" + fromPrice : ""}${toPrice ? "&ToPrice=" + toPrice : ""}${userId ? "&UserId=" + userId : ""}${ordering ? "&Sort=" + ordering : ""}`;
     console.log(url)
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }

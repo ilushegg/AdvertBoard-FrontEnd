@@ -1,0 +1,31 @@
+@import '/src/styles.scss';
+
+.admin {
+  display: block;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  padding: 30px;
+  padding-left: 70px;
+  min-height: 450px;
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  &__form {
+    &__tree {
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+    }
+
+    &__btn {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+
+.spinner {
+  margin-top: 200px;
+}

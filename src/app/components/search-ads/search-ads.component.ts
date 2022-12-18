@@ -23,20 +23,24 @@ export class SearchAdsComponent implements OnInit {
     ordering: ['']
   })
 
-  constructor(private adService: AdService, public loadingService: LoadingService, public authService: AuthService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
-               
-
-  }
-
   pageSize = 10;
   pageNumber = 1;
+  public adsTotal = this.pageSize;
   query = '';
-  city = '';
+  location = '';
   categoryId = '';
   fromPrice = '';
   toPrice = '';
   ordering = '';
   radioValue = 'def'
+
+
+  constructor(private adService: AdService, public loadingService: LoadingService, public authService: AuthService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+               
+
+  }
+
+
 
   ngOnInit(): void {
     
@@ -44,10 +48,10 @@ export class SearchAdsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log(params)
       this.query = params['query'];
-      this.city = params['city'];
+      this.location = params['location'];
       this.categoryId = params['categoryId'];
       this.loadingService.isLoading$.next(true);
-      this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
+      this.adService.getPagedBySearch(0, this.pageSize, this.location, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
         this.ads = res,
         console.log(res);
         this.loadingService.isLoading$.next(false);
@@ -59,12 +63,24 @@ export class SearchAdsComponent implements OnInit {
     
   }
   
+  onChangePagination(index: number) {
+    this.pageNumber = index;
+
+    this.loadingService.isLoading$.next(true);
+    this.adService.getPagedBySearch(0, this.pageSize, this.location, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
+      this.ads = res,
+      console.log(res);
+      this.loadingService.isLoading$.next(false);
+    });
+  }
+  
+
   onPriceSubmit() {
     this.loadingService.isLoading$.next(true);
     this.fromPrice = this.filtersForm.controls.fromPrice.value!;
     this.toPrice = this.filtersForm.controls.toPrice.value!;
     this.ordering = this.filtersForm.controls.ordering.value!
-    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
+    this.adService.getPagedBySearch(0, this.pageSize, this.location, this.categoryId, this.query, this.fromPrice, this.toPrice, this.authService.id!, this.ordering).subscribe(res => {
       this.ads = res,
       this.loadingService.isLoading$.next(false);
     });
@@ -77,7 +93,7 @@ export class SearchAdsComponent implements OnInit {
       toPrice: '',
       ordering: 'def'
     })
-    this.adService.getPagedBySearch(0, this.pageSize, this.city, this.categoryId, this.query, '', '', this.authService.id!, '').subscribe(res => {
+    this.adService.getPagedBySearch(0, this.pageSize, this.location, this.categoryId, this.query, '', '', this.authService.id!, '').subscribe(res => {
       this.ads = res,
       this.loadingService.isLoading$.next(false);
     });

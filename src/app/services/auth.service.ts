@@ -50,14 +50,23 @@ export class AuthService {
     return this.httpClient.post<string>(`${environment.apiUrl}/v1/user/register`, model)
   }
 
-  sendActivationCode(userId: string): Observable<any> {
-    console.log(userId);
-    return this.httpClient.post(`${environment.apiUrl}/v1/user/send_activation_code?userId=${userId}`, userId);
+  sendActivationCode(userId: string): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}/v1/user/send_activation_code?userId=${userId}`, userId);
   }
 
   activate(userId: string, activationCode: string): Observable<any> {
     return this.httpClient.post<any>(`${environment.apiUrl}/v1/user/activate`, {userId, activationCode})
   }
+
+  sendRecoveryCode(email: string): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}/v1/user/send_recovery_code?email=${email}`, email);
+  }
+
+  recover(userId: string, newPassword: string): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/v1/user/recover_password`, {userId, newPassword})
+  }
+
+  
 
   login(model: LoginUser): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/v1/user/login`, model).pipe(tap((res: any) => {

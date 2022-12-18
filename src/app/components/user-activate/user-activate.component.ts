@@ -17,7 +17,6 @@ export class UserActivateComponent implements OnInit {
     const code = this.router.snapshot.params['activationCode'];
     const id = this.router.snapshot.params['id'];
     this.authService.activate(id, code).subscribe(res => {
-      console.log(res, code)
       this.message = res.value;
     });
   }

@@ -1,75 +1,98 @@
-<div class="auth" >
-  <div class="auth__nav">
-    <a routerLink="/"><span nz-icon nzType="home" nzTheme="outline"></span> На главную</a>
-  </div>
-<nz-card class="auth-form__wrapper" [nzBordered]="false">
-  <div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
-  <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-    <div class="auth-form__title">
-      <p>Вход</p>
-    </div>
-    <div class="auth-form__content">
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="text" id="email" formControlName="email" placeholder="Эл. адрес">
-        </nz-form-control>
-      </nz-form-item >
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="password" id="password" formControlName="password" placeholder="Пароль">
-        </nz-form-control>
-      </nz-form-item >
-    </div>
-    
-    <div class="auth-form__footer">
-      <button nz-button nzType="primary" type="submit">Войти</button>
-      <a (click)="onChange()">Создать аккаунт</a>
-    </div>
-  </form>
-</div>
-<div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
-  <form class="auth-form" nz-form *ngIf="!(isLogin | async)"  [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
-    <div class="auth-form__title">
-      <p>Регистрация</p>
-    </div>
-    <div class="auth-form__content">
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="text" id="name" formControlName="name" placeholder="Имя пользователя">
-        </nz-form-control>
-      </nz-form-item >
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
-          <input nz-input type="email" id="email" formControlName="email" placeholder="Эл. адрес">
-        </nz-form-control>
-      </nz-form-item >
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorPasswordTip">
-          <input nz-input type="password" id="password" formControlName="password" placeholder="Пароль">
-        </nz-form-control>
-      </nz-form-item >
-      <nz-form-item>
-        <nz-form-control [nzSpan]="25" [nzErrorTip]="errorPasswordTip">
-          <input nz-input type="password" id="passwordCheck" formControlName="passwordCheck" placeholder="Повторите пароль">
-        </nz-form-control>
-      </nz-form-item >
-    </div>
-    
-    <div class="auth-form__footer">
-      <button nz-button nzType="primary" type="submit">Создать аккаунт</button>
-      <a (click)="onChange()">Войти</a>
-    </div>
 
-  </form>
+  <div class="auth" >
+    <div class="auth__nav">
+      <a routerLink="/"><span nz-icon nzType="home" nzTheme="outline"></span> На главную</a>
+    </div>
+  <nz-card class="auth-form__wrapper" [nzBordered]="false">
+    <div class="" *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <form class="auth-form" nz-form *ngIf="isLogin | async" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+      <div class="auth-form__title">
+        <p>Вход</p>
+      </div>
+      <div class="auth-form__content">
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="text" id="email" formControlName="email" placeholder="Электронный адрес">
+          </nz-form-control>
+        </nz-form-item >
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="password" id="password" formControlName="password" placeholder="Пароль">
+          </nz-form-control>
+        </nz-form-item >
+      </div>
+      
+      <div class="auth-form__footer">
+        <button nz-button nzType="primary" type="submit">Войти</button>
+        <div class="auth-form__footer__btn">
+          <a (click)="onChange()">Создать аккаунт</a>
+          <a (click)="showModal()">Забыли пароль?</a>
+        </div>
+        <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Восстановление пароля" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Запросить код" nzCancelText="Отмена">
+          <ng-container *nzModalContent>
+            <form nz-form [formGroup]="forgotPasswordForm" >
+              
+              <nz-form-item>
+                <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                  <input
+            nz-input
+            type="text"
+            formControlName="email"
+            placeholder="Электронный адрес"
+          />
+                </nz-form-control>
+              </nz-form-item >
+              <div class="profile__form__label">
+                На введенный электронный адрес будет направлено письмо с ссылкой для сброса пароля.
+            </div>
+            </form>
+            
+          </ng-container>
+        </nz-modal>
+      </div>
+    </form>
+    <form class="auth-form" nz-form *ngIf="!(isLogin | async)"  [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit()">
+      <div class="auth-form__title">
+        <p>Регистрация</p>
+      </div>
+      <div class="auth-form__content">
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="text" id="name" formControlName="name" placeholder="Имя пользователя">
+          </nz-form-control>
+        </nz-form-item >
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="email" id="email" formControlName="email" placeholder="Электронный адрес">
+          </nz-form-control>
+        </nz-form-item >
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="password" id="password" formControlName="password" placeholder="Пароль. Не менее 6 символов">
+
+          </nz-form-control>
+        </nz-form-item >
+        <nz-form-item>
+          <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+            <input nz-input type="password" id="passwordCheck" formControlName="passwordCheck" placeholder="Повторите пароль">
+          </nz-form-control>
+        </nz-form-item >
+      </div>
+      
+      <div class="auth-form__footer">
+        <button nz-button nzType="primary" type="submit">Создать аккаунт</button>
+        <a (click)="onChange()">Войти</a>
+      </div>
+  
+    </form>
   </div>
-</nz-card>
-</div>
+  </nz-card>
+  </div>
+
+
 
 <ng-template #errorTip let-control>
   <div class="" style="color: red" *ngIf="control?.invalid && control?.touched">Поле заполнено неверно</div>
-</ng-template>
-<ng-template #errorPasswordTip let-control>
-  <div class="" style="color: red" *ngIf="control?.touched">Пароли не совпадают</div>
 </ng-template>
 
 <ng-template #loading>

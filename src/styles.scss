@@ -47,7 +47,11 @@ li {
 }
 
 [nz-input] {
-  border-radius: 8px;
+  border-radius: 15px;
+}
+
+nz-input-number {
+  border-radius: 15px;
 }
 
 .ant-notification-notice {

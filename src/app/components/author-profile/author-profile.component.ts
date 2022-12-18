@@ -26,7 +26,8 @@ export class AuthorProfileComponent implements OnInit {
     email: '',
     mobile: '',
     avatar: '',
-    createDate: ''
+    createDate: '',
+    activationCode: ''
   };
   public environmentUrl = environment.apiUrl;
   public component: string;

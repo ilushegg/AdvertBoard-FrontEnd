@@ -14,12 +14,13 @@ import { AuthorProfileComponent } from './components/author-profile/author-profi
 import { SearchAdsComponent } from './components/search-ads/search-ads.component';
 import { AuthGuard } from './auth.guard';
 import { UserActivateComponent } from './components/user-activate/user-activate.component';
+import { UserRecoverPasswordComponent } from './components/user-recover-password/user-recover-password.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: MainComponent
+    component: AdsComponent
   },
   {
     path: 'auth',
@@ -30,8 +31,8 @@ const routes: Routes = [
     component: UserActivateComponent
   },
   {
-    path: 'advertisements',
-    component: AdsComponent
+    path: 'auth/recovering/:id/:recoveryCode',
+    component: UserRecoverPasswordComponent
   },
   {
     path: 'add-new-ad',

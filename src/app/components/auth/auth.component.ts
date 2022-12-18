@@ -27,10 +27,17 @@ export class AuthComponent implements OnInit {
     {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      passwordCheck: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordCheck: ['', [Validators.required, Validators.minLength(6)]]
     }
   );
+  readonly forgotPasswordForm = this.formBuilder.group(
+    {
+      email: ['', [Validators.required, Validators.email]]
+    }
+  );
+
+  isVisible = false;
 
 
   constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private authService: AuthService, private router: Router, public loadingService: LoadingService ) { }
@@ -66,8 +73,6 @@ export class AuthComponent implements OnInit {
   onRegistrationSubmit() {
     
     if(this.registrationForm.controls.password.value != this.registrationForm.controls.passwordCheck.value && this.registrationForm.controls.password.value != null && this.registrationForm.controls.passwordCheck.value != null) {
-      console.log(this.registrationForm.controls.passwordCheck.value)
-      console.log(this.registrationForm.controls.password.value);
       this.nzNotificationService.error('Ошибка', 'Пароли не совпадают');
       this.registrationForm.controls.password.reset();
       this.registrationForm.controls.password.markAsTouched();
@@ -99,16 +104,37 @@ export class AuthComponent implements OnInit {
       mobile: ""
     };
     this.authService.register(user).subscribe(res => {
-      console.log(res);
+      this.loadingService.isLoading$.next(false);
       this.authService.sendActivationCode(res).subscribe();
       this.nzNotificationService.success("Успешно", "Пользователь зарегистрирован");
       this.isLogin.next(true);
-      this.loadingService.isLoading$.next(false);
     });
+  }
+
+  forgotPassword(){
+    const email = this.forgotPasswordForm.controls.email.value;
+    this.authService.sendRecoveryCode(email!).subscribe(res => {
+      this.nzNotificationService.info("Информация", "Ссылка для восстановления пароля была отправлена на ваш электронный адрес.");
+    })
+    this.isVisible = false;
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.forgotPassword();
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
   onChange(){
     this.isLogin.next(!this.isLogin.value);
   }
+
+  
 
 }

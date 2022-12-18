@@ -1,37 +1,59 @@
 <div class="ad">
   <div *ngIf="ad.images.length > 0; else noImages">
-  <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
-    <div nz-carousel-content *ngFor="let image of ad.images">
-        <img  class="advertisement-image" src="{{image}}" >
-    </div>
-  </nz-carousel>
-</div>
+    <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
+      <div nz-carousel-content *ngFor="let image of ad.images">
+        <img class="advertisement-image" src="{{ image }}" />
+      </div>
+    </nz-carousel>
+  </div>
   <div class="ad__description">
     <div class="ad__description-header">
-      <a class="ad__description-title" routerLink="../advertisements/{{ad.id}}">{{ ad.name }}</a>
-      <div *ngIf="!ad.isFavorite; else favorite ">
-        <a (click)="addToFavorite(ad.id)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
+      <a
+        class="ad__description-title"
+        routerLink="../advertisements/{{ ad.id }}"
+        >{{ ad.name }}</a
+      >
+      <div *ngIf="!ad.isFavorite; else favorite">
+        <a (click)="addToFavorite(ad.id)"
+          ><span
+            style="font-size: 18px; margin-left: 20px"
+            nz-icon
+            nzType="heart"
+            nzTheme="outline"
+          ></span
+        ></a>
       </div>
     </div>
-    <div class="ad__description-price">{{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU'}}</div>
-    <div class="ad__description-city">{{ ad.locationQuery }}</div>
+    <div class="ad__description-price">
+      <div *ngIf="ad.price == 0 else price">Бесплатно</div>
+      <ng-template #price>
+        {{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
+      </ng-template>
+    </div>
+    <div class="ad__description-city">
+      <div *ngIf="ad.locationQuery != null; else russia">
+        {{ ad.locationQuery }}
+      </div>
+      <ng-template #russia>Россия</ng-template>
+
+    </div>
     <div class="ad__description-date">{{ ad.dateTimeCreated }}</div>
-
   </div>
+
+  <ng-template #noImages>
+    <div class="ad__carousel">
+      <img class="advertisement-image" src="{{ fallback }}" />
+    </div>
+  </ng-template>
+
+  <ng-template #favorite>
+    <a (click)="deleteFromFavorite(ad.id)"
+      ><span
+        style="font-size: 18px; margin-left: 20px"
+        nz-icon
+        nzType="heart"
+        nzTheme="fill"
+      ></span
+    ></a>
+  </ng-template>
 </div>
-
-<ng-template #noImages>
-  <div class="ad__carousel">
-    <img  class="advertisement-image" src="{{ fallback }}" />
-  </div>
-</ng-template>
-
-<ng-template #favorite>
-  <a (click)="deleteFromFavorite(ad.id)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="fill"></span></a>
-</ng-template>
-
-
-
-
-
-

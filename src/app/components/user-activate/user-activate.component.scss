@@ -1,6 +1,29 @@
+
 .title {
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  right: 0;
+  left: 0;
   font-size: 30px;
   font-weight: 300;
-  margin-top: 250px;
   text-align: center;
+
+  &__wrapper {
+    height: 100vh;
+    position: relative;
+  }
+
+  &__nav {
+    border-radius: 15px;
+    padding: 15px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    text-align: center;
+    box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.2);
+    a {
+      padding: 15px;
+    }
+}
 }

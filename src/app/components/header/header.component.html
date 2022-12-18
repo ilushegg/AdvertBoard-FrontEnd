@@ -3,7 +3,7 @@
     <div class="container">
     <nav class="navbar" *ngIf="isHeaderNav()">
       <ul class="navbar__section">
-        <li class="navbar__item logo" routerLink="/advertisements">AdvBOARD</li>
+        <li class="navbar__item logo" routerLink="/">MIAboard</li>
       </ul>
       <ul class="navbar__section">
         <div class="" *ngIf="user$ as user; else notAuthed">
@@ -53,7 +53,7 @@
         <ngx-dadata nz-input class="search__section__address" 
           formControlName="address"
           [config]="config"
-          placeholder="Город"
+          placeholder="Регион"
           (selected)="onAddressSelected($event)"
         ></ngx-dadata>
       

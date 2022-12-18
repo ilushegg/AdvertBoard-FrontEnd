@@ -34,7 +34,8 @@ export class AdFullComponent implements OnInit {
     email: '',
     mobile: '',
     avatar: '',
-    createDate: ''
+    createDate: '',
+    activationCode: ''
   };
   public comments: GetPagedResult<Comment>;
 

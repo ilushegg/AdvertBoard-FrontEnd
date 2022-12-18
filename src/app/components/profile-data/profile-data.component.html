@@ -2,7 +2,7 @@
   <form
     class="profile__form"
     nz-form
-    [formGroup]="form"
+    [formGroup]="dataForm"
     (ngSubmit)="onEditSubmit()"
   >
   <div *ngIf="!(loadingService.isLoading$ | async); else loading">
@@ -30,6 +30,7 @@
           nz-input
           type="text"
           formControlName="mobile"
+
         />
       </nz-form-control>
     </nz-form-item>
@@ -37,12 +38,58 @@
     <nz-form-item>
       <div class="profile__form__label">
         Электронный адрес
+        <button *ngIf="user.activationCode != null" class="" nz-button nzType="default" type="button" nzSize="small" nzDanger (click)="sendActivationCode()">Отправить код подтверждения</button>
       </div>
       <input readonly nz-input type="text" value="{{ user.email }}" />
     </nz-form-item>
     <nz-form-item>
-      <button class="" nz-button nzType="primary" type="submit">Изменить данные</button>
-
+      <button class="" nz-button nzType="primary" type="submit">Сохранить данные</button>
+    </nz-form-item>
+    <nz-form-item>
+      <button class="" nz-button nzType="default" type="button" (click)="showModal()">Изменить пароль</button>
+      <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Смена пароля" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Изменить" nzCancelText="Отмена">
+        <ng-container *nzModalContent>
+          <form nz-form [formGroup]="passwordForm" >
+            <div class="profile__form__label">
+              Текущий пароль
+          </div>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                <input
+          nz-input
+          type="text"
+          formControlName="oldPassword"
+        />
+              </nz-form-control>
+            </nz-form-item >
+            <div class="profile__form__label">
+              Новый пароль
+          </div>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                <input
+          nz-input
+          type="text"
+          formControlName="newPassword"
+        />
+              </nz-form-control>
+            </nz-form-item >
+            <div class="profile__form__label">
+              Новый пароль еще раз
+          </div>
+            <nz-form-item>
+              <nz-form-control [nzSpan]="25" [nzErrorTip]="errorTip">
+                <input
+          nz-input
+          type="text"
+          formControlName="newPasswordCheck"
+        />
+              </nz-form-control>
+            </nz-form-item >
+          </form>
+          
+        </ng-container>
+      </nz-modal>
     </nz-form-item>
   </div>
   </form>
@@ -51,5 +98,11 @@
     <div style="margin-top: 200px;">
       <app-spinner class="spinner"></app-spinner>
   
+    </div>
+  </ng-template>
+
+  <ng-template #errorTip let-control>
+    <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+      Поле заполнено неверно
     </div>
   </ng-template>

@@ -5,5 +5,6 @@ export interface User {
   mobile: string,
   avatar: string,
   createDate: string,
-  userRole: string
+  userRole: string,
+  activationCode: string
 }

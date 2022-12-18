@@ -1,6 +1,9 @@
 <div class="container">
   <div class="add">
-    <div class="add__wrapper" *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <div
+      class="add__wrapper"
+      *ngIf="!(loadingService.isLoading$ | async); else loading"
+    >
       <form
         class="add-form"
         nz-form
@@ -17,16 +20,11 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Категория</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-            <div
-              class=""
-              *ngIf="!(loadingService.isLoading$ | async); else loading"
-            >
-              <div class="add-form__tree">
-                <nz-tree-select
-                  [nzNodes]="(categories$ | async) || []"
-                  formControlName="categoryId"
-                ></nz-tree-select>
-              </div>
+            <div class="add-form__tree">
+              <nz-tree-select
+                [nzNodes]="(categories$ | async) || []"
+                formControlName="categoryId"
+              ></nz-tree-select>
             </div>
           </nz-form-control>
         </nz-form-item>
@@ -44,22 +42,18 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Цена</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-            <nz-input-number formControlName="price"></nz-input-number>
+            <input nz-input nz-tooltip formControlName="price" />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Адрес</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-            <div >
-              <ngx-dadata class="add-form__address" 
+              <ngx-dadata nz-input 
                 formControlName="address"
                 [config]="config"
                 (selected)="onAddressSelected($event)"
               ></ngx-dadata>
-            
-            </div>
-          
-        </nz-form-control>
+          </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Фотографии</nz-form-label>
@@ -67,7 +61,7 @@
             <div class="clearfix">
               <nz-upload
                 nzType="drag"
-                nzAction="{{environmentUrl}}/v1/image/create"
+                nzAction="{{ environmentUrl }}/v1/image/create"
                 nzListType="picture"
                 [nzMultiple]="true"
                 (nzChange)="handleChange($event)"
@@ -90,10 +84,8 @@
   </div>
 </div>
 
-
-
 <ng-template #errorTip let-control>
-  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
+  <div style="color: red" *ngIf="control?.invalid || control?.dirty">
     Поле заполнено неверно
   </div>
 </ng-template>

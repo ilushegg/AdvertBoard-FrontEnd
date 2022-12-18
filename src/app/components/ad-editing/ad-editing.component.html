@@ -44,7 +44,7 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="6">Цена</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
-            <nz-input-number formControlName="price"></nz-input-number>
+            <input nz-input nz-tooltip formControlName="price" />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
@@ -84,7 +84,7 @@
           </nz-form-control>
         </nz-form-item>
         <div class="add-form__btn">
-          <button nz-button nzType="primary" type="submit">Создать</button>
+          <button nz-button nzType="primary" type="submit">Сохранить</button>
         </div>
       </form>
     </div>

@@ -9,15 +9,28 @@ import { LoadingService } from './loading.service';
   providedIn: 'root'
 })
 export class CategoryService {
-  private adUrl = `${environment.apiUrl}/v1/category`;
+  private catUrl = `${environment.apiUrl}/v1/category`;
   
   
   constructor(private httpClient: HttpClient, private loadingService: LoadingService) { }
 
   public getAll(): Observable<any> {
     this.loadingService.isLoading$.next(false);
-    return this.httpClient.get<any>(`${this.adUrl}`);
+    return this.httpClient.get<any>(`${this.catUrl}`);
     
+  }
+
+  public addCategory(parentCategory: string, childCategory: string): Observable<any> {
+    parentCategory = ((parentCategory != null ? parentCategory : null)!)
+    return this.httpClient.post(`${this.catUrl}/add`, {parentCategory, childCategory});
+  }
+
+  public editCategory(categoryId: string, name: string): Observable<any> {
+    return this.httpClient.post(`${this.catUrl}/edit`, {categoryId, name});
+  }
+
+  public deleteCategory(category: string): Observable<any> {
+    return this.httpClient.delete(`${this.catUrl}/delete?categoryId=${category}`);
   }
 
   private arrayToNzCascade(array: Category[]) {

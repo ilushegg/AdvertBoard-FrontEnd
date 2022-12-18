@@ -58,8 +58,8 @@ import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { ProfileCommentsComponent } from './components/profile-comments/profile-comments.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { UserActivateComponent } from './components/user-activate/user-activate.component';
-
-
+import { UserRecoverPasswordComponent } from './components/user-recover-password/user-recover-password.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 
 registerLocaleData(ru);
@@ -84,6 +84,8 @@ registerLocaleData(ru);
     SearchAdsComponent,
     ProfileCommentsComponent,
     UserActivateComponent,
+    UserRecoverPasswordComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +122,8 @@ registerLocaleData(ru);
     NzToolTipModule,
     NzModalModule,
     NzCommentModule,
-    NzRadioModule
+    NzRadioModule,
+
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

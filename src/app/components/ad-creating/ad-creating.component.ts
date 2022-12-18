@@ -49,17 +49,23 @@ export class AdCreatingComponent implements OnInit {
     images: [[]],
     address: ['', Validators.required]
   })
+  
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, private photoService: PhotoService, public loadingService: LoadingService, private router: Router, private authService: AuthService,private handler: HttpBackend) {
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private adService: AdService, private categoryService: CategoryService, private nzMessageService: NzMessageService, public loadingService: LoadingService, private router: Router, private authService: AuthService) {
 
    }
 
   ngOnInit(): void {
-    
+    this.form.patchValue({
+      address: 'Россия'
+    });
+    this.ad.lat = '60';
+    this.ad.lon = '100';
+    this.ad.country = 'Россия';
+    this.ad.locationQueryString = 'Россия';
   }
 
   onSubmit() {
-    this.loadingService.isLoading$.next(true);
     if (this.form.invalid) {
       this.nzNotificationService.error('Ошибка', 'Форма заполнена неверно');
       Object.values(this.form.controls).forEach((control) => {
@@ -68,6 +74,7 @@ export class AdCreatingComponent implements OnInit {
       });
       return;
     }
+    this.loadingService.isLoading$.next(true);
 
 
       this.ad.name = this.form.controls.name.value,
@@ -128,13 +135,13 @@ private deleteImageById(id: string, arr: Array<any>) {
     this.ad.flat = addressData.flat;
     this.ad.lat = addressData.geo_lat;
     this.ad.lon = addressData.geo_lon;
-    this.ad.locationQueryString = event.value;
+    this.ad.locationQueryString = 'Россия, ' + event.value;
   }
 
-
+}
 
 
 
   
 
-}
+

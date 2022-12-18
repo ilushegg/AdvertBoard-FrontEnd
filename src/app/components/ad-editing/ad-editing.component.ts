@@ -81,16 +81,12 @@ export class AdEditingComponent implements OnInit {
       address: res.locationQueryString,
       images: this.ad.images
     });
+    this.ad.locationQueryString = res.locationQueryString;
+
     this.loadingService.isLoading$.next(false);
-
-    
-
-
     })
 
   }
-
-  
 
 
   onSubmit() {
@@ -109,13 +105,12 @@ export class AdEditingComponent implements OnInit {
       this.ad.description = this.form.controls.description.value,
       this.ad.price = this.form.controls.price.value,
       this.ad.categoryId = this.form.controls.categoryId.value,
-      this.ad.locationQueryString = this.form.controls.address.value
       this.ad.images = this.form.controls.images.value
 
 
     this.adService.editAd(this.id, this.ad).subscribe((res: string) => {
       this.router.navigateByUrl('/advertisements/' + res);
-      this.nzNotificationService.success('Успешно!', 'Объявление создано!');
+      this.nzNotificationService.success('Успешно!', 'Объявление изменено!');
       this.loadingService.isLoading$.next(false);
     });
 
@@ -165,7 +160,7 @@ private deleteImageById(id: string, arr: Array<any>) {
     this.ad.flat = addressData.flat;
     this.ad.lat = addressData.geo_lat;
     this.ad.lon = addressData.geo_lon;
-    this.ad.locationQueryString = event.value;
+    this.ad.locationQueryString = 'Россия, ' + event.value;
   }
 
 
