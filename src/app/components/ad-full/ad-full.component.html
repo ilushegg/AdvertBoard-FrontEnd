@@ -40,7 +40,7 @@
     <div class="advertisement__content-communication">
       <nz-avatar [nzSize]="64" nzIcon="user" nzSrc="{{ ad.authorAvatar }}"></nz-avatar>
       <a class="author-name" routerLink="../../author/{{ ad.authorId }}">{{ ad.authorName }}</a>
-      <button class="author-number"  nz-button nzType="default" type="button">{{ ad.authorNumber ? ad.authorNumber : 'Пользователь не добавил номер' }}</button>
+      <button class="author-number"  nz-button nzType="default" type="button">{{ ad.authorNumber ? ad.authorNumber : 'Номер не добавлен' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
       <button *ngIf="user && user.id != ad.authorId" class="author-comment" nz-button nzType="primary" type="button" (click)="showModal()">Оставить комментарий</button>
       <nz-modal nzCentered [(nzVisible)]="isVisible" nzTitle="Комментарий" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk(ad.id)" nzOkText="Оставить" nzCancelText="Отмена">

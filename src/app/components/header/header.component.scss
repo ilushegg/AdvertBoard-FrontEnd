@@ -84,14 +84,14 @@ nz-dropdown-menu {
   &__tree {
     border: 1px solid #d9d9d9;
       border-radius: 20px;
-      min-width: 200px;
+      width: 200px;
       height: 40px;
   }
 }
 
 
 nz-tree-select {
-  min-width: 200px;
+  width: 200px;
   height: 40px;
 }
 
@@ -107,3 +107,67 @@ nz-tree-select {
   margin-right: 10px;
 }
 
+.nav__mobile {
+
+  &__avatar {
+    margin-bottom: 25px;
+  }
+
+  &__ul {
+    width: 325px;
+    border: none;
+    position: relative;
+
+    &__logout {
+      position: absolute;
+      bottom: 25px;
+    }
+
+  }
+}
+
+.filters__btn {
+  border: 1px solid #d9d9d9;
+  height: 40px;
+  width: 40px;
+  span{
+    font-size: 16px;
+    margin-left: -4px;
+    margin-top: 5px;
+  }
+  
+}
+
+
+@media(max-width: 900px) {
+  .search__section{
+    &__tree {
+        max-width: 150px;
+    }
+  }
+  nz-tree-select {
+    max-width: 150px;
+  }
+}
+
+@media(max-width: 800px) {
+  .search__section{
+    &__tree {
+        max-width: 125px;
+    }
+  }
+  nz-tree-select {
+    max-width: 125px;
+  }
+}
+
+@media(max-width: 700px) {
+  .search__section{
+    &-input {
+        max-width: 600px;
+    }
+  }
+  nz-tree-select {
+    max-width: 125px;
+  }
+}

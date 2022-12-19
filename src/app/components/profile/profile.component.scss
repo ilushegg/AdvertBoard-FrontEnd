@@ -4,7 +4,7 @@
   justify-content: space-between;
 
   &__avatar {
-
+    margin-right: 15px;
     &-img{
       width: 250px;
       height: 250px;
@@ -41,4 +41,14 @@
 
 nz-upload {
   text-align: center;
+}
+
+
+@media(max-width: 700px) {
+  .profile {  
+    display: block;
+    &__avatar {
+      margin-bottom: 25px;
+    }
+  }
 }

@@ -5,6 +5,7 @@
 
 .advertisement {
   
+  padding-bottom: 10px;
   &__top {
     display: flex;
     justify-content: space-between;
@@ -25,7 +26,6 @@
   &__content {
     display: flex;
     justify-content: space-between;
-
     &-image {
       display: flex;
       justify-content: space-between;
@@ -121,6 +121,8 @@
 
   &__comment{
     margin-top: 50px;
+    margin-bottom: 5px;
+
     max-width: 650px;
     padding: 25px;
     text-align: center;
@@ -157,7 +159,7 @@
     margin-bottom: 20px;
   }
   &-chat {
-    font-size: 16px;
+    font-size: auto;
     height: 50px;
     max-width: inherit;
     width: 100%;
@@ -165,7 +167,7 @@
     margin-bottom: 20px;
   }
   &-comment {
-    font-size: 16px;
+    font-size: auto;
     height: 50px;
     max-width: inherit;
     width: 100%;
@@ -216,4 +218,445 @@ nz-carousel {
   box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.1);
 }
 
+@media(max-width: 1000px){
+  .advertisement {
+    &-image {
+      width: 600px;
+      height: 600px;
+      &-bg {
+        max-width: 600px;
+        height: 600px;
+      }
+    }
+  
+    &__footer{
+      max-width: 600px;
+      &-map {
+        width: 550px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      max-width: 600px;
+    }
+  
+  }
+  nz-carousel {
+    width: 600px;
+    max-height: 600px;
+  }
+}
+
+@media(max-width: 950px){
+  .advertisement {
+    &-image {
+      width: 550px;
+      height: 550px;
+      &-bg {
+        max-width: 550px;
+        height: 550px;
+      }
+    }
+
+    &__content {
+      
+      &-communication {
+        max-width: 250px;
+      }
+  
+    }
+  
+    &__footer{
+      max-width: 550px;
+      &-map {
+        width: 500px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      max-width: 550px;
+    }
+  
+  }
+  nz-carousel {
+    width: 550px;
+    max-height: 550px;
+  }
+}
+
+@media(max-width: 850px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 32px;
+      }
+    }
+    &-image {
+      width: 525px;
+      height: 525px;
+      &-bg {
+        max-width: 525px;
+        height: 525px;
+      }
+    }
+
+    &__content {
+      
+      &-communication {
+        max-width: 240px;
+      }
+  
+    }
+  
+    &__footer{
+      max-width: 525px;
+      &-map {
+        width: 475px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      max-width: 525px;
+    }
+  
+  }
+  nz-carousel {
+    width: 525px;
+    max-height: 525px;
+  }
+}
+
+
+@media(max-width: 800px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 30px;
+      }
+    }
+    &-image {
+      width: 600px;
+      height: 600px;
+      &-bg {
+        max-width: 600px;
+        height: 600px;
+      }
+    }
+
+    &__content {
+      display: block;
+      
+      &-image{
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+      }
+      
+      &-communication {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+      }
+
+  
+    }
+  
+    &__footer{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 600px;
+      &-map {
+        width: 550px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 600px;
+    }
+  
+  }
+  nz-carousel {
+    width: 600px;
+    max-height: 600px;
+  }
+ 
+}
+
+@media(max-width: 700px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+@media(max-width: 650px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 20px;
+      }
+    }
+    &-image {
+      width: 500px;
+      height: 500px;
+      &-bg {
+        max-width: 500px;
+        height: 500px;
+      }
+    }
+
+    &__content {
+      display: block;
+      
+      &-image{
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+      }
+      
+      &-communication {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 500px;
+      }
+
+  
+    }
+  
+    &__footer{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 500px;
+      &-map {
+        width: 450px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 500px;
+    }
+  
+  }
+  nz-carousel {
+    width: 500px;
+    max-height: 500px;
+  }
+  .comment__title__text{
+    text-align: left;
+  }
+}
+
+@media(max-width: 550px) {
+  .advertisement {
+    &__top {
+      display: block;
+
+      &-left {
+        justify-content: space-between;
+      }
+      &-title,
+      &-price {
+        font-size: 20px;
+      }
+    }
+    &-image {
+      width: 450px;
+      height: 450px;
+      &-bg {
+        max-width: 450px;
+        height: 450px;
+      }
+    }
+
+    &__content {
+      display: block;
+      
+      &-image{
+        margin-left: auto;
+        margin-right: auto;
+        width: 450px;
+      }
+      
+      &-communication {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 450px;
+      }
+
+  
+    }
+  
+    &__footer{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 450px;
+      &-map {
+        width: 400px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 450px;
+    }
+  
+  }
+  nz-carousel {
+    width: 450px;
+    max-height: 450px;
+  }
+ 
+}
+
+@media(max-width: 500px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 20px;
+      }
+    }
+    &-image {
+      width: 400px;
+      height: 400px;
+      &-bg {
+        max-width: 400px;
+        height: 400px;
+      }
+    }
+
+    &__content {
+      display: block;
+      
+      &-image{
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+      }
+      
+      &-communication {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 400px;
+      }
+
+  
+    }
+  
+    &__footer{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+      &-map {
+        width: 350px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+    }
+  
+  }
+  .comment__title__text{
+    font-size: 12px;
+  }
+  nz-carousel {
+    width: 400px;
+    max-height: 400px;
+  }
+ 
+}
+
+@media(max-width: 400px) {
+  .advertisement {
+    &__top {
+      &-title,
+      &-price {
+        font-size: 20px;
+      }
+    }
+    &-image {
+      width: 325px;
+      height: 325px;
+      &-bg {
+        max-width: 325px;
+        height: 325px;
+      }
+    }
+
+    &__content {
+      display: block;
+      
+      &-image{
+        margin-left: auto;
+        margin-right: auto;
+        width: 325px;
+      }
+      
+      &-communication {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 325px;
+      }
+
+  
+    }
+  
+    &__footer{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 325px;
+      &-map {
+        width: 275px;
+        height: 300px;
+      }
+
+    }
+  
+    &__comment{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 325px;
+    }
+  
+  }
+  nz-carousel {
+    width: 325px;
+    max-height: 325px;
+  }
+ 
+}
 

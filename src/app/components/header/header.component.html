@@ -1,67 +1,226 @@
-<header class="header" >
+<header class="header">
   <div class="navbar__bg">
     <div class="container">
-    <nav class="navbar" *ngIf="isHeaderNav()">
-      <ul class="navbar__section">
-        <li class="navbar__item logo" routerLink="/">MIAboard</li>
-      </ul>
-      <ul class="navbar__section">
-        <div class="" *ngIf="user$ as user; else notAuthed">
-          <div *ngIf="user.userRole == 'Admin'">
-            <div class="admin">Администратор</div>
+      <nav class="navbar" *ngIf="isHeaderNav()">
+        <ul class="navbar__section">
+          <li class="navbar__item logo" routerLink="/">MIAboard</li>
+        </ul>
+        <ul class="navbar__section">
+          <div class="" *ngIf="user$ as user; else notAuthed">
+            <div *ngIf="user.userRole == 'Admin'">
+              <div class="admin">Администратор</div>
+            </div>
+            <a
+              *ngIf="screenWidth > 700 && user$"
+              nz-dropdown
+              [nzDropdownMenu]="menu"
+              [nzPlacement]="'bottomCenter'"
+            >
+              <nz-avatar
+                [nzSize]="32"
+                nzIcon="user"
+                nzSrc="{{ user.avatar }}"
+                nzFallback=""
+              ></nz-avatar>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li
+                  nz-menu-item
+                  routerLink="profile/{{ user.id }}"
+                  [queryParams]="{ component: 'data' }"
+                >
+                  {{ user.name }}
+                </li>
+                <li
+                  *ngIf="user.userRole == 'Admin'"
+                  nz-menu-item
+                  routerLink="profile/{{ user.id }}"
+                  [queryParams]="{ component: 'admin' }"
+                >
+                  Панель администратора
+                </li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item routerLink="add-new-ad">
+                  Разместить объявление
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="profile/{{ user.id }}"
+                  [queryParams]="{ component: 'advertisements' }"
+                >
+                  Мои объявления
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="profile/{{ user.id }}"
+                  [queryParams]="{ component: 'favorites' }"
+                >
+                  Избранное
+                </li>
+                <li
+                  nz-menu-item
+                  routerLink="profile/{{ user.id }}"
+                  [queryParams]="{ component: 'comments' }"
+                >
+                  Мои комментарии
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+            <nz-avatar
+              *ngIf="screenWidth <= 700 && user$"
+              [nzSize]="32"
+              nzIcon="user"
+              nzSrc="{{ user.avatar }}"
+              nzFallback=""
+              (click)="openProfile()"
+            ></nz-avatar>
+            <nz-drawer
+              [nzClosable]="true"
+              [nzVisible]="visibleProfile"
+              nzPlacement="left"
+              nzTitle="Профиль"
+              (nzOnClose)="closeProfile()"
+            >
+              <ng-container *nzDrawerContent>
+                <div class="" *ngIf="user$ as user">
+                  <nz-avatar
+                    class="nav__mobile__avatar"
+                    [nzSize]="100"
+                    nzIcon="user"
+                    nzSrc="{{ user.avatar }}"
+                    nzFallback=""
+                  ></nz-avatar>
+                  <div *ngIf="user.userRole == 'Admin'">
+                    <div class="admin">Администратор</div>
+                  </div>
+
+                  <ul class="nav__mobile__ul" nz-menu nzSelectable>
+                    <li
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'data' }"
+                      (click)="closeProfile()"
+                    >
+                      {{ user.name }}
+                    </li>
+                    <li
+                      *ngIf="user.userRole == 'Admin'"
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'admin' }"
+                      (click)="closeProfile()"
+                    >
+                      Панель администратора
+                    </li>
+                    <li nz-menu-divider></li>
+                    <li
+                      nz-menu-item
+                      routerLink="add-new-ad"
+                      (click)="closeProfile()"
+                    >
+                      Разместить объявление
+                    </li>
+                    <li
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'advertisements' }"
+                      (click)="closeProfile()"
+                    >
+                      Мои объявления
+                    </li>
+                    <li
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'favorites' }"
+                      (click)="closeProfile()"
+                    >
+                      Избранное
+                    </li>
+                    <li
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'comments' }"
+                      (click)="closeProfile()"
+                    >
+                      Мои комментарии
+                    </li>
+                  </ul>
+                  <ul class="nav__mobile__ul__logout" nz-menu nzSelectable>
+                    <li
+                      nz-menu-item
+                      routerLink="profile/{{ user.id }}"
+                      [queryParams]="{ component: 'data' }"
+                      (click)="authService.logout()"
+                    >
+                      Выход
+                    </li>
+                  </ul>
+                </div>
+              </ng-container>
+            </nz-drawer>
+            <button
+              *ngIf="screenWidth > 700"
+              class="navbar__item"
+              nz-button
+              nzType="primary"
+              (click)="authService.logout()"
+            >
+              Выход
+            </button>
           </div>
-          <a nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomCenter'">
-            <nz-avatar [nzSize]="32" nzIcon="user" nzSrc="{{ user.avatar }}" nzFallback=""></nz-avatar>
-          </a>
-          <nz-dropdown-menu #menu="nzDropdownMenu" >
-            <ul nz-menu nzSelectable>
-              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'data'}">{{ user.name }}</li>
-              <li *ngIf="user.userRole == 'Admin'" nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'admin'}">Панель администратора</li>
-              <li nz-menu-divider></li>
-              <li nz-menu-item routerLink="add-new-ad">Разместить объявление</li>
-              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'advertisements'}">Мои объявления</li>
-              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'favorites'}">Избранное</li>
-              <li nz-menu-item routerLink="profile/{{user.id}}" [queryParams]="{component: 'comments'}">Мои комментарии</li>
-            </ul>
-          </nz-dropdown-menu>
-          <button
-            class="navbar__item"
-            nz-button
-            nzType="primary"
-            (click)="authService.logout()"
-          >
-            Выход
-          </button>
-        </div>
-      </ul>
-    </nav>
+        </ul>
+      </nav>
     </div>
   </div>
 
   <div class="container">
-    <form class="search__section" [formGroup]="searchForm" (ngSubmit)="Search()" *ngIf="isHeaderSearch()">
-    <div class="search__section__tree">
-      <nz-tree-select
-        [nzNodes]="(categories$ | async) || []"
-        nzPlaceHolder="Категория"
-        formControlName="categoryId"
-      ></nz-tree-select>
-    </div>
-  
-      <input class="search__section-input" formControlName="query" style="border-radius: 20px;"  type="text" nz-input nz-Search   placeholder="Поиск по объявлениям"  />
-      <div >
-        <ngx-dadata nz-input class="search__section__address" 
+    <form
+      class="search__section"
+      [formGroup]="searchForm"
+      (ngSubmit)="Search()"
+      *ngIf="isHeaderSearch()"
+    >
+      <div
+        *ngIf="screenWidth > 700"
+        class="search__section__tree"
+      >
+        <nz-tree-select
+          [nzNodes]="(categories$ | async) || []"
+          nzPlaceHolder="Категория"
+          formControlName="categoryId"
+        ></nz-tree-select>
+      </div>
+
+      <input
+        class="search__section-input"
+        formControlName="query"
+        style="border-radius: 20px"
+        type="text"
+        nz-input
+        nz-Search
+        placeholder="Поиск по объявлениям"
+      />
+      <div *ngIf="screenWidth > 700">
+        <ngx-dadata
+          nz-input
+          class="search__section__address"
           formControlName="address"
           [config]="config"
           placeholder="Регион"
           (selected)="onAddressSelected($event)"
         ></ngx-dadata>
-      
       </div>
-      <button class="search__section-button" nz-button nzType="primary"  type="submit"><span nz-icon nzType="search"></span> Найти</button>
-    
-  </form>
-    
+      <button
+      *ngIf="screenWidth > 700"
+        class="search__section-button"
+        nz-button
+        nzType="primary"
+        type="submit"
+      >
+        <span nz-icon nzType="search"></span> Найти
+      </button>
+    </form>
   </div>
 </header>
 
@@ -71,10 +230,7 @@
   </button>
 </ng-template>
 <ng-template #FindButton>
-  <style>
-  
-  </style>
+  <style></style>
 </ng-template>
-<ng-template #CategorySelect >
-  
-</ng-template>
+
+

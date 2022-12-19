@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NzMessageComponent, NzMessageService } from 'ng-zorro-antd/message';
@@ -17,11 +17,19 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfileComponent implements OnInit {
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+   this.screenWidth = window.innerWidth;
+}
+
+  screenWidth: number;
   public user$: User;
   public environmentUrl = environment.apiUrl;
   public component: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute) { 
+    this.getScreenSize();
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

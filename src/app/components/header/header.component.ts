@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DadataConfig, DadataType, Bounds, Bound, DadataSuggestion, DadataAddress } from '@kolkov/ngx-dadata';
-import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AdService } from 'src/app/services/ad.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { environment } from 'src/environments/environment';
 import {AuthService} from "../../services/auth.service";
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-header',
@@ -17,6 +17,12 @@ import {AuthService} from "../../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+   this.screenWidth = window.innerWidth;
+}
+
+  screenWidth: number;
   public user$: User;
   public categories$ = this.categoryService.getAll();
   public searchForm = this.formBuilder.group(
@@ -31,11 +37,14 @@ export class HeaderComponent implements OnInit {
   public pageNumber = 1;
   public adsTotal = this.pageSize;
   public url = environment.apiUrl;
-  visible = false;
+  visibleProfile = false;
+  visibleFilters = false;
   selected = false;
   city: string | null = '';
+  mobile = false;
 
   constructor(public authService: AuthService, private categoryService: CategoryService, public router: Router, public formBuilder: FormBuilder, private adService: AdService) {
+    this.getScreenSize();
   }
   ngOnInit(): void {
     this.authService.user$.subscribe(res => {
@@ -55,13 +64,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(`search?location=${location}&categoryId=${categoryId}&query=${query}`);
   }
 
-  open(): void {
-    this.visible = true;
+  openProfile(): void {
+    this.visibleProfile = true;
   }
 
-  close(): void {
-    this.visible = false;
+  closeProfile(): void {
+    this.visibleProfile = false;
   }
+
+
 
   isHeaderNav(): boolean {
     if ((this.router.url != '/auth') && (this.router.url.indexOf('/auth/recovering/') == -1) && (this.router.url.indexOf('/auth/activate/') == -1)) {
@@ -90,8 +101,6 @@ export class HeaderComponent implements OnInit {
     apiKey: environment.daDataApiKey  ,
     type: DadataType.address,
     bounds: this.b
-          
-  
   };
 
 
@@ -108,6 +117,7 @@ export class HeaderComponent implements OnInit {
   onChangeAddress() {
     this.city = '';
   }
+  
 
 
 

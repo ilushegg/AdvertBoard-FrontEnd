@@ -3,8 +3,24 @@
   grid-template-columns: 25% 25% 25% 25%;
   grid-row-gap: 50px;
   align-items: start;
+  justify-items: center;
 }
 
 .ad {
   margin-bottom: 25px;
+}
+
+
+@media(max-width: 900px) {
+  .ads {
+    grid-template-columns:  33% 33% 33%;
+  }
+  
+}
+
+@media(max-width: 700px) {
+  .ads {
+    grid-template-columns:  50% 50%;
+  }
+
 }

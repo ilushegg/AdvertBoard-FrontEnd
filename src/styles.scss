@@ -24,8 +24,9 @@ li {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1050px;
   margin: auto;
+  padding: 0 15px;
 }
 
 .logo {
@@ -153,4 +154,11 @@ nz-input-number {
 ngx-dadata{
   width: 150px !important;
   border-radius: 15px!important;
+}
+
+
+@media(max-width: 450px) {
+  .container {
+    padding: 0 5px;
+  }
 }

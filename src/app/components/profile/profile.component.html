@@ -2,7 +2,7 @@
   <div class="profile">
     <div class="profile__avatar">
       
-      <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ user$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
+      <nz-avatar *ngIf="screenWidth > 700" class="profile__avatar-img" [nzSize]="250" nzSrc="{{ user$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
       <nz-upload
         nzAction="{{environmentUrl}}/v1/image/create"
         (nzChange)="handleChange($event)"
@@ -12,7 +12,7 @@
         
         <button nz-button><span nz-icon nzType="upload"></span>Изменить фотографию</button>
       </nz-upload>
-      <div class="profile__nav">
+      <div *ngIf="screenWidth > 700" class="profile__nav">
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'data'}" >Данные</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'advertisements'}" >Мои объявления</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'favorites'}">Избранное</a>

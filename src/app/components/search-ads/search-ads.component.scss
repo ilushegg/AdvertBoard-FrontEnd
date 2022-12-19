@@ -1,13 +1,28 @@
 @import '/src/styles.scss';
 
 .ads {
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 10px;
+  grid-column-gap: 25px;
+  align-items: flex-start;
+  justify-items: center;
+
+  &__content {
+    position: relative;
+
+  }
+
+  
 
   &__pagination {
     text-align: center;
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    left: 0;
   }
 }
 
@@ -17,7 +32,7 @@
 
 .search-ads {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   &__filters {
     max-width: 200px;
     width: 100%;
@@ -26,20 +41,78 @@
       padding: 15px;
       border-radius: 15px;
       box-shadow: $box-shadow;
-      height: 350px;
+      
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      
-      &__ordering {
-        
+
+      div {
+        margin-bottom: 10px;
       }
+      button {
+        margin-bottom: 10px;
+      }
+      
+      
     }
   }
+
+  &__tree {
+    border: 1px solid #d9d9d9;
+      border-radius: 20px;
+      width: 300px;
+      height: 40px;
+  }
+
+ 
+}
+
+.filters__btn {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+nz-tree-select {
+  width: 300px;
+  height: 40px;
 }
 
 .title {
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 20px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media(max-width: 900px){
+  .ads {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .title {
+    font-size: 27px;
+  }
+}
+
+
+@media(max-width: 700px){
+  .ads {
+    max-width: 650px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .title {
+    font-size: 23px;
+  }
+}
+
+@media(max-width: 650px){
+  .title {
+    font-size: 20px;
+  }
 }
