@@ -41,14 +41,14 @@ export class ProfileAdsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.isLoading$.next(true);
+    this.authService.user$.subscribe(res => {
+      this.user = res;
+    })
     this.adService.getAuthorAdsPagedFiltered(0, this.pageSize, this.author.id).subscribe(res => {
       this.ads = res;
       this.loadingService.isLoading$.next(false);
       this.adsTotal = this.ads.total;
 
-    })
-    this.authService.user$.subscribe(res => {
-      this.user = res;
     })
   }
 

@@ -94,6 +94,7 @@
     top: 0;
     left: 0;
     box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
     &-bg {
       max-width: 650px;
       height: 650px;
@@ -102,6 +103,13 @@
       top: 0;
       left: 0;
       filter: blur(15px) brightness(1.5);
+    }
+
+    &__empty {
+      box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.2);
+      width: 650px;
+      max-height: 650px;
+      border-radius: 20px;
     }
   }
 
@@ -227,6 +235,10 @@ nz-carousel {
         max-width: 600px;
         height: 600px;
       }
+      &__empty {
+        width: 600px;
+        max-height: 600px;
+      }
     }
   
     &__footer{
@@ -257,6 +269,10 @@ nz-carousel {
       &-bg {
         max-width: 550px;
         height: 550px;
+      }
+      &__empty {
+        width: 550px;
+        max-height: 550px;
       }
     }
 
@@ -303,6 +319,10 @@ nz-carousel {
         max-width: 525px;
         height: 525px;
       }
+      &__empty {
+        width: 525px;
+        max-height: 525px;
+      }
     }
 
     &__content {
@@ -348,6 +368,10 @@ nz-carousel {
       &-bg {
         max-width: 600px;
         height: 600px;
+      }
+      &__empty {
+        width: 600px;
+        max-height: 600px;
       }
     }
 
@@ -421,6 +445,10 @@ nz-carousel {
         max-width: 500px;
         height: 500px;
       }
+      &__empty {
+        width: 500px;
+        max-height: 500px;
+      }
     }
 
     &__content {
@@ -489,6 +517,10 @@ nz-carousel {
         max-width: 450px;
         height: 450px;
       }
+      &__empty {
+        width: 450px;
+        max-height: 450px;
+      }
     }
 
     &__content {
@@ -549,6 +581,10 @@ nz-carousel {
       &-bg {
         max-width: 400px;
         height: 400px;
+      }
+      &__empty {
+        width: 400px;
+        max-height: 400px;
       }
     }
 
@@ -613,6 +649,10 @@ nz-carousel {
       &-bg {
         max-width: 325px;
         height: 325px;
+      }
+      &__empty {
+        width: 325px;
+        max-height: 325px;
       }
     }
 

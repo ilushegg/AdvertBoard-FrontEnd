@@ -30,7 +30,7 @@ export class ProfileCommentsComponent implements OnInit {
 
   public commentForm = this.formBuilder.group(
     {
-      text: ['', [Validators.required, Validators.maxLength(500)]]
+      text: ['', [Validators.required, Validators.maxLength(200)]]
     }
   )
 

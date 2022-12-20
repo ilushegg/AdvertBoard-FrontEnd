@@ -7,6 +7,7 @@ import { UserAvatar } from 'src/app/models/user-avatar.model';
 import { UserEdit } from 'src/app/models/user-edit.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,27 +21,36 @@ export class ProfileComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
    this.screenWidth = window.innerWidth;
-}
+  }
 
   screenWidth: number;
   public user$: User;
   public environmentUrl = environment.apiUrl;
   public component: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute, public loadingService: LoadingService) { 
     this.getScreenSize();
   }
 
   ngOnInit(): void {
+    this.loadingService.isLoading$.next(true);
+    
     this.route.queryParams.subscribe(params => {
       this.component = params['component'];
-    });
-    console.log(this.component);
-    this.authService.user$.subscribe(res => {
-      this.user$ = res;
+      console.log(this.route.snapshot.params['id'])
       
+      this.authService.user$.subscribe(res => {
+        this.user$ = res;
+        console.log(this.user$)
+      this.loadingService.isLoading$.next(false);
+        
+      })
+    });
+    this.authService.getSelfById(this.route.snapshot.params['id']).subscribe(res => {
+      this.user$ = res;
     })
-
+    console.log(this.component)
+    if(this.user$ === undefined) {return}
   }
 
 

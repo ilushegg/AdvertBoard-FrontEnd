@@ -47,8 +47,10 @@ nz-upload {
 @media(max-width: 700px) {
   .profile {  
     display: block;
+    margin-top: 20px;
     &__avatar {
       margin-bottom: 25px;
     }
   }
 }
+

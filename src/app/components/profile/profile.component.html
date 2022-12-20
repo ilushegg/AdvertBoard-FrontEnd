@@ -12,7 +12,7 @@
         
         <button nz-button><span nz-icon nzType="upload"></span>Изменить фотографию</button>
       </nz-upload>
-      <div *ngIf="screenWidth > 700" class="profile__nav">
+      <div class="profile__nav">
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'data'}" >Данные</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'advertisements'}" >Мои объявления</a>
         <a class="profile__nav__element" routerLink="/profile/{{user$.id}}" [queryParams]="{component: 'favorites'}">Избранное</a>

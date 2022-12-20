@@ -60,6 +60,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { UserActivateComponent } from './components/user-activate/user-activate.component';
 import { UserRecoverPasswordComponent } from './components/user-recover-password/user-recover-password.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 registerLocaleData(ru);
@@ -86,6 +87,7 @@ registerLocaleData(ru);
     UserActivateComponent,
     UserRecoverPasswordComponent,
     AdminPanelComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

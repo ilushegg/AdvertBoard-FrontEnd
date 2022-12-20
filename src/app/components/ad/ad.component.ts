@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ThemeType } from '@ant-design/icons-angular';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Advertisement } from 'src/app/models/ad.model';
@@ -14,22 +14,23 @@ import { FavoriteService } from 'src/app/services/favorite.service';
 export class AdComponent implements OnInit {
 
   @Input() ad: Advertisement;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?: any) {
+    this.screenWidth = window.innerWidth;
+  }
 
-
-
-
-
-
-
-
-
-
+  screenWidth: number;
+  swipe = false;
   public ads: Advertisement[] = [];
 
-  constructor(private authService: AuthService, private favoriteService: FavoriteService, private nzMessageService: NzMessageService) { }
+  constructor(private authService: AuthService, private favoriteService: FavoriteService, private nzMessageService: NzMessageService) { 
+    this.getScreenSize();
+  }
 
   ngOnInit(): void {
-    
+    if(this.screenWidth < 700) {
+      this.swipe = true;
+    }
   }
 
   addToFavorite(adId: string){

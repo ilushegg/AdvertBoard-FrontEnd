@@ -1,6 +1,6 @@
 <div class="ad">
   <div *ngIf="ad.images.length > 0; else noImages">
-    <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
+    <nz-carousel class="ad__carousel" [nzEnableSwipe]="swipe">
       <div nz-carousel-content *ngFor="let image of ad.images">
         <img class="advertisement-image" src="{{ image }}" />
       </div>

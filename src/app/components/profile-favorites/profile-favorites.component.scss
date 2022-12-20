@@ -126,3 +126,162 @@
   margin-top: 250px;
 }
 
+
+@media(max-width: 800px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 150px;
+
+    &__carousel {
+      width: 150px;
+      height: 150px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 5px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 5px;
+      }
+
+      &-city {
+        margin-bottom: 4px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 150px;
+    width: 150px;
+
+  }
+}
+
+@media(max-width: 700px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 200px;
+
+    &__carousel {
+      width: 200px;
+      height: 200px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 10px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 16px;
+      }
+
+      &-city {
+        margin-bottom: 14px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 200px;
+    width: 200px;
+
+  }
+}
+
+@media(max-width: 600px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 150px;
+
+    &__carousel {
+      width: 150px;
+      height: 150px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 5px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 5px;
+      }
+
+      &-city {
+        margin-bottom: 4px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 150px;
+    width: 150px;
+
+  }
+}
+
+@media(max-width: 500px) {
+
+  .ad {
+
+    max-height: 100px;
+
+    &__carousel {
+      width: 100px;
+      height: 100px;
+      
+    }
+  
+    &__secWrapper {
+    }
+    &__description{
+    
+      &-title {
+        font-size: 12px;
+      }
+
+      &-price {
+        font-size: 14px;
+      }
+
+      &-city {
+        font-size: 12px;
+      }
+
+      &-date {
+        font-size: 12px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 100px;
+    width: 100px;
+
+  }
+}

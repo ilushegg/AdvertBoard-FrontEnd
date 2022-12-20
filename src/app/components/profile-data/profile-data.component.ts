@@ -30,8 +30,7 @@ export class ProfileDataComponent implements OnInit {
   passwordForm = this.formBuilder.group({
     oldPassword: ['', [Validators.required]],
     newPassword: ['', [Validators.required]],
-    newPasswordCheck: ['', [Validators.required]],
-
+    newPasswordCheck: ['', [Validators.required]]
   })
 
 
