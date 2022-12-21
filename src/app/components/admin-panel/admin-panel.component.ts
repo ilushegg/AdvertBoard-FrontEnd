@@ -19,12 +19,12 @@ export class AdminPanelComponent implements OnInit {
   })
 
   editCategoryForm = this.formBuilder.group({
-    category: [''],
+    categoryEdit: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.maxLength(50)]]
   })
 
   deleteCategoryForm = this.formBuilder.group({
-    category: ['', [Validators.required]]
+    categoryDelete: ['', [Validators.required]]
   })
 
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, public loadingService: LoadingService) { }
@@ -73,13 +73,13 @@ export class AdminPanelComponent implements OnInit {
     }
     this.loadingService.isLoading$.next(true);
 
-    const category = this.editCategoryForm.controls.category.value;
+    const category = this.editCategoryForm.controls.categoryEdit.value;
     const name = this.editCategoryForm.controls.name.value;
 
     this.categoryService.editCategory(category!, name!).subscribe(res => {
       if(res != null){
 
-        this.nzNotificationService.info("Информация", "Категория добавлена")
+        this.nzNotificationService.info("Информация", "Категория изменена")
     this.loadingService.isLoading$.next(false);
 
       }
@@ -100,7 +100,7 @@ export class AdminPanelComponent implements OnInit {
     }
     this.loadingService.isLoading$.next(true);
 
-    const category = this.deleteCategoryForm.controls.category.value;
+    const category = this.deleteCategoryForm.controls.categoryDelete.value;
     this.categoryService.deleteCategory(category!).subscribe(res => {
       if(res != null){
 
@@ -109,6 +109,31 @@ export class AdminPanelComponent implements OnInit {
 
       }
     })
+  }
+
+  isVisible = false;
+  showModal(): void {
+    if (this.deleteCategoryForm.invalid) {
+      this.nzNotificationService.error('Ошибка', 'Форма заполнена неверно');
+      Object.values(this.deleteCategoryForm.controls).forEach(control => {
+        if (control.invalid) {
+
+          control.markAsTouched();
+          control.updateValueAndValidity({onlySelf: true});
+        }
+      })
+      return;
+    }
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.deleteCategorySubmit();
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
 }

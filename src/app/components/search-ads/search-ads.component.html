@@ -74,7 +74,7 @@
   </nz-drawer>
     </div>
     
-    <div class="search-ads">
+    <div  *ngIf="ads.total > 0; else noAds" class="search-ads">
       <div class="search-ads__filters" *ngIf="screenWidth > 700">
         <form
           [formGroup]="filtersForm"
@@ -133,7 +133,17 @@
 </div>
 
 <ng-template #loading>
-  <div style="margin-top: 200px">
+  <div style="margin-top: -150px;">
     <app-spinner class="spinner"></app-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noAds>
+  <div class="empty__wrapper">
+    <span class="empty__img" nz-icon nzType="meh" nzTheme="outline"></span>
+    <div class="empty__text">Здесь пока пусто</div>
+    <a nz-button nzType="primary" routerLink="../../add-new-ad"
+      >Разместить объявление
+    </a>
   </div>
 </ng-template>

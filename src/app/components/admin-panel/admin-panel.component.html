@@ -45,7 +45,7 @@
           <div class="admin__form__tree">
             <nz-tree-select
               [nzNodes]="(categories$ | async) || []"
-              formControlName="category"
+              formControlName="categoryEdit"
               nzPlaceHolder="Выберите категорию"
               style="text-align: left"
             ></nz-tree-select>
@@ -75,20 +75,34 @@
           <div class="admin__form__tree">
             <nz-tree-select
               [nzNodes]="(categories$ | async) || []"
-              formControlName="category"
+              formControlName="categoryDelete"
               nzPlaceHolder="Выберите категорию"
               style="text-align: left"
             ></nz-tree-select>
           </div>
         </nz-form-control>
       </nz-form-item>
-      <button class="admin__form__btn"  nz-button nzType="primary" type="submit">Удалить</button>
+      <button class="admin__form__btn"  nz-button nzType="primary" type="button" (click)="showModal()" nzDanger>Удалить</button>
+      <nz-modal
+                nzCentered
+                [(nzVisible)]="isVisible"
+                nzTitle="Вы действительно хотите удалить категорию?"
+                (nzOnCancel)="handleCancel()"
+                (nzOnOk)="handleOk()"
+                nzOkText="Да"
+                nzCancelText="Нет"
+              >
+                <ng-container *nzModalContent>
+                  <p>После удаления категории, все объявления с этой категорией будут удалены.
+                    Данное действие нельзя будет отменить.</p>
+                </ng-container>
+              </nz-modal>
     </form>
   </div>
 </div>
 
 <ng-template #errorTip let-control>
-  <div style="color: red" *ngIf="control?.invalid || control?.dirty">
+  <div style="color: red" *ngIf="control?.invalid && control?.dirty">
     Поле заполнено неверно
   </div>
 </ng-template>

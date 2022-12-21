@@ -14,6 +14,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { UploadComment } from 'src/app/models/upload-comment.model';
 import { GetPagedResult } from 'src/app/models/get-paged-result.model';
 import { Comment } from 'src/app/models/comment.model';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-ad-full',
@@ -59,7 +60,7 @@ export class AdFullComponent implements OnInit {
     }
   )
 
-  constructor(private adService: AdService, private favoriteService: FavoriteService, private route: ActivatedRoute, public loadingService: LoadingService, private authService: AuthService, private nzMessageService: NzMessageService, private formBuilder: FormBuilder, private commentService: CommentService) { 
+  constructor(private adService: AdService, private favoriteService: FavoriteService, private route: ActivatedRoute, public loadingService: LoadingService, private authService: AuthService, private nzMessageService: NzMessageService, private formBuilder: FormBuilder, private commentService: CommentService, private nzNotificationService: NzNotificationService) { 
     this.getScreenSize();
   }
 
@@ -132,7 +133,12 @@ export class AdFullComponent implements OnInit {
   }
 
   showModal(): void {
-    this.isVisible = true;
+    if(this.authService.id!){
+      this.isVisible = true;
+    }
+    else {
+      this.nzNotificationService.warning("Предупреждение", "Чтобы оставить комментарий, необходимо авторизоваться.");
+    }
   }
 
   handleOk(id: string): void {

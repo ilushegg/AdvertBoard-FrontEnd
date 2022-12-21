@@ -9,15 +9,23 @@ $montserratFont: 'Montserrat', sans-serif;
 $box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.05);
 $defaultColor: #1890ff;
 
+app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 body {
   padding: 0;
   margin: 0;
   font-family: $montserratFont;
+  // position: relative;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   justify-content: space-between;
+
 }
 
 ul,
@@ -31,9 +39,22 @@ li {
   max-width: 1050px;
   margin: auto;
   padding: 0 15px;
-  min-width: 100vh;
-  
+  padding-bottom: 100px;
 }
+
+.container__header {
+  max-width: 1050px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.container__footer {
+  max-width: 1050px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+
 
 .logo {
   font-family: $readexFont;
@@ -166,5 +187,40 @@ ngx-dadata{
 @media(max-width: 450px) {
   .container {
     padding: 0 5px;
+  }
+}
+
+// snow
+
+.snow {
+  --animation-name: snowfall;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.snow__flake {
+  position: relative;
+  top: -1.5em;
+  color: #c1dcec;
+  animation-name: var(--animation-name);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(100vh + 1.5em));
   }
 }

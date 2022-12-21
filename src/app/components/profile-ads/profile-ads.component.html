@@ -27,7 +27,13 @@
               <p class="ad__description-city">{{ ad.locationQuery }}</p>
               <p class="ad__description-date">{{ ad.dateTimeCreated }}</p>
             </div>
-            <div *ngIf="user.id == author.id" class="ad__nav">
+            <div *ngIf="user.id == author.id || user.userRole=='Admin'" class="ad__nav">
+              <!-- <nz-radio-group
+              [(ngModel)]="ad.status"
+            >
+              <label nz-radio (click)="publicAd(ad.id)" nzValue="public">Публично</label>
+              <label nz-radio (click)="hideAd(ad.id)" nzValue="hidden">Скрыто</label>
+            </nz-radio-group> -->
               <button
                 class="ad__nav__btn"
                 nz-button
@@ -58,6 +64,7 @@
                   nzTheme="outline"
                 ></span>
               </button>
+              
               <button
                 class="ad__nav__btn"
                 nz-button

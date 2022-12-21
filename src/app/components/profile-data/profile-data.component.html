@@ -40,7 +40,14 @@
         Электронный адрес
         <button *ngIf="user.activationCode != null" class="" nz-button nzType="default" type="button" nzSize="small" nzDanger (click)="sendActivationCode()">Отправить код подтверждения</button>
       </div>
-      <input readonly nz-input type="text" value="{{ user.email }}" />
+      <nz-form-control>
+        <input
+          nz-input
+          type="text"
+          formControlName="email"
+        />
+      </nz-form-control>
+
     </nz-form-item>
     <nz-form-item>
       <button class="" nz-button nzType="primary" type="submit">Сохранить данные</button>

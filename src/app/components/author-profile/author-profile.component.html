@@ -4,7 +4,7 @@
       
       <nz-avatar class="profile__avatar-img" [nzSize]="250" nzSrc="{{ author$.avatar }}" nzIcon="user" nzFallback=""></nz-avatar>
       <div class="author-name" >{{ author$.name }}</div>
-      <button class="author-number"  nz-button nzType="default" type="button">{{ author$.mobile ? author$.mobile : 'Пользователь не добавил номер' }}</button>
+      <button class="author-number"  nz-button nzType="default" type="button">{{ author$.mobile ? author$.mobile : 'Номер не добавлен' }}</button>
       <button class="author-chat" nz-button nzType="primary" type="button">Написать</button>
       <span>На площадке с {{ author$.createDate }}</span>
 

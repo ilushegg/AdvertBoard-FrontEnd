@@ -9,7 +9,7 @@
   grid-column-gap: 25px;
   align-items: flex-start;
   justify-items: center;
-
+  padding-bottom: 70px;
   &__content {
     position: relative;
 
@@ -20,7 +20,7 @@
   &__pagination {
     text-align: center;
     position: absolute;
-    bottom: -25px;
+    bottom: 0;
     right: 0;
     left: 0;
   }

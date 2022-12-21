@@ -61,7 +61,7 @@ import { UserActivateComponent } from './components/user-activate/user-activate.
 import { UserRecoverPasswordComponent } from './components/user-recover-password/user-recover-password.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 
 registerLocaleData(ru);
 
@@ -125,7 +125,7 @@ registerLocaleData(ru);
     NzModalModule,
     NzCommentModule,
     NzRadioModule,
-
+    NzSwitchModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

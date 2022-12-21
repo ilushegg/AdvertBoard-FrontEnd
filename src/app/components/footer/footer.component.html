@@ -1,5 +1,5 @@
 <footer class="footer" *ngIf="isFooter() && !(loadingService.isLoading$ | async)">
-  <div class="container">
+  <div class="container__footer">
 <div class="footer__nav__wrapper">
   <ul class="footer__copyright">
     <li class="footer__nav__copy">
@@ -9,7 +9,7 @@
   <ul class="footer__nav">
     <li class="footer__nav__li"></li>
     <li class="footer__nav__li">
-      <a href="#">
+      <a href="#" onclick="return false">
         <span style="color: #fff;" (click)="copyEmail('marnopolskiyi@mail.ru')" nz-icon nzType="mail" nzTheme="outline"></span>
 
       </a>

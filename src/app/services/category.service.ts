@@ -21,8 +21,14 @@ export class CategoryService {
   }
 
   public addCategory(parentCategory: string, childCategory: string): Observable<any> {
-    parentCategory = ((parentCategory != null ? parentCategory : null)!)
-    return this.httpClient.post(`${this.catUrl}/add`, {parentCategory, childCategory});
+    console.log({parentCategory, childCategory})
+    if(parentCategory == ''){
+      return this.httpClient.post(`${this.catUrl}/add`, {childCategory});
+    }
+    else {
+      return this.httpClient.post(`${this.catUrl}/add`, {parentCategory, childCategory});
+
+    }
   }
 
   public editCategory(categoryId: string, name: string): Observable<any> {

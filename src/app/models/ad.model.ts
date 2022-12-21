@@ -8,5 +8,6 @@ export interface Advertisement {
   locationQuery: string,
   dateTimeCreated: string,
   isFavorite: boolean,
+  status: string,
   deleted: boolean
 }

@@ -34,6 +34,7 @@ export class ProfileAdsComponent implements OnInit {
 
   deleteIndex = 0;
   deleteId = '';
+  radioValue = false;
 
   isVisible = false;
 
@@ -48,7 +49,7 @@ export class ProfileAdsComponent implements OnInit {
       this.ads = res;
       this.loadingService.isLoading$.next(false);
       this.adsTotal = this.ads.total;
-
+      console.log(res);
     })
   }
 
@@ -84,6 +85,19 @@ export class ProfileAdsComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+
+  publicAd(id: string) {
+    this.adService.editPublicStatusAd(id, "public").subscribe(res => {
+      this.nzNotificationService.info("Информация", "Объявление снято с публикации.")
+    })
+  }
+
+  hideAd(id: string) {
+    this.adService.editPublicStatusAd(id, "hidden").subscribe(res => {
+      this.nzNotificationService.info("Информация", "Объявление выставлено на публикацию.")
+    })
   }
 
 

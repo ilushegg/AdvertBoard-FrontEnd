@@ -1,9 +1,12 @@
 <header class="header">
   <div class="navbar__bg">
-    <div class="container">
+    <div class="container__header">
       <nav class="navbar" *ngIf="isHeaderNav()">
         <ul class="navbar__section">
-          <li class="navbar__item logo" routerLink="/">MIAboard</li>
+          <li class="navbar__item logo" routerLink="/">
+            <img src="../../../assets/img/logo.png" alt="logo">
+          </li>
+
         </ul>
         <ul class="navbar__section">
           <div class="" *ngIf="user$ as user; else notAuthed">
@@ -149,8 +152,7 @@
                   <ul class="nav__mobile__ul__logout" nz-menu nzSelectable>
                     <li
                       nz-menu-item
-                      routerLink="profile/{{ user.id }}"
-                      [queryParams]="{ component: 'data' }"
+                      routerLink="/"
                       (click)="authService.logout()"
                     >
                       Выход
@@ -174,7 +176,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container__header">
     <form
       class="search__section"
       [formGroup]="searchForm"
@@ -208,7 +210,7 @@
           formControlName="address"
           [config]="config"
           placeholder="Регион"
-          (selected)="onAddressSelected($event)"
+          
         ></ngx-dadata>
       </div>
       <button
@@ -221,8 +223,17 @@
         <span nz-icon nzType="search"></span> Найти
       </button>
     </form>
+    <div *ngIf="isHeaderCategory() && screenWidth > 700"  class="search__section-categories">
+    <div *ngFor="let category of (categories$ | async)">
+      <button (click)="categoryClick(category.key)" nz-button style="border-radius: 5px; border-color: #1890ff;" nzSize="small">{{category.title}}</button>
+    </div>
+    </div>
   </div>
+  
+  
+
 </header>
+
 
 <ng-template #notAuthed>
   <button nz-button nzType="primary" routerLink="/auth">

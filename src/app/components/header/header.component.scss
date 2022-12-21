@@ -30,7 +30,9 @@
 }
 
 
-
+.logo img {
+  width: 90px;
+}
 
 [nz-button] {
   border-radius: 20px;
@@ -53,7 +55,7 @@ nz-dropdown-menu {
   max-width: 1000px;
   width: 100%;
   margin:0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   
   display: flex;
   justify-content: space-between;
@@ -79,6 +81,16 @@ nz-dropdown-menu {
     max-width: 200px!important;
     width: 100%;
     margin-right: 15px;
+  }
+
+  &-categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    button {
+      margin-right: 5px;
+    }
   }
 
   &__tree {
@@ -169,5 +181,43 @@ nz-tree-select {
   }
   nz-tree-select {
     max-width: 125px;
+  }
+}
+
+
+
+
+// SNOW
+
+.snow {
+  --animation-name: snowfall;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.snow__flake {
+  position: relative;
+  top: -1.5em;
+  color: #c1dcec;
+  animation-name: var(--animation-name);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(100vh + 1.5em));
   }
 }

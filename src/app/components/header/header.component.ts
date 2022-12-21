@@ -72,6 +72,12 @@ export class HeaderComponent implements OnInit {
     this.visibleProfile = false;
   }
 
+  categoryClick(id: string) {
+    this.categories$.subscribe(res => {
+      this.router.navigateByUrl(`search?location=&categoryId=${id}&query=`);
+    })
+  }
+
 
 
   isHeaderNav(): boolean {
@@ -92,6 +98,16 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+
+  isHeaderCategory(): boolean {
+    if ((this.router.url == '/')) {
+
+              return true;
+      }
+
+    return false;
+  }
+
   b1: Bound = {value: "region"}
   b2: Bound = {value: "city"}
 
@@ -104,11 +120,11 @@ export class HeaderComponent implements OnInit {
   };
 
 
-  onAddressSelected(event: DadataSuggestion) {
-    const addressData = event.data as DadataAddress;
-    this.selected = true;
-    this.city = addressData.city;
-  }
+  // onAddressSelected(event: DadataSuggestion) {
+  //   const addressData = event.data as DadataAddress;
+  //   this.selected = true;
+  //   this.city = addressData.city;
+  // }
 
   onCategorySelected($event: string) {
     console.log($event);
@@ -118,7 +134,9 @@ export class HeaderComponent implements OnInit {
     this.city = '';
   }
   
-
+ 
 
 
 }
+
+

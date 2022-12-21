@@ -16,9 +16,9 @@ export class AdService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPagedFiltered(offset: number, limit: number, userId: string): Observable<Advertisement[]> {
+  getPagedFiltered(offset: number, limit: number, userId: string): Observable<GetPagedResult<Advertisement>> {
     let url = userId ? `${this.cardUrl}?Offset=${offset}&Limit=${limit}&UserId=${userId}` : `${this.cardUrl}?Offset=${offset}&Limit=${limit}`;
-    return this.httpClient.get<Advertisement[]>(url);
+    return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
   getAuthorAdsPagedFiltered(offset: number, limit: number, userId: string): Observable<GetPagedResult<Advertisement>> {
@@ -28,7 +28,6 @@ export class AdService {
 
   getPagedBySearch(offset: number, limit: number, location: string, categoryId: string, query: string, fromPrice: string, toPrice: string, userId: string, ordering: string): Observable<GetPagedResult<Advertisement>> {
     let url = `${this.cardUrl}/search?Offset=${offset}&Limit=${limit}${location ? "&Location=" + location : ""}${categoryId ? "&CategoryId=" + categoryId : ""}${query ? "&Query=" + query : ""}${fromPrice ? "&FromPrice=" + fromPrice : ""}${toPrice ? "&ToPrice=" + toPrice : ""}${userId ? "&UserId=" + userId : ""}${ordering ? "&Sort=" + ordering : ""}`;
-    console.log(url)
     return this.httpClient.get<GetPagedResult<Advertisement>>(url);
   }
 
@@ -44,8 +43,11 @@ export class AdService {
   }
 
   public editAd(id: string, model: UploadAd): Observable<string> {
-    console.log({id, ...model})
     return this.httpClient.put<string>(`${this.cardUrl}/edit`,{id, ...model});
+  }
+
+  public editPublicStatusAd(advertisementId: string, status: string): Observable<string> {
+    return this.httpClient.put<string>(`${this.cardUrl}/edit_public`,{advertisementId, status});
   }
 
 

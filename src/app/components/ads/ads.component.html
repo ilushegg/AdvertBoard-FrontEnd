@@ -1,15 +1,24 @@
 <div class="container">
+  
   <div *ngIf="!(loadingService.isLoading$ | async); else loading">
     <div class="ads">
-        <div class="" *ngFor="let ad of ads">
+        <div class="" *ngFor="let ad of ads.items">
           <app-ad class="ad" [ad]=ad></app-ad>
         </div>
     </div>
+    <nz-pagination 
+      class="ads__pagination"
+      [nzPageIndex]="pageNumber"
+      [nzPageSize]="pageSize"
+      [nzTotal]="adsTotal"
+      (nzPageIndexChange)="onChangePagination($event)"
+    ></nz-pagination>
+
   </div>
 </div>
 
 <ng-template #loading>
-  <div style="margin-top: 200px">
+  <div style="margin-top: -150px;">
     <app-spinner class="spinner"></app-spinner>
   </div>
 </ng-template>

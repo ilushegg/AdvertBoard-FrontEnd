@@ -39,7 +39,8 @@ export class ProfileDataComponent implements OnInit {
   ngOnInit(): void {
     this.dataForm.patchValue({
       name: this.user.name,
-      mobile: this.user.mobile
+      mobile: this.user.mobile,
+      email: this.user.email
     })
 
   }
