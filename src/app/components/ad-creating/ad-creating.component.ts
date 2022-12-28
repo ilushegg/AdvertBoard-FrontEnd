@@ -128,6 +128,7 @@ private deleteImageById(id: string, arr: Array<any>) {
 
   onAddressSelected(event: DadataSuggestion) {
     const addressData = event.data as DadataAddress;
+    console.log(addressData);
     this.ad.country = addressData.country;
     this.ad.city = addressData.city;
     this.ad.street = addressData.street;

@@ -83,6 +83,7 @@ export class AdFullComponent implements OnInit {
         this.comments = res;
       })
     })
+  
 
   }
 

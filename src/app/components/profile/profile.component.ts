@@ -28,29 +28,21 @@ export class ProfileComponent implements OnInit {
   public environmentUrl = environment.apiUrl;
   public component: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute, public loadingService: LoadingService) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UserService, private nzMessageService: NzMessageService, private route: ActivatedRoute) { 
     this.getScreenSize();
   }
 
   ngOnInit(): void {
-    this.loadingService.isLoading$.next(true);
-    
-    this.route.queryParams.subscribe(params => {
+  this.route.queryParams.subscribe(params => {
       this.component = params['component'];
-      console.log(this.route.snapshot.params['id'])
-      
       this.authService.user$.subscribe(res => {
-        this.user$ = res;
-        console.log(this.user$)
-      this.loadingService.isLoading$.next(false);
-        
+        this.user$ = res;       
       })
     });
     this.authService.getSelfById(this.route.snapshot.params['id']).subscribe(res => {
       this.user$ = res;
     })
-    console.log(this.component)
-    if(this.user$ === undefined) {return}
+   
   }
 
 
@@ -71,6 +63,10 @@ export class ProfileComponent implements OnInit {
       });
     } else if (info.file.status === 'error') {
       this.nzMessageService.error(`Ошибка загрузки файла.`);
+    }
+    else{
+      this.nzMessageService.error(`Ошибка загрузки файла.`);
+
     }
   }
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -12,6 +15,16 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class AdminPanelComponent implements OnInit {
 
   public categories$ = this.categoryService.getAll();
+  user: User = {
+    id: '',
+    name: '',
+    email: '',
+    mobile: '',
+    avatar: '',
+    createDate: '',
+    userRole: '',
+    activationCode: ''
+  }
 
   addCategoryForm = this.formBuilder.group({
     parentCategory: [''],
@@ -27,9 +40,12 @@ export class AdminPanelComponent implements OnInit {
     categoryDelete: ['', [Validators.required]]
   })
 
-  constructor(private categoryService: CategoryService, private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, public loadingService: LoadingService) { }
+  constructor(private categoryService: CategoryService, private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, public loadingService: LoadingService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.getSelfById(this.authService.id!).subscribe(res => {
+      this.user = res;
+    })
   }
 
   addCategorySubmit(){
@@ -135,5 +151,7 @@ export class AdminPanelComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  
 
 }

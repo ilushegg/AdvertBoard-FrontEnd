@@ -32,7 +32,7 @@ export class SearchAdsComponent implements OnInit {
     categoryId: ['']
   });
 
-  pageSize = 10;
+  pageSize = 12;
   pageNumber = 1;
   public adsTotal = this.pageSize;
   query = '';
@@ -75,7 +75,8 @@ export class SearchAdsComponent implements OnInit {
           this.ordering
         )
         .subscribe((res) => {
-          (this.ads = res), console.log(res);
+          this.ads = res;
+          this.adsTotal = res.total
           this.loadingService.isLoading$.next(false);
         });
     });
@@ -87,7 +88,7 @@ export class SearchAdsComponent implements OnInit {
     this.loadingService.isLoading$.next(true);
     this.adService
       .getPagedBySearch(
-        0,
+        (index-1)*this.pageSize,
         this.pageSize,
         this.location,
         this.categoryId,
@@ -128,7 +129,9 @@ export class SearchAdsComponent implements OnInit {
         this.ordering
       )
       .subscribe((res) => {
-        (this.ads = res), this.loadingService.isLoading$.next(false);
+        this.ads = res;
+        this.loadingService.isLoading$.next(false);
+        this.pageNumber = 1;
       });
       this.visibleFilters = false;
 

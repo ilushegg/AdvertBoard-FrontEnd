@@ -53,6 +53,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'profile/:id?component=admin',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'profile/:id',
     component: ProfileComponent
   },

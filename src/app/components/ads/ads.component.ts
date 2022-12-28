@@ -27,7 +27,6 @@ export class AdsComponent implements OnInit {
     this.loadingService.isLoading$.next(true);
     this.adService.getPagedFiltered(0, this.pageSize, this.authService.id!).subscribe(res => {
       this.ads = res;
-      console.log(res)
       this.loadingService.isLoading$.next(false);
     })
   }
