@@ -62,6 +62,7 @@ import { UserRecoverPasswordComponent } from './components/user-recover-password
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { ProfileFavoritesNotAuthedComponent } from './components/profile-favorites-not-authed/profile-favorites-not-authed.component';
 
 registerLocaleData(ru);
 
@@ -88,6 +89,7 @@ registerLocaleData(ru);
     UserRecoverPasswordComponent,
     AdminPanelComponent,
     FooterComponent,
+    ProfileFavoritesNotAuthedComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@
         routerLink="../advertisements/{{ ad.id }}"
         >{{ ad.name }}</a
       >
-      <div *ngIf="!ad.isFavorite; else favorite">
+      <div *ngIf="!ad.isFavorite && !checkFavorite(ad.id); else favorite">
         <a (click)="addToFavorite(ad.id)"
           ><span
             style="font-size: 18px; margin-left: 20px"
@@ -25,13 +25,13 @@
       </div>
     </div>
     <div class="ad__description-price">
-      <div *ngIf="ad.price == 0 else price">Бесплатно</div>
+      <div *ngIf="ad.price === 0 else price">Бесплатно</div>
       <ng-template #price>
         {{ ad.price | currency: 'RUB':'symbol-narrow':'1.0-0':'ru-RU' }}
       </ng-template>
     </div>
     <div class="ad__description-city">
-      <div *ngIf="ad.locationQuery != null; else russia">
+      <div *ngIf="ad.locationQuery !== null; else russia">
         {{ ad.locationQuery }}
       </div>
       <ng-template #russia>Россия</ng-template>

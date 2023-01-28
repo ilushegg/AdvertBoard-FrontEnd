@@ -78,6 +78,17 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  favoritesCountNoAuth(): number{
+    let i: number;
+    let adsLocalStorage: number = 0;
+    for(i = 0; i < localStorage.length; i++){
+      if(localStorage.key(i)?.startsWith('adId')){
+        adsLocalStorage++;
+      }
+    }
+    return adsLocalStorage;
+  }
+
 
 
   isHeaderNav(): boolean {

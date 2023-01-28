@@ -1,0 +1,287 @@
+@import '/src/styles.scss';
+
+.ads {
+  display: block;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  padding: 30px;
+  min-height: 450px;
+  text-align: center;
+  position: relative;
+
+  &__pagination {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    &__pre {
+      height: 25px;
+    }
+  }
+}
+
+.ad {
+  max-width: 600px;
+  width: 100%;
+  max-height: 200px;
+  height: 100%;
+  margin: 0 auto 30px;
+  display: flex;
+  transition: .3s;
+
+
+  &__carousel {
+    max-height: 200px;
+    max-width: 200px;
+    background-color: rgba(119, 118, 118, 0.671);
+    border-radius: 15px;
+    
+  }
+
+  &__secWrapper {
+    max-width: 400px;
+    width: 100%;
+    padding: 0px 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__description{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+      &:hover{
+        font-weight: 600;
+      }
+    }
+  
+    &-price {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+  }
+
+  &__nav {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &__btn {
+      
+    }
+
+    &__img {
+      font-size: 20px;
+      transition: .3s;
+      &:hover {
+        color: $defaultColor;
+      }
+    }
+  }
+}
+
+.advertisement-image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: auto;
+  border-radius: 15px;
+}
+
+.empty{
+  &__wrapper {
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__img {
+    font-size: 24px;
+    margin: 10px;
+  }
+
+  &__text {
+    margin: 10px;
+  }
+}
+
+.divider {
+  border-top: 1px solid #d4d4d4;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+.spinner {
+  margin-top: 250px;
+}
+
+
+@media(max-width: 800px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 150px;
+
+    &__carousel {
+      width: 150px;
+      height: 150px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 5px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 5px;
+      }
+
+      &-city {
+        margin-bottom: 4px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 150px;
+    width: 150px;
+
+  }
+}
+
+@media(max-width: 700px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 200px;
+
+    &__carousel {
+      width: 200px;
+      height: 200px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 10px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 16px;
+      }
+
+      &-city {
+        margin-bottom: 14px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 200px;
+    width: 200px;
+
+  }
+}
+
+@media(max-width: 600px) {
+
+  .ads {
+    padding: 15px;
+  }
+
+  .ad {
+
+    max-height: 150px;
+
+    &__carousel {
+      width: 150px;
+      height: 150px;
+      
+    }
+  
+    &__secWrapper {
+      padding: 0px 5px;
+    }
+    &__description{
+    
+      &-price {
+        margin-bottom: 5px;
+      }
+
+      &-city {
+        margin-bottom: 4px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 150px;
+    width: 150px;
+
+  }
+}
+
+@media(max-width: 500px) {
+
+  .ad {
+
+    max-height: 100px;
+
+    &__carousel {
+      width: 100px;
+      height: 100px;
+      
+    }
+  
+    &__secWrapper {
+    }
+    &__description{
+    
+      &-title {
+        font-size: 12px;
+      }
+
+      &-price {
+        font-size: 14px;
+      }
+
+      &-city {
+        font-size: 12px;
+      }
+
+      &-date {
+        font-size: 12px;
+      }
+  
+    }
+
+  }
+  .advertisement-image {
+    height: 100px;
+    width: 100px;
+
+  }
+}

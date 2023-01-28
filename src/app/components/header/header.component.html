@@ -10,7 +10,7 @@
         </ul>
         <ul class="navbar__section">
           <div class="" *ngIf="user$ as user; else notAuthed">
-            <div *ngIf="user.userRole == 'Admin'">
+            <div *ngIf="user.userRole === 'Admin'">
               <div class="admin">Администратор</div>
             </div>
             <a
@@ -36,7 +36,7 @@
                   {{ user.name }}
                 </li>
                 <li
-                  *ngIf="user.userRole == 'Admin'"
+                  *ngIf="user.userRole === 'Admin'"
                   nz-menu-item
                   routerLink="profile/{{ user.id }}"
                   [queryParams]="{ component: 'admin' }"
@@ -94,7 +94,7 @@
                     nzSrc="{{ user.avatar }}"
                     nzFallback=""
                   ></nz-avatar>
-                  <div *ngIf="user.userRole == 'Admin'">
+                  <div *ngIf="user.userRole === 'Admin'">
                     <div class="admin">Администратор</div>
                   </div>
 
@@ -108,7 +108,7 @@
                       {{ user.name }}
                     </li>
                     <li
-                      *ngIf="user.userRole == 'Admin'"
+                      *ngIf="user.userRole === 'Admin'"
                       nz-menu-item
                       routerLink="profile/{{ user.id }}"
                       [queryParams]="{ component: 'admin' }"
@@ -236,6 +236,7 @@
 
 
 <ng-template #notAuthed>
+  <a routerLink="favorites"><span style="font-size: 25px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span>{{favoritesCountNoAuth()}}</a>
   <button nz-button nzType="primary" routerLink="/auth">
     Вход и регистрация
   </button>

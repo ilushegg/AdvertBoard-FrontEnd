@@ -15,6 +15,7 @@ import { SearchAdsComponent } from './components/search-ads/search-ads.component
 import { AuthGuard } from './auth.guard';
 import { UserActivateComponent } from './components/user-activate/user-activate.component';
 import { UserRecoverPasswordComponent } from './components/user-recover-password/user-recover-password.component';
+import { ProfileFavoritesNotAuthedComponent } from './components/profile-favorites-not-authed/profile-favorites-not-authed.component';
 
 const routes: Routes = [
   {
@@ -39,10 +40,7 @@ const routes: Routes = [
     component: AdCreatingComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'add-new-ad',
-    component: AdCreatingComponent
-  },
+ 
   {
     path: 'advertisements/:id',
     component: AdFullComponent
@@ -60,6 +58,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent
+  },
+  {
+    path: 'favorites',
+    component: ProfileFavoritesNotAuthedComponent
   },
   {
     path: 'advertisements/editing/:id',

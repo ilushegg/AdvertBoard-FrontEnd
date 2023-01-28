@@ -1,0 +1,65 @@
+<div class="ads">
+  <div *ngIf="!(loadingService.isLoading$ | async); else loading">
+    <div *ngIf="adsTotal > 0; else noAds">
+      <div *ngFor="let ad of ads; let i = index">
+        <!-- <div *ngIf="!ad.deleted"> -->
+        <div class="ad" >
+          <div *ngIf="ad.images.length > 0; else noImages">
+          <nz-carousel class="ad__carousel" [nzEnableSwipe]="false">
+            <div nz-carousel-content *ngFor="let image of ad.images">
+              
+                <img class="advertisement-image" src="{{ image.item2 }}" />
+
+              </div>
+            </nz-carousel>
+          </div>
+          <div class="ad__secWrapper">
+            <div class="ad__description">
+              <a class="ad__description-title" routerLink="/advertisements/{{ ad.id }}">{{ ad.name }}</a>
+              <p class="ad__description-price">
+                {{
+                  ad.price
+                    | currency : "RUB" : "symbol-narrow" : "1.0-0" : "ru-RU"
+                }}
+              </p>
+              <!-- <p class="ad__description-city">{{ ad.locationQuery }}</p> -->
+              <p class="ad__description-date">{{ ad.dateTimeCreated }}</p>
+            </div>
+            <div class="ad__nav">
+              <a (click)="deleteFromFavorite(ad.id, i)"><span style="font-size: 18px; margin-left: 20px" nz-icon nzType="heart" nzTheme="fill"></span></a>
+              
+            </div>
+
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+      </div>
+      <div class="ads__pagination__pre"></div>
+      <nz-pagination class="ads__pagination" [nzPageIndex]="pageNumber" [nzPageSize]="pageSize" [nzTotal]="adsTotal" (nzPageIndexChange)="onChangePagination($event)"></nz-pagination>
+    </div>
+  </div>
+<!-- </div> -->
+
+<ng-template #loading>
+  <div style="margin-top: 200px;">
+    <app-spinner class="spinner"></app-spinner>
+
+  </div>
+</ng-template>
+
+<ng-template #noAds>
+  <div class="empty__wrapper">
+    <span class="empty__img" nz-icon nzType="meh" nzTheme="outline"></span>
+    <div class="empty__text">Здесь пока пусто</div>
+    <a nz-button nzType="primary" routerLink="../../advertisements">Искать объявления</a>
+  </div>
+</ng-template>
+
+
+<ng-template #noImages>
+  <div class="ad__carousel">
+    <img  class="advertisement-image" src="{{ fallback }}" />
+
+  </div>
+</ng-template>
