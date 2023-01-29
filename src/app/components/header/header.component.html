@@ -236,7 +236,10 @@
 
 
 <ng-template #notAuthed>
-  <a routerLink="favorites"><span style="font-size: 25px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span>{{favoritesCountNoAuth()}}</a>
+  <a class="favorites" routerLink="favorites">
+    <span style="font-size: 25px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span>
+    <div class="favorites__count">{{favoritesCountNoAuth()}}</div>
+  </a>
   <button nz-button nzType="primary" routerLink="/auth">
     Вход и регистрация
   </button>

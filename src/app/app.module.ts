@@ -63,6 +63,7 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { ProfileFavoritesNotAuthedComponent } from './components/profile-favorites-not-authed/profile-favorites-not-authed.component';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 registerLocaleData(ru);
 
@@ -127,7 +128,8 @@ registerLocaleData(ru);
     NzModalModule,
     NzCommentModule,
     NzRadioModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzSkeletonModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ru_RU }, 

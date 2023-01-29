@@ -62,7 +62,7 @@ export class AdComponent implements OnInit {
   }
 
   checkFavorite(adId: string) {
-    if(localStorage.getItem('adId ' + adId) !== null){
+    if(localStorage.getItem('adId ' + adId) !== null && !this.authService.id){
       return true;
     }
     else {

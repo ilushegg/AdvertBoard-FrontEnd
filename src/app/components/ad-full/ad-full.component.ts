@@ -120,17 +120,40 @@ export class AdFullComponent implements OnInit {
   }
 
   addToFavorite(adId: string){
+    if(this.authService.id !== null){
     this.favoriteService.addToFavorite(adId, this.authService.id!).subscribe(res => {
       this.nzMessageService.success("Объявление добавлено в избранное.")
       this.ad.isFavorite = true;
     });
+    }
+    else {
+      localStorage.setItem('adId ' + adId, adId);
+      this.nzMessageService.success("Объявление добавлено в избранное.")
+        this.ad.isFavorite = true;
+    }
   }
 
   deleteFromFavorite(adId: string){
+    if(this.authService.id !== null){
     this.favoriteService.deleteFromFavorite(adId, this.authService.id!).subscribe(res => {
       this.nzMessageService.success("Объявление удалено из избранного.")
       this.ad.isFavorite = false;
     });
+  }
+  else {
+    localStorage.removeItem('adId ' + adId);
+    this.nzMessageService.success("Объявление удалено из избранного.")
+      this.ad.isFavorite = false;
+  }
+  }
+
+  checkFavorite(adId: string) {
+    if(localStorage.getItem('adId ' + adId) !== null && !this.authService.id){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   showModal(): void {

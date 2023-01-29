@@ -18,6 +18,17 @@
       height: 25px;
     }
   }
+
+  &__info {
+    padding: 25px;
+    box-shadow: $box-shadow;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    text-align: center;
+    & div:nth-child(1) {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .ad {

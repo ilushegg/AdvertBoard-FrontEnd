@@ -5,7 +5,7 @@
       <div class="advertisement__top-title">
         {{ad.name}}
       </div>
-      <div *ngIf="!ad.isFavorite; else favorite ">
+      <div *ngIf="!ad.isFavorite && !checkFavorite(ad.id); else favorite ">
         <a (click)="addToFavorite(ad.id)"><span style="font-size: 30px; margin-left: 20px" nz-icon nzType="heart" nzTheme="outline"></span></a>
       </div>
 

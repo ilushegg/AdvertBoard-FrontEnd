@@ -16,5 +16,6 @@ export interface FullAdvertisement {
   authorNumber: string,
   authorRegisterDate: string,
   status: string,
-  isFavorite: boolean
+  isFavorite: boolean,
+  deleted: boolean
 }

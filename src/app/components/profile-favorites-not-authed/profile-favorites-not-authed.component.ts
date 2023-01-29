@@ -26,7 +26,8 @@ export class ProfileFavoritesNotAuthedComponent implements OnInit {
   constructor(private favoriteService: FavoriteService, private adService: AdService, public loadingService: LoadingService, private authService: AuthService, private nzMessageService: NzMessageService) { }
 
   ngOnInit(): void {
-    this.loadingService.isLoading$.next(true);
+
+    
     let i: number;
     let adsLocalStorage: string[] = [];
     for(i = 0; i < localStorage.length; i++){
@@ -34,40 +35,28 @@ export class ProfileFavoritesNotAuthedComponent implements OnInit {
         adsLocalStorage.push(localStorage.getItem(localStorage.key(i)!)!);
       }
     }
-    console.log("fHADGHSDJHGJSDHGJKSDGHJKDGH" + adsLocalStorage)
 
     adsLocalStorage.forEach((ad) => {
-      console.log(ad)
+      
       this.adService.getById(ad, '').subscribe(res => {
-        console.log(res)
         this.ads.push(res);
+        
+
       })
 
     });
-    console.log("fHADGHSDJHGJSDHGJKSDGHJKDGH" + this.ads)
     this.adsTotal = adsLocalStorage.length;
-    this.loadingService.isLoading$.next(false);
 
   }
 
-  onChangePagination(index: number) {
-    // this.pageNumber = index;
-
-    // this.loadingService.isLoading$.next(true);
-    // this.favoriteService.getFavoriteAdsPagedFiltered((index-1)*this.pageSize, this.pageSize, this.user.id).subscribe(res => {
-    //   this.ads = res;
-    //   console.log(res);
-    //   this.loadingService.isLoading$.next(false);
-    // })
-  }
 
   deleteFromFavorite(adId: string, index: number){
-    // this.favoriteService.deleteFromFavorite(adId, this.authService.id!).subscribe(res => {
-    //   this.nzMessageService.success("Объявление удалено из избранного.");
-    //   this.ads.items[index].deleted = true;
-    //   this.ads.total--;
-    // });
-  }
+    localStorage.removeItem('adId ' + adId)
+      this.nzMessageService.success("Объявление удалено из избранного.");
+      this.ads[index].deleted = true;
+      this.adsTotal--;
+    };
+  
 
 
 

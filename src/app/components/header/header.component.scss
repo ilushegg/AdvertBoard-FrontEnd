@@ -87,6 +87,7 @@ nz-dropdown-menu {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 30px;
     button {
       margin-right: 5px;
@@ -148,6 +149,27 @@ nz-tree-select {
     margin-top: 5px;
   }
   
+}
+
+.favorites {
+  position: relative;
+
+  &__count {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 

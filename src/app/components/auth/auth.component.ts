@@ -5,7 +5,9 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { BehaviorSubject, EMPTY } from 'rxjs';
 import { LoginUser } from 'src/app/models/login-user.model';
 import { RegistrationUser } from 'src/app/models/registration-user.model';
+import { AdService } from 'src/app/services/ad.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { FavoriteService } from 'src/app/services/favorite.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -40,7 +42,7 @@ export class AuthComponent implements OnInit {
   isVisible = false;
 
 
-  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private authService: AuthService, private router: Router, public loadingService: LoadingService ) { }
+  constructor(private formBuilder: FormBuilder, private nzNotificationService: NzNotificationService, private authService: AuthService, private router: Router, public loadingService: LoadingService, private favoriteService: FavoriteService ) { }
 
   ngOnInit(): void {
     this.loadingService.isLoading$.next(false);
@@ -107,7 +109,20 @@ export class AuthComponent implements OnInit {
       this.loadingService.isLoading$.next(false);
       this.authService.sendActivationCode(res).subscribe();
       this.nzNotificationService.success("Успешно", "Пользователь зарегистрирован");
+      let i: number;
+      for(i = 0; i < localStorage.length; i++){
+        if(localStorage.key(i)?.startsWith('adId')){
+          this.favoriteService.addToFavorite(localStorage.getItem(localStorage.key(i)!)!, res).subscribe( res => {
+            
+
+          }
+          );
+          localStorage.removeItem(localStorage.key(i)!);
+  
+        }
+      }
       this.isLogin.next(true);
+      
     });
   }
 
