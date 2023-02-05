@@ -2,10 +2,12 @@ This application works with its own AdvertBoard API.
 https://github.com/ilushegg/AdvertBoard
 
 ## Application View
-1. Main page
+##1. Main page
+
 ![image](https://user-images.githubusercontent.com/87064924/216818218-070aed5b-2d1b-42f5-8522-dcdc1776a69a.png)
 
-2. Advertisement's page 
+2. Advertisement's page
+
 ![image](https://user-images.githubusercontent.com/87064924/216818196-f5b3c5f7-dde9-4dbe-be72-d7935e31d13b.png)
 
 3. Searching
