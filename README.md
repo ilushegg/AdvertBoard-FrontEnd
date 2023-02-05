@@ -1,8 +1,9 @@
 This application works with its own AdvertBoard API.
 https://github.com/ilushegg/AdvertBoard
 
-## Application View
-##1. Main page
+# Application View
+
+## 1. Main page
 
 ![image](https://user-images.githubusercontent.com/87064924/216818218-070aed5b-2d1b-42f5-8522-dcdc1776a69a.png)
 
